@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/core/aortem_auth0_dynamic_application_client_registration.dart';
+import 'package:auth0_dart_auth_sdk/src/core/aortem_auth_o_dynamic_application_client_registration.dart';
 import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_dynamic_application_client_registration_request_model.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 

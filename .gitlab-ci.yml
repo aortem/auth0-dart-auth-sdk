@@ -52,6 +52,15 @@ analyze_flutter_mobile:
     # Always runs after validation trigger
     - when: always
 
+# Release Triggers
+gitlab_github_release:
+  stage: release
+  trigger:
+    include: tools/pipelines/backend/child-ci-release.yml
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "development"'
+      when: always
+
 #  stage: triggers
 #  trigger:
 #    include: tools/pipelines/child-ci-qa.yml

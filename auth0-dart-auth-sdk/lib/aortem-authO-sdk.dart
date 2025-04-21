@@ -1,8 +1,8 @@
 library;
 
 // Core
-export 'src/core/aortem_auth0_dynamic_application_client_registration.dart';
-export 'src/core/aortem-authO-config.dart';
+export 'src/core/aortem_auth_o_dynamic_application_client_registration.dart';
+export 'src/core/aortem_auth_o_config.dart';
 
 // Authentication
 export 'src/services/authentication/aortem-authO-login.dart';

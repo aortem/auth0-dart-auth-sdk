@@ -205,7 +205,7 @@ packages:
       sha256: "58bc987cd7b16ade9f52e12cd0fe537fc0f2fe4fe4f05b3cec3d6bd7e4989595"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1-pre+11"
+    version: "0.0.3"
   equatable:
     dependency: transitive
     description:

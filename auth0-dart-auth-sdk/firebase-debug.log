@@ -12,7 +12,7 @@
 [debug] [2024-08-22T23:20:20.208Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
 [debug] [2024-08-22T23:20:20.208Z] [auth] Authentication Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
 [debug] [2024-08-22T23:20:20.208Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"ui":[{"address":"127.0.0.1","family":"IPv4","port":5003},{"address":"::1","family":"IPv6","port":5003}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"auth":[{"address":"127.0.0.1","family":"IPv4","port":9099}]},"metadata":{"message":"assigned listening specs for emulators"}}
-[debug] [2024-08-22T23:20:20.212Z] [hub] writing locator at /var/folders/bj/44cc3m515mn3bfkk9x1mqghw0000gn/T/hub-fire-base-dart-admin-auth-sdk.json
+[debug] [2024-08-22T23:20:20.212Z] [hub] writing locator at /var/folders/bj/44cc3m515mn3bfkk9x1mqghw0000gn/T/hub-fire-base-dart-auth-sdk.json
 [warn] ⚠  functions: The functions emulator is configured but there is no functions source directory. Have you run cognito init functions? {"metadata":{"emulator":{"name":"functions"},"message":"The functions emulator is configured but there is no functions source directory. Have you run \u001b[1mcognito init functions\u001b[22m?"}}
 [info] i  ui: downloading ui-v1.13.0.zip... {"metadata":{"emulator":{"name":"ui"},"message":"downloading ui-v1.13.0.zip..."}}
 [debug] [2024-08-22T23:20:23.751Z] >>> [apiv2][query] GET https://storage.googleapis.com/cognito-preview-drop/emulator/ui-v1.13.0.zip 

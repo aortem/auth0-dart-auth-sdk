@@ -1,6 +1,6 @@
 import 'dart:core';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_response_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_request_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_response_model.dart';
 
 /// Provides OpenID Connect (OIDC) compliant logout functionality for Auth0.
 ///
@@ -55,10 +55,9 @@ class AortemAuth0OidcLogout {
   /// Example URL structure:
   /// `https://[auth0Domain]/v2/logout?client_id=[clientId]&id_token_hint=[token]&post_logout_redirect_uri=[uri]&state=[state]`
   AortemAuth0OidcLogoutResponse generateLogoutUrl(
-      AortemAuth0OidcLogoutRequest request) {
-    final queryParams = <String, String>{
-      'client_id': request.clientId,
-    };
+    AortemAuth0OidcLogoutRequest request,
+  ) {
+    final queryParams = <String, String>{'client_id': request.clientId};
 
     if (request.idTokenHint != null && request.idTokenHint!.isNotEmpty) {
       queryParams['id_token_hint'] = request.idTokenHint!;

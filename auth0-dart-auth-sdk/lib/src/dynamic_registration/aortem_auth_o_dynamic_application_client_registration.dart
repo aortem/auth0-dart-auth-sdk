@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_dynamic_application_client_registration_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_dynamic_application_client_registration_response_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_dynamic_application_client_registration_request_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_dynamic_application_client_registration_response_model.dart';
 
 /// A utility class to build an Auth0 authorization URL.
 class AortemAuth0AuthorizeApplicationBuilder {

@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_logout_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_logout_response_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_logout_request_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_logout_response_model.dart';
 
 /// A service for handling Auth0 user logout.
 ///
@@ -39,7 +39,8 @@ class AortemAuth0Logout {
   ///
   /// Throws an [ArgumentError] if `clientId` is not provided.
   AortemAuth0LogoutResponse generateLogoutUrl(
-      AortemAuth0LogoutRequest request) {
+    AortemAuth0LogoutRequest request,
+  ) {
     // Validate the required parameter: clientId
     if (request.clientId.isEmpty) {
       throw ArgumentError('clientId is required for logout.');
@@ -52,7 +53,7 @@ class AortemAuth0Logout {
     final queryParams = {
       'client_id': request.clientId,
       if (request.returnTo != null) 'returnTo': request.returnTo!,
-      if (request.federated == true) 'federated': ''
+      if (request.federated == true) 'federated': '',
     };
 
     // Replace query parameters in the base URI

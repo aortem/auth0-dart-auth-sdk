@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:auth_o__dart_auth_sdk/src/models/aortem_auth_o_authenticate_user_request_model.dart';
-import 'package:auth_o__dart_auth_sdk/src/models/aortem_auth_o_authenticate_user_response_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_authenticate_user_request_model.dart';
+import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_authenticate_user_response_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// Handles user authentication with Auth0.

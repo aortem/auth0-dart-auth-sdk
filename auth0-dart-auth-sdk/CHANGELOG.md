@@ -23,7 +23,7 @@
     - `EntraIdITokenCache`
 
 - **Initial Token Storage Config**  
-  - Added an empty `entra-id-dart-auth-sdk/token_storage.json` file for future storage configuration.
+  - Added an empty `auth0-dart-auth-sdk/token_storage.json` file for future storage configuration.
 
 - **Semantic Version Branch Validation**  
   - Enhanced backend CI (`tools/pipelines/backend/child-ci-setup-validation.yml`) to recognize release branches named as `X.Y.Z[-tag][+build]` via a new regex rule.

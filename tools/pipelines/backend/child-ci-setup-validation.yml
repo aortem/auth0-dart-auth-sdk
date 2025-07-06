@@ -1,4 +1,4 @@
-flutterstages:
+stages:
   - validate
   - analyze
 
@@ -6,13 +6,23 @@ flutterstages:
 debug_merge_request:
   stage: validate
   script:
-    - echo "Debugging merge request..."
-    - echo "CI_COMMIT_BRANCH $CI_COMMIT_BRANCH"
-    - echo "CI_MERGE_REQUEST_SOURCE_BRANCH_NAME $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
-    - echo "CI_COMMIT_REF_NAME $CI_COMMIT_REF_NAME"
+    - echo "Basic Merge Request Variables..." 
+    - echo "CI_MERGE_REQUEST_IID is '$CI_MERGE_REQUEST_IID'"
+    - echo "CI_MERGE_REQUEST_SOURCE_BRANCH_NAME is $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    - echo "CI_MERGE_REQUEST_TARGET_BRANCH_NAME is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - echo "CI_MERGE_REQUEST_EVENT_TYPE is $CI_MERGE_REQUEST_EVENT_TYPE"
+    
+    - echo "Commit Information Variables..."
+    - echo "CI_COMMIT_REF_NAME is $CI_COMMIT_REF_NAME"
+    - echo "CI_COMMIT_BRANCH is $CI_COMMIT_BRANCH"
+    - echo "CI_COMMIT_MESSAGE is $CI_COMMIT_MESSAGE" 
+
     - echo "Determining branch name..."
     - BRANCH_NAME=${CI_COMMIT_BRANCH:-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-$CI_COMMIT_REF_NAME}}
     - echo "Branch name determined $BRANCH_NAME"
+
+    - echo "Pipeline Metadata..."
+    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE"
 
 
 validate_branch_name:
@@ -25,11 +35,13 @@ validate_branch_name:
 
       if echo "$BRANCH_NAME" | grep -Eq "^(development|qa|beta|main)$"; then
         echo "✅ Valid branch name for protected branches: $BRANCH_NAME."
-      elif echo "$BRANCH_NAME" | grep -Eq "^(feat|fix|hotfix|chore|test|refactor|release|docs)/[a-z0-9_-]+$"; then
+      elif echo "$BRANCH_NAME" | grep -Eq "^(feat|fix|hotfix|chore|test|refactor|release)/[a-z0-9_-]+$"; then
         echo "✅ Branch name follows naming convention: $BRANCH_NAME."
+      elif echo "$BRANCH_NAME" | grep -Eq "^[0-9]+\.[0-9]+\.[0-9]+(-[a-z0-9_-]+)?(\+[0-9]+)?$"; then
+        echo "✅ Valid release branch name: $BRANCH_NAME."  
       else
         echo "❌ Invalid branch name: $BRANCH_NAME."
-        echo "Expected format: <type>/<branch-name>. Valid types: feat, fix, hotfix, chore, test, refactor, release, docs, development, qa, beta, main."
+        echo "Expected format: <type>/<branch-name>. Valid types: feat, fix, hotfix, chore, test, refactor, release, development, qa, beta, main."
         exit 1
       fi
   rules:
@@ -48,12 +60,13 @@ validate_commit_messages:
       if [ -n "$CI_MERGE_REQUEST_IID" ]; then
         echo "Merge request detected. Allowing merge commit messages..."
         MERGE_REGEX="^Merge branch '[a-zA-Z0-9/_-]+' into '$TARGET_BRANCHES'$"
-        REGEX="^(feat|fix|hotfix|chore|test|refactor|release|docs)(\([a-z0-9_-]+\))?: .{1,72}$"
+        REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
         COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
       else
         echo "Standard pipeline detected. Enforcing strict commit message validation..."
-        REGEX="^(feat|fix|hotfix|chore|test|refactor|release|docs)(\([a-z0-9_-]+\))?: .{1,72}$"
-        COMBINED_REGEX="$REGEX"
+        MERGE_REGEX="^Merge branch '[a-zA-Z0-9/_-]+' into '$TARGET_BRANCHES'$"
+        REGEX="^(feat|fix|hotfix|chore|test|refactor|release)(\([a-z0-9_-]+\))?: .{1,72}$"
+        COMBINED_REGEX="($MERGE_REGEX|$REGEX)"
       fi
 
       # Validate the last commit message
@@ -83,7 +96,7 @@ validate_dart_sdk_version:
   script:
     - echo "Validating Dart SDK versions in all pubspec.yaml files..."
     - apk add --no-cache grep
-    - cd cognito_dart_auth_sdk
+    - cd auth0-dart-auth-sdk
 
     # Find all pubspec.yaml files (recursively, all levels)
     - PUBSPEC_FILES=$(find . -name "pubspec.yaml")
@@ -91,7 +104,7 @@ validate_dart_sdk_version:
     - echo "$PUBSPEC_FILES"
 
     # Define the minimum required Dart SDK version
-    - MINIMUM_VERSION="3.5.4"
+    - MINIMUM_VERSION="3.8.1"
     - ALL_VALID="true"
 
     # Iterate over each pubspec.yaml file
@@ -100,11 +113,7 @@ validate_dart_sdk_version:
         echo "Checking $PUBSPEC..."
 
         # Extract the Dart SDK version
-        SDK_VERSION=$( sed -n \
-        's/^[[:space:]]*sdk:[[:space:]]*\^\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p' \
-        "$PUBSPEC" \
-        | head -n1 )
-        [ -z "$SDK_VERSION" ] && SDK_VERSION="not_found"
+        SDK_VERSION=$(grep -Po '(?<=sdk:\s\^)[0-9]+\.[0-9]+\.[0-9]+' "$PUBSPEC" || echo "not_found")
         echo "Extracted Dart SDK version from $PUBSPEC: $SDK_VERSION"
 
         # Validate the extracted version
@@ -141,7 +150,7 @@ analyze_main:
     - validate_commit_messages
   script:
     - echo "Analyzing main project..."
-    - cd cognito_dart_auth_sdk
+    - cd auth0-dart-auth-sdk
     - dart pub get || { echo "Failed to install dependencies. Exiting..."; exit 1; }
     - dart analyze lib/ > analysis_report.txt 2> error_log.txt || true
 
@@ -178,9 +187,9 @@ analyze_main:
     - echo "Main project analysis complete. Check categorized issue files for details."
   artifacts:
     paths:
-      - cognito_dart_auth_sdk/info_issues.txt
-      - cognito_dart_auth_sdk/warning_issues.txt
-      - cognito_dart_auth_sdk/error_issues.txt
+      - auth0-dart-auth-sdk/info_issues.txt
+      - auth0-dart-auth-sdk/warning_issues.txt
+      - auth0-dart-auth-sdk/error_issues.txt
     expire_in: 1h
   rules:
    - when: always

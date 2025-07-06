@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth_o_get_user_info_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_get_user_info_request.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_get_user_info_response.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth0_get_user_info_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_get_user_info_request.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_get_user_info_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// Fetches user information from Auth0 using the /userinfo endpoint.

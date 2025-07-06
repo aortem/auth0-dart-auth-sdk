@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_list_authenticators_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_list_authenticators_model.dart';
 
 /// Represents the response from listing a user's MFA (Multi-Factor Authentication) authenticators.
 ///

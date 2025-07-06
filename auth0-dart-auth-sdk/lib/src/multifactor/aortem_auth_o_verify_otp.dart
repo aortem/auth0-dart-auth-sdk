@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../models/aortem_auth_o_verify_otp_request_model.dart';
-import '../models/aortem_auth_o_verify_otp_response_model.dart';
+import '../models/aortem_auth0_verify_otp_request_model.dart';
+import '../models/aortem_auth0_verify_otp_response_model.dart';
 
 /// A service that handles OTP (One-Time Password) verification using Auth0's MFA endpoint.
 ///
@@ -33,10 +33,8 @@ class AortemAuth0MfaVerifyOpt {
   ///
   /// [auth0Domain] is the base URL of your Auth0 tenant.
   /// Optionally, you can pass a custom [httpClient] for testing or advanced use cases.
-  AortemAuth0MfaVerifyOpt({
-    required this.auth0Domain,
-    http.Client? httpClient,
-  }) : httpClient = httpClient ?? http.Client();
+  AortemAuth0MfaVerifyOpt({required this.auth0Domain, http.Client? httpClient})
+    : httpClient = httpClient ?? http.Client();
 
   /// Verifies the OTP by making a request to the Auth0 `/oauth/token` endpoint.
   ///
@@ -51,9 +49,7 @@ class AortemAuth0MfaVerifyOpt {
   ) async {
     final url = Uri.parse('$auth0Domain/oauth/token');
 
-    final headers = {
-      'Content-Type': 'application/json',
-    };
+    final headers = {'Content-Type': 'application/json'};
 
     final body = jsonEncode(request.toJson());
 

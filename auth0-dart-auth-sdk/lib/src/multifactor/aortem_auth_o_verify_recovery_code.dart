@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_verify_recovery_code_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_verify_recovery_code_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_recovery_code_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_recovery_code_response_model.dart';
 
 /// Client for interacting with Auth0's MFA/recovery API endpoints
 ///

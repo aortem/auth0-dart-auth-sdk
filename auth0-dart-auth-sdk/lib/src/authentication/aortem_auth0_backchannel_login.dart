@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../exceptions/aortem_auth_o_back_channel_login_exception.dart';
-import '../models/aortem_auth_o_back_channel_login_request_model.dart';
-import '../models/aortem_auth_o_back_channel_login_response_model.dart';
+import '../exceptions/aortem_auth0_back_channel_login_exception.dart';
+import '../models/aortem_auth0_back_channel_login_request_model.dart';
+import '../models/aortem_auth0_back_channel_login_response_model.dart';
 
 /// A class to handle back-channel login with Auth0.
 ///
@@ -86,7 +86,8 @@ class AortemAuth0BackChannelLogin {
       // Handle successful response
       if (response.statusCode == 200) {
         return AortemAuth0BackChannelLoginResponse.fromJson(
-            jsonDecode(response.body) as Map<String, dynamic>);
+          jsonDecode(response.body) as Map<String, dynamic>,
+        );
       } else {
         // Handle failed response
         throw AortemAuth0BackChannelLoginException(

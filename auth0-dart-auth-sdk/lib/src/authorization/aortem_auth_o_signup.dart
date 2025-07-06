@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:async';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import '../exceptions/aortem_auth_o_signup_exception.dart';
-import '../models/aortem_auth_o_signup_request_model.dart';
-import '../models/aortem_auth_o_signup_response_model.dart';
+import '../exceptions/aortem_auth0_signup_exception.dart';
+import '../models/aortem_auth0_signup_request_model.dart';
+import '../models/aortem_auth0_signup_response_model.dart';
 
 /// A service for handling user signups via Auth0.
 ///

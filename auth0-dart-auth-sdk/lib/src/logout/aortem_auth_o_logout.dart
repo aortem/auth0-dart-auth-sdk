@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_logout_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_logout_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_logout_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_logout_response_model.dart';
 
 /// A service for handling Auth0 user logout.
 ///

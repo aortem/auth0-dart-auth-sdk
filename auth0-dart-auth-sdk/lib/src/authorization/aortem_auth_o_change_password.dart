@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../exceptions/aortem_auth_o_change_password_exception.dart';
-import '../models/aortem_auth_o_change_password_request_model.dart';
-import '../models/aortem_auth_o_change_password_response_model.dart';
+import '../exceptions/aortem_auth0_change_password_exception.dart';
+import '../models/aortem_auth0_change_password_request_model.dart';
+import '../models/aortem_auth0_change_password_response_model.dart';
 
 /// A service class for handling password change requests with Auth0.
 ///

@@ -1,6 +1,6 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_authorize_application_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_authorize_application_request_model.dart';
 
-import '../models/aortem_auth_o_authorize_application_response_model.dart';
+import '../models/aortem_auth0_authorize_application_response_model.dart';
 
 /// A service class responsible for building Auth0 Authorization URLs
 /// for initiating OAuth2/OIDC login flows.

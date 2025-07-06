@@ -1,6 +1,6 @@
 import 'dart:core';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_oidc_logout_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_oidc_logout_response_model.dart';
 
 /// Provides OpenID Connect (OIDC) compliant logout functionality for Auth0.
 ///

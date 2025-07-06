@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth_o_multi_factor_verify_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_multi_factor_verify_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_multi_factor_verify_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth0_multi_factor_verify_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_multi_factor_verify_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_multi_factor_verify_response_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// A service for handling multi-factor authentication (MFA) operations with Auth0.

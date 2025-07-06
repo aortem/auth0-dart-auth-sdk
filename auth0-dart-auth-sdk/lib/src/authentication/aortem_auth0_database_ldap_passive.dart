@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import '../exceptions/aortem_auth_o_database_ldap_passive_exception.dart';
-import '../models/aortem_auth_o_database_ldap_passive_request_model.dart';
-import '../models/aortem_auth_o_database_ldap_passive_response_model.dart';
+import '../exceptions/aortem_auth0_database_ldap_passive_exception.dart';
+import '../models/aortem_auth0_database_ldap_passive_request_model.dart';
+import '../models/aortem_auth0_database_ldap_passive_response_model.dart';
 
 /// Handles passive authentication using Database, Active Directory (AD), or LDAP connections with Auth0.
 ///
@@ -94,7 +94,8 @@ class AortemAuth0DatabaseAdLdapPassive {
       // Handle successful response
       if (response.statusCode == 200) {
         return AortemAuth0DatabaseAdLdapPassiveResponse.fromJson(
-            jsonDecode(response.body) as Map<String, dynamic>);
+          jsonDecode(response.body) as Map<String, dynamic>,
+        );
       } else {
         // Handle failed authentication
         throw AortemAuth0DatabaseAdLdapPassiveException(

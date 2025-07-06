@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../models/aortem_auth_o_get_code_or_link_request.dart';
-import '../models/aortem_auth_o_get_code_or_link_response.dart';
+import '../models/aortem_auth0_get_code_or_link_request.dart';
+import '../models/aortem_auth0_get_code_or_link_response.dart';
 
 /// Handles the process of sending a passwordless authentication code or link using Auth0.
 ///
@@ -51,9 +51,7 @@ class AortemAuth0GetCodeOrLink {
   }) async {
     final uri = Uri.https(domain, '/passwordless/start');
 
-    final headers = {
-      'Content-Type': 'application/json',
-    };
+    final headers = {'Content-Type': 'application/json'};
 
     final body = json.encode(request.toJson());
 
@@ -68,8 +66,9 @@ class AortemAuth0GetCodeOrLink {
       );
     } else {
       // Throw an exception if the response is not successful
-      final errorBody =
-          response.body.isNotEmpty ? response.body : 'No response body';
+      final errorBody = response.body.isNotEmpty
+          ? response.body
+          : 'No response body';
       throw Exception(
         'Failed to send code or link. Status code: ${response.statusCode}. Body: $errorBody',
       );

@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_social_login_response.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_social_login_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../exceptions/aortem_auth_o_social_login_exceptions.dart';
-import '../models/aortem_auth_o_social_login_request.dart';
+import '../exceptions/aortem_auth0_social_login_exceptions.dart';
+import '../models/aortem_auth0_social_login_request.dart';
 
 /// Handles social login authentication with Auth0.
 ///

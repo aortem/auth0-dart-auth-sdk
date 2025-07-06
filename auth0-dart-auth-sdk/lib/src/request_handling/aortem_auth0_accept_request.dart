@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../exceptions/aortem_auth_o_accept_request_exception.dart';
-import '../models/aortem_auth_o_accept_request_request_model.dart';
-import '../models/aortem_auth_o_accept_request_response_model.dart';
+import '../exceptions/aortem_auth0_accept_request_exception.dart';
+import '../models/aortem_auth0_accept_request_request_model.dart';
+import '../models/aortem_auth0_accept_request_response_model.dart';
 
 /// A client for handling passwordless authentication with Auth0's magic links.
 ///

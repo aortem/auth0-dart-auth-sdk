@@ -1,7 +1,7 @@
 // lib/src/auth0/saml/aortem_auth0_saml_logout.dart
 
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_saml_logout_request.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_saml_logout_response.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_saml_logout_request.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_saml_logout_response.dart';
 
 /// A service class that handles SAML logout functionality through Auth0.
 ///

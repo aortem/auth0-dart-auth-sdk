@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth_o_user_profile_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_user_profile_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_user_profile_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth0_user_profile_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_user_profile_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_user_profile_response_model.dart';
 
 /// A class to interact with the Auth0 UserInfo endpoint to retrieve user profile information.
 class AortemAuth0UserProfile {

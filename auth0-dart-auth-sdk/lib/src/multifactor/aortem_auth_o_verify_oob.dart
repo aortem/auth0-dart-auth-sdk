@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../models/aortem_auth_o_verify_oob_request_model.dart';
-import '../models/aortem_auth_o_verify_oob_response_model.dart';
+import '../models/aortem_auth0_verify_oob_request_model.dart';
+import '../models/aortem_auth0_verify_oob_response_model.dart';
 
 /// A service class responsible for handling Multi-Factor Authentication (MFA)
 /// verification using Out-of-Band (OOB) mechanisms with Auth0.
@@ -21,10 +21,8 @@ class AortemAuth0MfaVerifyOob {
   ///
   /// The [auth0Domain] is required and should be your Auth0 tenant URL.
   /// An optional [httpClient] can be passed for testing or custom configuration.
-  AortemAuth0MfaVerifyOob({
-    required this.auth0Domain,
-    http.Client? httpClient,
-  }) : httpClient = httpClient ?? http.Client();
+  AortemAuth0MfaVerifyOob({required this.auth0Domain, http.Client? httpClient})
+    : httpClient = httpClient ?? http.Client();
 
   /// Verifies the OOB code provided in the [request] by sending it to Auth0's token endpoint.
   ///

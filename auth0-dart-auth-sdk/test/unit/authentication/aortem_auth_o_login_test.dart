@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:auth0_dart_auth_sdk/src/authentication/aortem_auth_o_login.dart';
+import 'package:auth0_dart_auth_sdk/src/authentication/aortem_auth0_login.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;

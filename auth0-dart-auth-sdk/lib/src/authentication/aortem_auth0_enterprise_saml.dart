@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import '../exceptions/aortem_auth_o_enterprise_saml_exception.dart';
-import '../models/aortem_auth_o_enterprise_saml_request_model.dart';
-import '../models/aortem_auth_o_enterprise_saml_response_model.dart';
+import '../exceptions/aortem_auth0_enterprise_saml_exception.dart';
+import '../models/aortem_auth0_enterprise_saml_request_model.dart';
+import '../models/aortem_auth0_enterprise_saml_response_model.dart';
 
 /// Handles enterprise SAML authentication with Auth0.
 ///
@@ -80,7 +80,8 @@ class AortemAuth0EnterpriseSaml {
       // Handle successful response
       if (response.statusCode == 200) {
         return AortemAuth0EnterpriseSamlResponse.fromJson(
-            jsonDecode(response.body) as Map<String, dynamic>);
+          jsonDecode(response.body) as Map<String, dynamic>,
+        );
       } else {
         // Handle failed authentication
         throw AortemAuth0EnterpriseSamlException(

@@ -1,7 +1,7 @@
 // Importing the request model for the Auth0 authorize endpoint
-import '../models/aortem_auth_o_authorize_endpoint_request_model.dart';
+import '../models/aortem_auth0_authorize_endpoint_request_model.dart';
 // Importing the response model for the Auth0 authorize endpoint
-import '../models/aortem_auth_o_authorize_endpoint_response_model.dart';
+import '../models/aortem_auth0_authorize_endpoint_response_model.dart';
 
 /// A service class for generating Auth0 `/authorize` endpoint URLs.
 ///

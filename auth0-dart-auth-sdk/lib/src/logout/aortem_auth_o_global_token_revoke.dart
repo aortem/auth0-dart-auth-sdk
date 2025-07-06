@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_request.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_response.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_global_token_revocation_request.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_global_token_revocation_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// A service for handling global token revocation via Auth0.

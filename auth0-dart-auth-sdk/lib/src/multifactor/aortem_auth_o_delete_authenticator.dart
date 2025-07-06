@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_delete_authenticator_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_delete_authenticator_request_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import '../exceptions/aortem_auth_o_delete_authenticator_exception.dart';
-import '../models/aortem_auth_o_delete_authenticator_response_model.dart';
+import '../exceptions/aortem_auth0_delete_authenticator_exception.dart';
+import '../models/aortem_auth0_delete_authenticator_response_model.dart';
 
 /// Client for deleting MFA (Multi-Factor Authentication) authenticators from Auth0.
 ///

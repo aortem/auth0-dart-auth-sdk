@@ -15,8 +15,8 @@ void main(List<String> args) {
   print('Branch name: $branchName');
 
   final validBranches = RegExp(r'^(qa|beta|main)$');
-  final validFeatureBranch =
-      RegExp(r'^(feat|fix|hotfix|chore|test|refactor|release)/[a-z0-9_-]+$');
+  final validFeatureBranch = RegExp(
+      r'^(feat|fix|hotfix|chore|test|refactor|release|docs)/[a-z0-9_-]+$');
 
   if (validBranches.hasMatch(branchName) ||
       validFeatureBranch.hasMatch(branchName)) {

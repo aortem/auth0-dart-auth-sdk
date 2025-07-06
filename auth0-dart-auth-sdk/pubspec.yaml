@@ -1,4 +1,4 @@
-name: auth0_dart_auth_sdk
+name: auth_o_dart_auth_sdk
 description: A Dart SDK for auth0 Authentication, enabling secure server-side authentication and user management for Dart-based backend applications.
 version: 0.0.1-pre
 repository: https://github.com/aortem/auth0_dart_auth_sdk
@@ -21,7 +21,7 @@ dependencies:
 #------------------ TESTING FEATURES---------------------------------
 
 dev_dependencies:
-  ds_tools_testing: ^0.0.1-pre+2 #Standard Dart Team Testing Tools
+  ds_tools_testing: ^0.0.1 #Standard Dart Team Testing Tools
   test_reporter: any #required to generate JUnit report 
   http: any
   git_hooks: any

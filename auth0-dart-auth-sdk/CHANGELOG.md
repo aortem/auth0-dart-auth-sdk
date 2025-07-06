@@ -1,46 +1,30 @@
 ## 0.0.1
 
 ### Added
-- **Exception & Interface Exports**  
-  - Exported a full suite of new exception types in `lib/entra_id_dart_auth_sdk.dart`:  
-    - `AortemEntraIdAuthorizationUserCancelException`  
-    - `AortemEntraIdAzureJsonCacheException`  
-    - `AortemEntraIdAzureLoopbackClientException`  
-    - `AortemEntraIdClientApplicationException`  
-    - `AortemEntraIdDeviceCodeRequestException`  
-    - `AortemEntraIdInteractiveRequestException`  
-    - `AortemEntraIdOnBehalfOfRequestException`  
-    - `AortemEntraIdSerializedAccessTokenException`  
-    - `AortemEntraIdSerializedAppMetadataException`  
-    - `AortemEntraIdSerializedIdTokenException`  
-    - `AortemEntraIdSerializedRefreshTokenException`  
-    - `AortemEntraIdSilentFlowRequestException`  
-    - `AortemEntraIdTokenCacheException`  
-  - Exported core interfaces:  
-    - `EntraIdICacheClient`  
-    - `EntraIdIPartitionManager`  
-    - `EntraIdIPublicClientApplication`  
-    - `EntraIdITokenCache`
-
-- **Initial Token Storage Config**  
-  - Added an empty `auth0-dart-auth-sdk/token_storage.json` file for future storage configuration.
-
-- **Semantic Version Branch Validation**  
-  - Enhanced backend CI (`tools/pipelines/backend/child-ci-setup-validation.yml`) to recognize release branches named as `X.Y.Z[-tag][+build]` via a new regex rule.
+- **`.gitattributes`**  
+  Enforce `text=auto` for consistent line endings across platforms.  
+- **`.gitignore`**  
+  Global repo rules to ignore:
+  - Environment files (`**/*.env`)  
+  - IDE settings (`**/.idea/`, `**/.vscode/`)  
+  - Dart build artifacts (`**/.dart_tool/`, `**/pubspec.lock`)  
+- **GitLab CI Stages**  
+  Introduced two new pipeline stages:
+  - `setup` – prepares environment variables and merge-request context  
+  - `validation` – runs branch/message validators and debug jobs  
+- **`debug_merge_request` Job**  
+  A lightweight validation task that echoes core CI variables for debugging merge-request pipelines.
 
 ### Changed
-- **README Update**  
-  - Fixed the closing sentence under **“Enhance with Entra Id Dart Auth SDK”**, removing a stray “test” and completing the statement.
-
-- **Library Entry Reorganization**  
-  - Consolidated exports in `lib/entra_id_dart_auth_sdk.dart` to include the newly added exception and interface modules.
+- **CI Pipeline Overhaul**  
+  - Replaced the old `unit_testing`, `analyze_sample_apps`, and `release` stages with our new `setup` and `validation` stages.  
+  - Consolidated testing and coverage steps under the `validation` stage to ensure full end-to-end CI validation.
 
 ### Removed
-- **Encoding Utils Tests**  
-  - Deleted unit tests for `AortemEntraIdEncodingUtils` (`encodeUrl`/`decodeUrl` and Base64 decode error scenarios).
+- **Obsolete CI Jobs**  
+  - Removed the deprecated `unit_testing`, `analyze_sample_apps`, and `release` jobs from the pipeline configuration.
+```
 
-- **Serializer Error Test**  
-  - Removed the invalid-JSON error-handling test for `AortemEntraIdSerializer`.
 
 ## 0.0.1-pre
 

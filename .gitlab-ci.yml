@@ -1,7 +1,9 @@
 stages:
   - setup
   - validation
+#  - unit_testing
   - analyze_sample_apps
+  - release
 
 # The pipeline covers a series of triggers to ensure full testing and coverage
 
@@ -9,17 +11,32 @@ stages:
 debug_merge_request:
   stage: setup
   script:
-    - echo "Pipeline Source $CI_PIPELINE_SOURCE"
-    - echo "Commit Branch (Source) $CI_COMMIT_REF_NAME"
-    - echo "Target Branch (Merge Request) $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
-    - echo "Source Branch Name (Merge Request) $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
-    - echo "Merge ID environment variable (Merge Request) $CI_MERGE_REQUEST_IID"
+    - echo "Basic Merge Request Variables..." 
+    - echo "CI_MERGE_REQUEST_IID is '$CI_MERGE_REQUEST_IID'"
+    - echo "CI_MERGE_REQUEST_SOURCE_BRANCH_NAME is $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME"
+    - echo "CI_MERGE_REQUEST_TARGET_BRANCH_NAME is $CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - echo "CI_MERGE_REQUEST_EVENT_TYPE is $CI_MERGE_REQUEST_EVENT_TYPE"
+    
+    - echo "Commit Information Variables..."
+    - echo "CI_COMMIT_REF_NAME is $CI_COMMIT_REF_NAME"
+    - echo "CI_COMMIT_BRANCH is $CI_COMMIT_BRANCH"
+    - echo "CI_COMMIT_MESSAGE is $CI_COMMIT_MESSAGE" 
+
+    - echo "Determining branch name..."
+    - BRANCH_NAME=${CI_COMMIT_BRANCH:-${CI_MERGE_REQUEST_SOURCE_BRANCH_NAME:-$CI_COMMIT_REF_NAME}}
+    - echo "Branch name determined $BRANCH_NAME"
+
+    - echo "Pipeline Metadata..."
+    - echo "CI_PIPELINE_SOURCE is $CI_PIPELINE_SOURCE"
+  rules:
+    - if: '$CI_PIPELINE_SOURCE'  # Forces execution in ALL scenarios
+      when: always
 
 # Validate Conditional Triggers
 validation_trigger:
   stage: validation
   trigger:
-    include: tools/pipelines/child-ci-setup-validation.yml
+    include: tools/pipelines/backend/child-ci-setup-validation.yml
   rules:
     # Condition 1: Branch is not main, qa, or development
     - if: '$CI_COMMIT_REF_NAME != "main" && $CI_COMMIT_REF_NAME != "qa" && $CI_COMMIT_REF_NAME != "development"'
@@ -40,16 +57,36 @@ validation_trigger:
     # Fallback: Skip if no condition matches
     - when: never
 
+# # Unit Test Conditional Triggers
+# unit_test_trigger:
+#   stage: unit_testing
+#   trigger:
+#     include: tools/pipelines/backend/child-ci-unit-tests.yml
+#   needs:
+#     - job: validation_trigger
+#   rules:
+#     # Always runs after validation trigger
+#     - when: always
     
-# Analyze Conditional Triggers
+# Sample App Conditional Triggers
+analyze_flutter_web:
+  stage: analyze_sample_apps
+  trigger:
+    include: tools/pipelines/frontend/child-ci-analyze-flutter-web.yml
+#  needs:
+#    - job: unit_test_trigger
+  rules:
+    # Always runs after unit_test trigger
+    - when: always
+
 analyze_flutter_mobile:
   stage: analyze_sample_apps
   trigger:
-    include: tools/pipelines/child-ci-analyze-flutter-mobile.yml
-  needs:
-    - job: validation_trigger
+    include: tools/pipelines/frontend/child-ci-analyze-flutter-mobile.yml
+#  needs:
+#    - job: unit_test_trigger
   rules:
-    # Always runs after validation trigger
+    # Always runs after unit_test trigger
     - when: always
 
 # Release Triggers
@@ -60,23 +97,3 @@ gitlab_github_release:
   rules:
     - if: '$CI_COMMIT_BRANCH == "development"'
       when: always
-
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-qa.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "qa" || $CI_COMMIT_BRANCH == "qa"
-
-#conditional_preprod:
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-preprod.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "preprod" || $CI_COMMIT_BRANCH == "preprod"
-
-#conditional_production:
-#  stage: triggers
-#  trigger:
-#    include: tools/pipelines/child-ci-production.yml
-#  rules:
-#    - if: $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "production" || $CI_COMMIT_BRANCH == "production"

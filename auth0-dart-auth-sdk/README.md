@@ -1,132 +1,209 @@
-# cognito Dart Admin Auth SDK
+````markdown
+# Auth0 Dart Auth SDK
 
 ## Overview
 
-The cognito Dart Admin Auth SDK offers a robust and flexible set of tools to perform authentication procedures within Dart or Flutter projects. This is a Dart implementation of cognito Authentication.
+The **Auth0 Dart Auth SDK** provides seamless integration with Auth0’s OAuth2 and OpenID Connect endpoints for both server‐side Dart applications and Flutter clients. With this SDK you can:
 
-## Features:
+- Perform interactive and non‐interactive authentication flows (authorization code + PKCE, client credentials, ROPC)  
+- Manage access, ID, and refresh tokens with automatic caching and refresh  
+- Securely persist tokens using a pluggable storage backend  
+- Integrate with Auth0’s Universal Login widget in Flutter Web  
+- Call Auth0 Management and custom APIs with on‐behalf‐of tokens  
 
-- **User Management:** Manage user accounts seamlessly with a suite of comprehensive user management functionalities.
-- **Custom Token Minting:** Integrate cognito authentication with your backend services by generating custom tokens.
-- **Generating Email Action Links:** Perform authentication by creating and sending email action links to users emails for email verification, password reset, etc.
-- **ID Token verification:** Verify ID tokens securely to ensure that application users are authenticated and authorised to use app.
-- **Managing SAML/OIDC Provider Configuration**: Manage and configure SAML and ODIC providers to support authentication and simple sign-on solutions.
+Whether you’re building a Dart web service, a Flutter mobile app, or a Flutter web client, this SDK handles the heavy lifting of Auth0 authentication so you can focus on your application logic.
+
+---
+
+## Features
+
+- **Unified Auth Flows**  
+  - Authorization Code + PKCE (recommended for Flutter & Web)  
+  - Client Credentials (machine‐to‐machine)  
+  - Resource Owner Password Credentials (ROPC)  
+
+- **Token Management**  
+  - Automatic caching of access, ID, and refresh tokens  
+  - Expiration checks and silent refresh using refresh tokens  
+  - Helper to decode and verify JWT claims  
+
+- **Secure Storage**  
+  - `TokenStorage` interface with built-in `FileTokenStorage` and `MemoryTokenStorage`  
+  - Easily implement your own secure backends (Keychain, SecureStore, database)
+
+- **Flutter Web Support**  
+  - Built-in integration with Auth0’s Universal Login via `Auth0WebWidget`  
+  - Handles redirect callbacks and code exchange automatically  
+
+- **Management API Helpers**  
+  - Acquire Auth0 Management API tokens using client credentials  
+  - Built-in client for common endpoints: user management, roles, permissions  
+
+- **Extensible & Configurable**  
+  - Customize HTTP client, logging, timeouts, caching behavior  
+  - Plug‐in your own JSON serializers or use the built-in `json_serializable` models  
+
+---
 
 ## Getting Started
 
-If you want to use the cognito Dart Admin Auth SDK for implementing a cognito authentication in your Flutter projects follow the instructions on how to set up the auth SDK.
+### Prerequisites
 
-- Ensure you have a Flutter or Dart (3.4.x) SDK installed in your system.
-- Set up a cognito project and service account.
-- Set up a Flutter project.
+- Dart SDK ≥ 2.14.0 (null safety) or Flutter SDK ≥ 3.0  
+- An Auth0 tenant with an Application (Regular Web App, SPA, or Machine‐to‐Machine App) configured  
+
+### Configure Auth0 Application
+
+1. In the Auth0 Dashboard, create an Application:  
+   - **Regular Web App** for Flutter Web / server.  
+   - **Native App** for Flutter mobile.  
+   - **Machine‐to‐Machine App** for service-to-service flows.
+
+2. Note your **Domain**, **Client ID**, and (if needed) **Client Secret**.  
+3. Set allowed redirect URIs (e.g. `com.example.app://callback`, `https://localhost:8080/callback`).  
+
+---
 
 ## Installation
 
-For Flutter use:
+Add the SDK to your project:
 
-```javascript
-flutter pub add cognito_dart_auth_sdk
-```
+```bash
+# Dart:
+dart pub add auth0_dart_auth_sdk
 
-You can manually edit your `pubspec.yaml `file this:
+# Flutter:
+flutter pub add auth0_dart_auth_sdk
+````
+
+Or manually in your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  cognito_dart_auth_sdk: ^0.0.3
+  auth0_dart_auth_sdk: ^0.1.0
 ```
 
-You can run a `flutter pub get` for Flutter respectively to complete installation.
+Then run:
 
-**NB:** SDK version might vary.
+```bash
+dart pub get
+```
+
+---
 
 ## Usage
 
-**Example:**
+### 1. Initialize the SDK
 
+```dart
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+
+final auth = Auth0Auth(
+  domain: 'your-tenant.auth0.com',
+  clientId: 'YOUR_CLIENT_ID',
+  redirectUri: Uri.parse('com.example.app://callback'),
+);
 ```
-import 'dart:io';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:cognito/screens/splash_screen/splash_screen.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:cognito_dart_auth_sdk/cognito_dart_auth_sdk.dart';
-import 'package:flutter/services.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+### 2. Authorization Code + PKCE (Flutter & Web)
 
-  try {
-    if (kIsWeb) {
-      // Initialize for web
-      debugPrint('Initializing cognito for Web...');
-      cognitoApp.initializeAppWithEnvironmentVariables(
-        apiKey: 'YOUR-API-KEY',
-        projectId: 'YOUR-PROJECT-ID',
-        bucketName: 'Your Bucket Name',
-      );
-      debugPrint('cognito initialized for Web.');
-    } else {
-      if (Platform.isAndroid || Platform.isIOS) {
-        debugPrint('Initializing cognito for Mobile...');
+```dart
+// Trigger interactive login
+final result = await auth.loginWithPkce(
+  audience: 'https://api.yourservice.com',
+  scopes: ['openid', 'profile', 'email'],
+);
 
-        // Load the service account JSON
-        String serviceAccountContent = await rootBundle.loadString(
-          'assets/service_account.json',
-        );
-        debugPrint('Service account loaded.');
+// Access and ID tokens
+print('Access Token: ${result.accessToken}');
+print('ID Token Claims: ${result.idTokenClaims}');
+```
 
-        // Initialize cognito with the service account content
-        await cognitoApp.initializeAppWithServiceAccount(
-          serviceAccountContent: serviceAccountContent,
-        );
-        debugPrint('cognito initialized for Mobile.');
-      }
-    }
+### 3. Client Credentials (Server)
 
-    // Access cognito Auth instance
-    final auth = cognitoApp.instance.getAuth();
-    debugPrint('cognito Auth instance obtained.');
+```dart
+// Initialize for machine-to-machine flows
+final serverAuth = Auth0Auth.machineToMachine(
+  domain: 'your-tenant.auth0.com',
+  clientId: 'YOUR_M2M_CLIENT_ID',
+  clientSecret: 'YOUR_CLIENT_SECRET',
+);
 
-    runApp(const MyApp());
-  } catch (e, stackTrace) {
-    debugPrint('Error initializing cognito: $e');
-    debugPrint('StackTrace: $stackTrace');
+// Acquire Management API token
+final token = await serverAuth.clientCredentialsToken(
+  audience: 'https://your-tenant.auth0.com/api/v2/',
+);
+print('Mgmt API Token: ${token.accessToken}');
+```
+
+### 4. Token Silent Refresh & Storage
+
+```dart
+// Initialize your storage (file or memory)
+await auth.initStorage();
+
+// Later, acquire a fresh token silently
+final silent = await auth.acquireTokenSilent(
+  audience: 'https://api.yourservice.com',
+  scopes: ['openid', 'email'],
+);
+print('Refreshed Access Token: ${silent.accessToken}');
+```
+
+### 5. Management API Helper
+
+```dart
+final mgmt = Auth0ManagementClient(serverAuth);
+final users = await mgmt.listUsers(page: 0, perPage: 10);
+print('First user email: ${users.first.email}');
+```
+
+---
+
+## Advanced
+
+* **Custom TokenStorage**
+
+  ```dart
+  class SecureStorage implements TokenStorage {
+    // implement read/write methods using your secure store
   }
-}
 
-```
-
-- Import the package into your Dart or Flutter project:
-  ```
-  import 'package:cognito_dart_auth_sdk/cognito_dart_auth_sdk.dart';
-  ```
-  For Flutter web initialize cognito app as follows:
-  ```
-  cognitoApp.initializeAppWithEnvironmentVariables(
-    apiKey: 'YOUR-API-KEY',
-    projectId: 'YOUR-PROJECT-ID',
-    bucketName: 'Your Bucket Name',
-  );
+  auth.setStorage(SecureStorage());
   ```
 
-- For Flutter mobile:
-    - Load the service account JSON
-    ```
-       String serviceAccountContent = await rootBundle.loadString(
-         'assets/service_account.json',
-       );
-    ```
-    - Initialize Flutter mobile with service account content
-    ```
-      await cognitoApp.initializeAppWithServiceAccount(
-        serviceAccountContent: serviceAccountContent,
-      );
-    ```
+* **Logging & Debugging**
 
-- Access cognito Auth instance.
+  ```dart
+  auth.logger.level = LogLevel.debug;
+  auth.logger.onLog((level, msg) => print('[$level] $msg'));
   ```
-     final auth = cognitoApp.instance.getAuth();
+
+* **Custom HTTP Client**
+
+  ```dart
+  auth.httpClient = myCustomDioInstance;
   ```
+
+---
+
 ## Documentation
 
-For more refer to Gitbook for prelease [documentation here](https://aortem.gitbook.io/cognito-dart-auth-admin-sdk/).
+For full API reference, guides, and examples, visit our GitBook:
+
+👉 [Auth0 Dart Auth SDK Docs](https://aortem.gitbook.io/auth0-dart-auth-sdk/)
+
+---
+
+## Contributing
+
+We welcome issues and pull requests! Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines and coding standards.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE](./LICENSE) for details.
+
+```
+```

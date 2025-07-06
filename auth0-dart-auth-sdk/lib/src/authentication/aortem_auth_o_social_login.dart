@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_social_login_response.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_social_login_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 import '../exceptions/aortem_auth_o_social_login_exceptions.dart';

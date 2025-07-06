@@ -1,4 +1,4 @@
-import 'package:auth_o_dart_auth_sdk/src/sso_federation/aortem_auth_o_idp_initiated_sso.dart';
+import 'package:auth0_dart_auth_sdk/src/sso_federation/aortem_auth_o_idp_initiated_sso.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {

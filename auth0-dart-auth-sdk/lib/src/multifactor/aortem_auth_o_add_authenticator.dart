@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_add_authenticator_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_add_authenticator_request_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import '../models/aortem_auth_o_add_authenticator_response_model.dart';
 

@@ -1,5 +1,5 @@
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_request.dart';
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_response.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_request.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_global_token_revocation_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// A service for handling global token revocation via Auth0.
@@ -58,8 +58,9 @@ class AortemAuth0GlobalTokenRevocation {
       return AortemAuth0GlobalTokenRevocationResponse(success: true);
     } else {
       // Failure: extract the error message from the response
-      final errorBody =
-          response.body.isNotEmpty ? response.body : 'No response body';
+      final errorBody = response.body.isNotEmpty
+          ? response.body
+          : 'No response body';
       throw Exception(
         'Failed to revoke token. Status code: ${response.statusCode}. Body: $errorBody',
       );

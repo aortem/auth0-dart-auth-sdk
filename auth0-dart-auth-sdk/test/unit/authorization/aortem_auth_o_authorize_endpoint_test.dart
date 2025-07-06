@@ -1,6 +1,6 @@
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_authorize_endpoint_request_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_authorize_endpoint_response_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/authorization/aortem_auth_o_authorize_endpoint.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_authorize_endpoint_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_authorize_endpoint_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/authorization/aortem_auth_o_authorize_endpoint.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {

@@ -1,4 +1,4 @@
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_list_authenticators_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_list_authenticators_model.dart';
 
 /// Represents the response from listing a user's MFA (Multi-Factor Authentication) authenticators.
 ///
@@ -51,10 +51,9 @@ class AortemAuth0ListAuthenticatorsResponse {
     Map<String, dynamic> json,
   ) {
     return AortemAuth0ListAuthenticatorsResponse(
-      authenticators:
-          (json['authenticators'] as List)
-              .map((e) => AortemAuth0Authenticator.fromJson(e))
-              .toList(),
+      authenticators: (json['authenticators'] as List)
+          .map((e) => AortemAuth0Authenticator.fromJson(e))
+          .toList(),
     );
   }
 }

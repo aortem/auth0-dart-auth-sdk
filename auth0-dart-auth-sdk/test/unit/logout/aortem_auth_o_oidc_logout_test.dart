@@ -1,6 +1,6 @@
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_request_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_response_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/logout/aortem_auth_o_oidc_logout.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_oidc_logout_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/logout/aortem_auth_o_oidc_logout.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {

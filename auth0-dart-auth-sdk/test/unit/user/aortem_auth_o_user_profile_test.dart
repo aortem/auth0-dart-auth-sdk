@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:auth_o_dart_auth_sdk/src/user_info/aortem_auth_o_user_profile.dart';
+import 'package:auth0_dart_auth_sdk/src/user_info/aortem_auth_o_user_profile.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_user_profile_request_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/models/aortem_auth_o_user_profile_response_model.dart';
-import 'package:auth_o_dart_auth_sdk/src/exceptions/aortem_auth_o_user_profile_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_user_profile_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth_o_user_profile_response_model.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth_o_user_profile_exception.dart';
 
 void main() {
   group('AortemAuth0UserProfile', () {

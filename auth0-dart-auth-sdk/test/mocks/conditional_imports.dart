@@ -1,4 +1,3 @@
-// html_import.dart
 
 /// This file manages conditional imports for platform-specific Dart libraries.
 ///

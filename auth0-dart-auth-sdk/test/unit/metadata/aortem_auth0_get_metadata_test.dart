@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:auth0_dart_auth_sdk/src/metadata_federation/aortem_auth0_get_metadata.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
+import 'package:http/testing.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 

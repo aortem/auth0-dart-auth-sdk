@@ -3,6 +3,7 @@ import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_otp_request_m
 import 'package:auth0_dart_auth_sdk/src/multifactor/aortem_auth0_verify_otp.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
+import 'package:http/testing.dart';
 
 void main() {
   group('AortemAuth0MfaApiClient.verifyOTP', () {

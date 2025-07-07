@@ -4,8 +4,7 @@ import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_add_authenticator_re
 import 'package:auth0_dart_auth_sdk/src/multifactor/aortem_auth0_add_authenticator.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-
-// Replace with actual path
+import 'package:http/testing.dart';
 
 void main() {
   group('AortemAuth0AddAuthenticator', () {

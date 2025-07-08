@@ -86,7 +86,7 @@ For support across all Aortem open-source products, including this SDK, visit ou
 
 ## Licensing
 
-The **EntraID Dart Auth SDK** is licensed under a dual-license approach:
+The **Auth0 Dart Auth SDK** is licensed under a dual-license approach:
 
 1. **BSD-3 License**:
    - Applies to all packages and libraries in the SDK.

@@ -1,4 +1,3 @@
-````markdown
 # Auth0 Dart Auth SDK
 
 ## Overview
@@ -71,7 +70,7 @@ Or add to your `pubspec.yaml` manually:
 
 ```yaml
 dependencies:
-  auth0_dart_auth_sdk: ^0.1.0
+  auth0_dart_auth_sdk: ^0.0.1
 ```
 
 Then fetch:

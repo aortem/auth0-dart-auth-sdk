@@ -10,7 +10,7 @@
 <!-- x-hide-in-docs-end -->
 <p align="center" class="github-badges">
   <!-- Release Badge -->
-  <a href="https://github.com/aortem/auth0_dart_auth_sdk/releases/tags">
+  <a href="https://github.com/aortem/auth0_dart_auth_sdk/tags">
   <img alt="Latest Release" src="https://img.shields.io/github/v/tag/aortem/auth0_dart_auth_sdk?style=for-the-badge" />
 </a>
   <br/>

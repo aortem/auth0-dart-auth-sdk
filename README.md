@@ -41,138 +41,39 @@
 </p>
 <!-- x-hide-in-docs-start -->
 
-## **Feature Comparison Chart**
-
 ### **Core Authentication Methods**
 
-# Firebase vs Amazon auth0 for Server-Side Dart SDK
-
-This document provides a high-level comparison of Firebase Authentication and Amazon auth0 features tailored for building a server-side Dart SDK. The goal is to evaluate how a server-side Dart SDK could integrate Amazon auth0 and compare its capabilities to Firebase Authentication.
-
-
-## **Feature Comparison Chart**
-
-### **Core Authentication Methods**
-
-| Firebase Method                                  | Amazon auth0 Equivalent                       | Notes                                                                                  | Supported |
-|--------------------------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------- |-------------|
-| `FirebaseAuth.signInWithEmailAndPassword()`      | auth0 Admin: `AdminInitiateAuth`             | Authenticate user with email and password. Server-side API supports admin privileges.  | ✅         |
-| `FirebaseAuth.createUserWithEmailAndPassword()`  | auth0 Admin: `AdminCreateUser`               | Server-side method to create a new user in the user pool.                              | ✅         |
-| `FirebaseAuth.signOut()`                         | Not Applicable                                 | auth0 does not provide server-side logout; tokens must be invalidated by the client. | ❌         |
-| `FirebaseAuth.setPersistence()`                  | Not Applicable                                 | Token persistence is a client-side feature.                                            | ❌         |
-| `FirebaseAuth.sendPasswordResetEmail()`          | auth0 Admin: `AdminResetUserPassword`        | Sends a reset password request to the user.                                            | ✅         |
-| `FirebaseAuth.connectAuthEmulator`               | Not Applicable                                 | auth0 does not support emulated authentication environments.                         | ❌         |
-
----
-
-### **User Management**
-
-| Firebase Method                                  | Amazon auth0 Equivalent                      | Notes                                                                                   | Supported |
-|--------------------------------------------------|------------------------------------------------|-----------------------------------------------------------------------------------------|-------------|
-| `FirebaseUser.updateEmail()`                     | auth0 Admin: `AdminUpdateUserAttributes`     | Updates the user's email or other attributes.                                           | ✅         |
-| `FirebaseUser.updatePassword()`                  | auth0 Admin: `AdminSetUserPassword`          | Updates the user's password.                                                            | ✅         |
-| `FirebaseUser.deleteUser()`                      | auth0 Admin: `AdminDeleteUser`               | Deletes the user account from the user pool.                                            | ✅         |
-| `FirebaseUser.updateProfile()`                   | auth0 Admin: `AdminUpdateUserAttributes`     | Updates custom attributes in the user's profile.                                        | ✅         |
-| `FirebaseUser.sendEmailVerification()`           | Not Applicable                                 | auth0 uses built-in email verification workflows; server-side triggering is indirect. | ❌         |
-| `FirebaseUser.reload()`                          | auth0 Admin: `AdminGetUser`                  | Refreshes the user profile information.                                                 | ✅         |
-| `FirebaseAuth.updateCurrentUser()`               | auth0 Admin: `AdminUpdateUserAttributes`     | Updates the current user's details, such as profile attributes.                         | ✅         |
-
----
-
-### **Token Management**
-
-| Firebase Method                                  | Amazon auth0 Equivalent                      | Notes                                                                                 | Supported  |
-|--------------------------------------------------|------------------------------------------------|---------------------------------------------------------------------------------------|------------|
-| `FirebaseAuth.getIdToken()`                      | auth0: `InitiateAuth`                        | Retrieves tokens for user sessions.                                                   | ✅         |
-| `FirebaseAuth.revokeAccessToken()`               | auth0: `RevokeToken`                         | Revokes a user's refresh token.                                                       | ✅         |
-| `FirebaseAuth.signInWithCustomToken()`           | Not Applicable                                 | auth0 does not support custom tokens like Firebase.                                 | ❌         |
-
----
-
-### **Multi-Factor Authentication (MFA)**
-
-| Firebase Method                                  | Amazon auth0 Equivalent                      | Notes                                                                                | Supported   |
-|--------------------------------------------------|------------------------------------------------|----------------------------------------------------------------------------------------|-------------|
-| `FirebaseAuth.getMultiFactorResolver()`          | auth0 Admin: `AdminSetUserMFAPreference`     | Retrieve MFA configurations and set user preferences.                                  | ✅         |
-| `FirebaseUser.multiFactor()`                     | auth0: `AssociateSoftwareToken`              | Registers a user for software-based MFA (e.g., TOTP).                                  | ✅         |
-| `FirebaseUser.reauthenticateWithCredential()`    | auth0: `InitiateAuth`                        | Reauthenticates the user with credentials.                                             | ✅         |
-
----
-
-### **Sign-In Methods**
-
-| Firebase Method                                 | Amazon auth0 Equivalent                      | Notes                                                                                  | Supported |
-|-------------------------------------------------|------------------------------------------------|---------------------------------------------------------------------------------------|-----------|
-| `FirebaseAuth.signInWithPopup()`                | Not Applicable                                 | auth0 does not support popup-based authentication flows.                             | ❌         |
-| `FirebaseAuth.signInWithRedirect()`             | auth0: `HostedUI`                            | Hosted UI provides OAuth-based sign-in with redirect support.                          | ✅         |
-| `FirebaseAuth.signInWithPhoneNumber()`          | auth0: `InitiateAuth`                        | Phone-based authentication is supported via custom attributes.                        | ✅         |
-
----
-
-### **Action Code Handling**
-
-| Firebase Method                                  | Amazon auth0 Equivalent                      | Notes                                                                                  | Supported |
-|--------------------------------------------------|------------------------------------------------|---------------------------------------------------------------------------------------|-----------|
-| `FirebaseAuth.applyActionCode()`                 | Not Applicable                                 | auth0 does not use action codes.                                                    | ❌         |
-| `FirebaseAuth.checkActionCode()`                 | Not Applicable                                 | auth0 does not use action codes.                                                    | ❌         |
-| `FirebaseAuth.verifyPasswordResetCode()`         | auth0: `AdminResetUserPassword`              | Password reset is handled via workflows, not codes.                                   | ✅         |
-
----
-
-### **Enterprise Features Unique to Amazon auth0**
-
-| Feature                                          | Description                                                                            | Supported |
-|--------------------------------------------------|----------------------------------------------------------------------------------------|-----------|
-| User Pool Groups                                 | Organize users into groups for role-based access control.                              | ✅       |
-| Lambda Triggers                                  | Extend authentication workflows with serverless functions.                             | ✅       |
-| Hosted UI                                        | Simplify OAuth and federated login flows with pre-built UI.                            | ✅       |
-| Advanced Security Features                       | Detect anomalies and enforce adaptive authentication.                                  | ✅       |
-| Identity Federation                              | Support for third-party identity providers like Google, Facebook, and SAML.            | ✅       |
-
----
-
-## **Key Differences Between Firebase and Amazon auth0**
-
-1. **Server-Side Capabilities:** Amazon auth0 provides robust server-side APIs (e.g., Admin APIs), while Firebase is primarily client-focused.
-2. **Enterprise Features:** auth0 supports advanced features like Lambda triggers and adaptive authentication, which are absent in Firebase.
-3. **Custom Token Support:** Firebase enables custom token generation for integration with external systems, while auth0 lacks this feature.
-
----
-
-## **Next Steps**
-
-1. Design the Dart SDK for server-side integration with Amazon auth0 Admin APIs.
-2. Implement key features such as user management, MFA, and token management.
-3. Provide documentation and examples to facilitate adoption for both mobile and web developers.
-
-Let me know if you'd like to explore specific areas further!
-
-
-
-
-
-## Available Versions
-
-auth0 Dart Admin Auth SDK is available in two versions to cater to different needs:
-
-1. **Main - Stable Version**: Usually one release a month.  This version attempts to keep stability without introducing breaking changes.
-2. **Pre-Release - Edge Version**: Provided as an early indication of a release when breaking changes are expect.  This release is inconsistent. Use only if you are looking to test new features.
+| Authentication Method                         | SDK API                                    | Description                                                                                 |
+|-----------------------------------------------|--------------------------------------------|---------------------------------------------------------------------------------------------|
+| **Authorization Code (PKCE)**                 | `loginWithPkce(...)`                       | Standard interactive login using the Authorization Code flow with PKCE for enhanced security. |
+| **Silent Authentication**                     | `acquireTokenSilent(...)`                  | Automatically renews access tokens in the background using a stored refresh token.          |
+| **Refresh Token Flow**                        | (built into silent auth)                   | Explicitly exchanges a refresh token for a new access token when called directly.           |
+| **Client Credentials**                        | `clientCredentialsToken(...)`              | Machine-to-machine (M2M) flow: exchange client ID/secret for an access token.               |
+| **Resource Owner Password Credentials (ROPC)**| `loginWithUsernamePassword(...)`           | Direct username/password login (use sparingly; less secure and not recommended for public apps). |
+| **Device Code Flow**                          | `loginWithDeviceCode(...)`                 | User-friendly device flow: poll for authentication on devices without browsers.             |
+| **Passwordless (Email OTP)**                  | `loginPasswordlessWithCode(...)`           | One-time code sent via email for passwordless login.                                        |
+| **Passwordless (Magic Link)**                 | `loginPasswordlessWithLink(...)`           | Email a magic-link that logs the user in when clicked.                                      |
+| **Passwordless (SMS OTP)**                    | `loginPasswordlessWithSms(...)`            | One-time code sent via SMS for passwordless login.                                          |
+| **Universal Login (Hosted UI)**               | `loginWithHostedUI(...)`                   | Redirects to Auth0’s hosted login page (customizable branding).                             |
+| **Social & Enterprise Login**                 | (via Hosted UI)                            | Built-in support for Google, Facebook, Azure AD, SAML, and other connections.               |
+| **Multi-Factor Authentication (MFA)**         | (configured in Hosted UI)                  | Enforce second-factor (OTP apps, SMS, email) as part of the hosted login flow.              |
+| **Custom OAuth2 Connections**                 | `loginWithOAuth2Connection(...)`           | Plug in generic OAuth2/SAML identity providers not covered out of the box.                  |
 
 ## Documentation
 
-For detailed guides, API references, and example projects, visit our [auth0 Dart Admin Auth SDK Documentation](https://aortem.gitbook.io/auth0-dart-auth-admin-sdk). Start building with  auth0 Dart Admin Auth SDK today and take advantage of its robust features and elegant syntax.
+For detailed guides, API references, and example projects, visit our [auth0 Dart Auth SDK Documentation](https://aortem.gitbook.io/auth0-dart-auth-admin-sdk). Start building with  auth0 Dart Auth SDK today and take advantage of its robust features and elegant syntax.
 
 ## Examples
 
-Explore the `/example` directory in this repository to find sample applications demonstrating  auth0 Dart Admin Auth SDK's capabilities in real-world scenarios.
+Explore the `/example` directory in this repository to find sample applications demonstrating  auth0 Dart Auth SDK's capabilities in real-world scenarios.
 
 ## Contributing
 
-We welcome contributions of all forms from the community! If you're interested in helping improve  auth0 Dart Admin Auth SDK, please fork the repository and submit your pull requests. For more details, check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.  Our team will review your pull request. Once approved, we will integrate your changes into our primary repository and push the mirrored changes on the main github branch.
+We welcome contributions of all forms from the community! If you're interested in helping improve  auth0 Dart Auth SDK, please fork the repository and submit your pull requests. For more details, check out our [CONTRIBUTING.md](CONTRIBUTING.md) guide.  Our team will review your pull request. Once approved, we will integrate your changes into our primary repository and push the mirrored changes on the main github branch.
 
 ## Support Tiers
 
-auth0 Dart Admin Auth SDK offers various support tiers for our open-source products with an Initial Response Service Level Agreement (IRSLA):
+auth0 Dart Auth SDK offers various support tiers for our open-source products with an Initial Response Service Level Agreement (IRSLA):
 
 ### Community Support
 - **Cost**: Free
@@ -211,9 +112,9 @@ auth0 Dart Admin Auth SDK offers various support tiers for our open-source produ
 
 ## Licensing
 
-All  auth0 Dart Admin Auth SDK packages are licensed under BSD-3, except for the *services packages*, which uses the ELv2 license, which are licensed from third party software  Inc. In short, this means that you can, without limitation, use any of the client packages in your app as long as you do not offer the SDK's or services as a cloud service to 3rd parties (this is typically only relevant for cloud service providers).  See the [LICENSE](LICENSE.md) file for more details.
+All  auth0 Dart Auth SDK packages are licensed under BSD-3, except for the *services packages*, which uses the ELv2 license, which are licensed from third party software  Inc. In short, this means that you can, without limitation, use any of the client packages in your app as long as you do not offer the SDK's or services as a cloud service to 3rd parties (this is typically only relevant for cloud service providers).  See the [LICENSE](LICENSE.md) file for more details.
 
 
-## Enhance with auth0 Dart Admin Auth SDK
+## Enhance with auth0 Dart Auth SDK
 
-We hope the auth0 Dart Admin Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!  test
+We hope the auth0 Dart Auth SDK helps you to efficiently build and scale your server-side applications. Join our growing community and start contributing to the ecosystem today!

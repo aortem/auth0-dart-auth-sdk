@@ -5,13 +5,13 @@
   </picture>
 </p>
 
-<h2 align="center">auth0_dart_auth_sdk</h2>
+<h2 align="center">Auth0 Dart Auth SDK</h2>
 
 <!-- x-hide-in-docs-end -->
 <p align="center" class="github-badges">
   <!-- Release Badge -->
   <a href="https://github.com/aortem/auth0_dart_auth_sdk/tags">
-  <img alt="Latest Release" src="https://img.shields.io/github/v/tag/aortem/auth0_dart_auth_sdk?style=for-the-badge" />
+  <img alt="Latest Release" src="https://img.shields.io/github/v/tag/aortem/auth0-dart-auth-sdk?style=for-the-badge" />
 </a>
   <br/>
   <!-- Dart-Specific Badges -->
@@ -22,7 +22,7 @@
     <img alt="Built with Dart" src="https://img.shields.io/badge/Built%20with-Dart-blue.svg?style=for-the-badge" />
   </a>
  <!-- auth0 Badge -->
-   <a href="https://auth0.google.com/docs/reference/admin/node/auth0-admin.auth?_gl=1*1ewipg9*_up*MQ..*_ga*NTUxNzc0Mzk3LjE3MzMxMzk3Mjk.*_ga_CW55HF8NVT*MTczMzEzOTcyOS4xLjAuMTczMzEzOTcyOS4wLjAuMA..">
+   <a href="https://auth0.com/docs/api/authentication#introduction">
     <img alt="API Reference" src="https://img.shields.io/badge/API-reference-blue.svg?style=for-the-badge" />
   <br/>
 </p>

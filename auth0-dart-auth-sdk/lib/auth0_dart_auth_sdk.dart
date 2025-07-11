@@ -7,6 +7,7 @@ export 'src/authentication/aortem_auth0_database_ldap_passive.dart';
 export 'src/authentication/aortem_auth0_enterprise_saml.dart';
 export 'src/authentication/aortem_auth0_login.dart';
 export 'src/authentication/aortem_auth0_social_login.dart';
+export 'src/authentication/aortem_auth0_backchannel_login.dart';
 
 // ===================== AUTHORIZATION =====================
 export 'src/authorization/aortem_auth0_authenticate_user.dart';

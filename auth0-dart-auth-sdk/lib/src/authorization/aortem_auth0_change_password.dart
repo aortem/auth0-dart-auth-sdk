@@ -40,8 +40,13 @@ class AortemAuth0ChangePassword {
     if (response.statusCode == 200) {
       // Successfully sent password change email, parse the response
       try {
-        final responseBody = json.decode(response.body);
-        return AortemAuth0ChangePasswordResponse.fromJson(responseBody);
+        if (response.headers['content-type']?.contains('application/json') ==
+            true) {
+          final responseBody = json.decode(response.body);
+          return AortemAuth0ChangePasswordResponse.fromJson(responseBody);
+        } else {
+          return AortemAuth0ChangePasswordResponse(message: response.body);
+        }
       } catch (e) {
         throw AortemAuth0ChangePasswordException('Error parsing response: $e');
       }

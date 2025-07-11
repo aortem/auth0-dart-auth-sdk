@@ -77,7 +77,7 @@ class AortemAuth0BackChannelLogin {
       // Make the POST request to Auth0 backchannel login endpoint
       final response = await httpClient
           .post(
-            Uri.parse('https://$domain/backchannel/login'),
+            Uri.parse('https://$domain/bc-authorize'),
             headers: {'Content-Type': 'application/json'},
             body: jsonEncode(request.toJson()),
           )

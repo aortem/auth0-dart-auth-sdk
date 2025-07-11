@@ -21,7 +21,8 @@ class AortemAuth0ChangePasswordResponse {
   /// Returns an [AortemAuth0ChangePasswordResponse] with the parsed message.
   /// If 'message' field is missing in JSON, defaults to 'No message received'.
   factory AortemAuth0ChangePasswordResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0ChangePasswordResponse(
       message: json['message'] ?? 'No message received',
     );

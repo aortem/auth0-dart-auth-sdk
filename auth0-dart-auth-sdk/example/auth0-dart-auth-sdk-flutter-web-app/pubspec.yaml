@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   auth0_dart_auth_sdk:
     path: ../../../auth0-dart-auth-sdk
+  google_sign_in: ^7.1.0
 
 dev_dependencies:
   flutter_test:

@@ -68,9 +68,10 @@ class AortemAuth0LoginRequest {
   /// Converts the request to a JSON map suitable for transmission to Auth0
   Map<String, dynamic> toJson() {
     final json = {
+      "grant_type": "http://auth0.com/oauth/grant-type/password-realm",
       'username': username,
       'password': password,
-      'connection': connection,
+      'realm': connection,
       'client_id': clientId,
       'scope': scope ?? 'openid profile email',
       'audience': audience,

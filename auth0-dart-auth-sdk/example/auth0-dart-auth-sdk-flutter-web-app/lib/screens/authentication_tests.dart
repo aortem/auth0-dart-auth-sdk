@@ -1,5 +1,7 @@
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 
 class AuthenticationTestScreen extends StatefulWidget {
   const AuthenticationTestScreen({super.key});
@@ -19,34 +21,37 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {
       loginResponse = 'Loading...';
     });
-    final client = AortemAuth0LoginService(
-      auth0Domain: 'your-tenant.auth0.com',
-    );
+    final client = AortemAuth0LoginService(auth0Domain: AUTH0_DOMAIN);
 
     // Construct the request with user credentials and connection info.
     final request = AortemAuth0LoginRequest(
       username: 'user@example.com',
-      password: 'user_password',
+      password: 'user_password47#',
       connection: 'Username-Password-Authentication',
-      clientId: 'YOUR_CLIENT_ID', // Optional
-      scope: 'openid profile email', // Optional
-      audience: 'YOUR_API_IDENTIFIER', // Optional
+      clientId: CLIENT_ID,
+      //scope: 'openid profile email', // Optional
+      //audience: 'YOUR_AUDIENCE', // Optional
     );
 
     try {
       final response = await client.login(request);
       loginResponse = 'Login Successful! \n';
       loginResponse += 'Access Token: ${response.accessToken} \n';
-      print('ID Token: ${response.idToken}');
-      if (response.refreshToken != null) {
-        print('Refresh Token: ${response.refreshToken}');
-      }
-      print('Token Type: ${response.tokenType}');
-      if (response.expiresIn != null) {
-        print('Expires In: ${response.expiresIn} seconds');
+      if (kDebugMode) {
+        print('ID Token: ${response.idToken}');
+        if (response.refreshToken != null) {
+          print('Refresh Token: ${response.refreshToken}');
+        }
+        print('Token Type: ${response.tokenType}');
+        if (response.expiresIn != null) {
+          print('Expires In: ${response.expiresIn} seconds');
+        }
       }
     } catch (e) {
       loginResponseError = 'Error during Auth0 login: $e';
+      if (kDebugMode) {
+        print('$e');
+      }
     }
     setState(() {});
   }
@@ -57,12 +62,32 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
   String socialLoginResponseError = '';
 
   void socialLoginTest() async {
+    // Alternative way to do the social login, ignoring the SDK and using a direct HTTP Request
+    /*final codeChallenge =
+        'dummy_code_challenge_that_can_be_replaced_with_a_secure_challenge';
+    final authUrl = Uri.https(AUTH0_DOMAIN, '/authorize', {
+      'response_type': 'code',
+      'client_id': CLIENT_ID,
+      'redirect_uri': REDIRECT_URI,
+      'scope': 'openid profile email',
+      'state': 'abc123',
+      'code_challenge': codeChallenge,
+      'code_challenge_method': 'plain',
+      'connection': 'google-oauth2', // Forces Google login
+    });
+
+    // Redirect browser to Auth0 login
+    // ignore: undefined_prefixed_name
+    js.context.callMethod('open', [authUrl.toString(), '_self']);*/
+
+    //this requires a access token obtained directly from the third party login site
+
     setState(() {
       socialLoginResponse = 'Loading...';
     });
     final authService = AortemAuth0SocialLogin(
-      domain: 'your-auth0-domain',
-      clientId: 'your-client-id',
+      domain: AUTH0_DOMAIN,
+      clientId: CLIENT_ID,
     );
     try {
       final response = await authService.authenticate(
@@ -85,7 +110,7 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {
       enterpriseSAMLLoginResponse = 'Loading...';
     });
-    final authService = AortemAuth0EnterpriseSaml(domain: 'your-auth0-domain');
+    final authService = AortemAuth0EnterpriseSaml(domain: AUTH0_DOMAIN);
     try {
       final response = await authService.authenticate(
         samlRequest: 'samlRequest',
@@ -107,12 +132,10 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {
       backChannelLoginResponse = 'Loading...';
     });
-    final authService = AortemAuth0BackChannelLogin(
-      domain: 'your-auth0-domain',
-    );
+    final authService = AortemAuth0BackChannelLogin(domain: AUTH0_DOMAIN);
     try {
       final response = await authService.initiate(
-        clientId: 'YOUR_CLIENT_ID',
+        clientId: CLIENT_ID,
         loginHint: 'user@example.com',
         scope: 'openid profile email', // Optional
         acrValues: 'urn:mace:incommon:iap:silver', // Optional
@@ -135,13 +158,13 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
       adLdapPassiveLoginResponse = 'Loading...';
     });
     final authService = AortemAuth0DatabaseAdLdapPassive(
-      domain: 'your-auth0-domain',
-      clientId: 'your-client-id',
+      domain: AUTH0_DOMAIN,
+      clientId: CLIENT_ID,
     );
     try {
       final response = await authService.authenticate(
         username: 'user@example.com',
-        password: 'user_password',
+        password: 'user_password47#',
         connection:
             'Username-Password-Authentication', // or "active-directory", "ldap", etc.
         scope: 'openid profile email', // Optional

@@ -85,14 +85,21 @@ export 'src/models/aortem_auth0_logout_response_model.dart';
 export 'src/models/aortem_auth0_multi_factor_verify_request_model.dart';
 export 'src/models/aortem_auth0_multi_factor_verify_response_model.dart';
 export 'src/models/aortem_auth0_oidc_logout_request_model.dart';
+export 'src/models/aortem_auth0_saml_logout_request.dart';
+export 'src/models/aortem_auth0_saml_logout_response.dart';
+export 'src/models/aortem_auth0_signup_request_model.dart';
+export 'src/models/aortem_auth0_signup_response_model.dart';
+export 'src/models/aortem_auth0_user_profile_request_model.dart';
+export 'src/models/aortem_auth0_user_profile_response_model.dart';
 
 // ===================== USER MANAGMENT =====================
 
 export 'src/user_info/aortem_auth0_get_user_info.dart';
+export 'src/user_info/aortem_auth0_user_profile.dart';
 
 // ===================== MULTIFACTOR AUTHENTICATION (MFA) =====================
 
-export 'src/multifactor/aortem_auth0_mfa_verify.dart';
+export 'src/multifactor/aortem_auth0_multi_factor_verify.dart';
 export 'src/multifactor/aortem_auth0_verify_otp.dart';
 export 'src/multifactor/aortem_auth0_challenge_request.dart';
 export 'src/multifactor/aortem_auth0_verify_oob.dart';

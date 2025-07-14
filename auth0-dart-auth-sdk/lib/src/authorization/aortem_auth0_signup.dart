@@ -78,7 +78,8 @@ class AortemAuth0Signup {
   String _getErrorMessage(http.Response response) {
     try {
       final errorResponse = json.decode(response.body);
-      return errorResponse['error_description'] ?? 'Unknown error occurred';
+      return errorResponse['error_description'] ??
+          'Unknown error occurred: ${errorResponse}';
     } catch (e) {
       return 'Error with status code: ${response.statusCode}';
     }

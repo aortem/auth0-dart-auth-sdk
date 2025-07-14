@@ -16,6 +16,8 @@ dependencies:
   ds_standard_features: ^0.0.4 #Standard Dart Team Utilities For HTTP //Default
   build_web_compilers: ^4.0.11
   jwt_generator: ^0.0.3
+  web: ^1.1.1
+  js_interop: ^0.0.1
 
 
 #------------------ TESTING FEATURES---------------------------------

@@ -36,10 +36,10 @@ class AortemAuth0AuthenticateUserRequest {
   /// Converts the request to a JSON-compatible map.
   Map<String, dynamic> toJson() {
     return {
-      'grant_type': 'password',
+      "grant_type": "http://auth0.com/oauth/grant-type/password-realm",
       'username': username,
       'password': password,
-      'connection': connection,
+      'realm': connection,
       'client_id': clientId,
       if (clientSecret != null) 'client_secret': clientSecret,
       if (scope != null) 'scope': scope,

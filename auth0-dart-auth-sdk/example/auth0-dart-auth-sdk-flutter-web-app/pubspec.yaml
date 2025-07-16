@@ -37,6 +37,7 @@ dependencies:
   auth0_dart_auth_sdk:
     path: ../../../auth0-dart-auth-sdk
   google_sign_in: ^7.1.0
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:

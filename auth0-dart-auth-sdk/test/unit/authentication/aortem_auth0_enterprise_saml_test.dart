@@ -1,94 +1,51 @@
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_enterprise_saml_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_enterprise_saml_response_model.dart';
 import 'package:auth0_dart_auth_sdk/src/authentication/aortem_auth0_enterprise_saml.dart';
-
-import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:ds_tools_testing/ds_tools_testing.dart';
-
-class MockClient extends Mock implements http.Client {}
+import 'package:test/test.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_enterprise_saml_request_model.dart';
 
 void main() {
-  late MockClient mockClient;
-  late AortemAuth0EnterpriseSaml samlAuth;
-  const domain = 'test.auth0.com';
+  group('AortemAuth0EnterpriseSaml', () {
+    test('buildAuthorizeUrl creates correct URL', () {
+      final auth0 = AortemAuth0EnterpriseSaml(
+        domain: 'test-tenant.auth0.com',
+        clientId: 'test-client-id',
+      );
 
-  setUp(() {
-    mockClient = MockClient();
-    samlAuth = AortemAuth0EnterpriseSaml(
-      domain: domain,
-      httpClient: mockClient,
-    );
-  });
-
-  tearDown(() {
-    samlAuth.close();
-  });
-
-  group('Request Model', () {
-    test('creates valid request with required fields', () {
       final request = AortemAuth0EnterpriseSamlRequest(
         connection: 'saml-enterprise',
-        samlRequest: 'base64encoded_saml_request',
+        redirectUri: 'https://example.com/callback',
+        state: 'abc123',
       );
 
-      expect(request.toJson(), {
-        'connection': 'saml-enterprise',
-        'saml_request': 'base64encoded_saml_request',
-      });
-    });
+      final url = auth0.buildAuthorizeUrl(request);
 
-    test('includes optional relayState when provided', () {
-      final request = AortemAuth0EnterpriseSamlRequest(
-        connection: 'saml-enterprise',
-        samlRequest: 'base64encoded_saml_request',
-        relayState: 'relay123',
-      );
-
-      expect(request.toJson(), {
-        'connection': 'saml-enterprise',
-        'saml_request': 'base64encoded_saml_request',
-        'relay_state': 'relay123',
-      });
-    });
-
-    test('throws ArgumentError for empty required fields', () {
+      expect(url.scheme, 'https');
+      expect(url.host, 'test-tenant.auth0.com');
+      expect(url.path, '/authorize');
+      expect(url.queryParameters['client_id'], 'test-client-id');
+      expect(url.queryParameters['connection'], 'saml-enterprise');
       expect(
-        () => AortemAuth0EnterpriseSamlRequest(
-          connection: '',
-          samlRequest: 'base64encoded_saml_request',
-        ),
-        throwsA(isA<ArgumentError>()),
+        url.queryParameters['redirect_uri'],
+        'https://example.com/callback',
       );
-    });
-  });
-
-  group('Response Model', () {
-    test('parses successful response', () {
-      final response = AortemAuth0EnterpriseSamlResponse.fromJson({
-        'saml_response': 'base64encoded_saml_response',
-        'relay_state': 'relay123',
-      });
-
-      expect(response.samlResponse, 'base64encoded_saml_response');
-      expect(response.relayState, 'relay123');
+      expect(url.queryParameters['state'], 'abc123');
     });
 
-    test('handles response without relayState', () {
-      final response = AortemAuth0EnterpriseSamlResponse.fromJson({
-        'saml_response': 'base64encoded_saml_response',
-      });
-
-      expect(response.samlResponse, 'base64encoded_saml_response');
-      expect(response.relayState, isNull);
-    });
-
-    test('throws FormatException for invalid response', () {
-      expect(
-        () => AortemAuth0EnterpriseSamlResponse.fromJson({
-          'relay_state': 'relay123',
-        }),
-        throwsA(isA<FormatException>()),
+    test('isConfigurationValid returns true for valid config', () {
+      final auth0 = AortemAuth0EnterpriseSaml(
+        domain: 'valid.auth0.com',
+        clientId: 'abc123',
       );
+
+      expect(auth0.isConfigurationValid, isTrue);
+    });
+
+    test('isConfigurationValid returns false for invalid config', () {
+      final auth0 = AortemAuth0EnterpriseSaml(
+        domain: 'invalid-domain.com',
+        clientId: '',
+      );
+
+      expect(auth0.isConfigurationValid, isFalse);
     });
   });
 }

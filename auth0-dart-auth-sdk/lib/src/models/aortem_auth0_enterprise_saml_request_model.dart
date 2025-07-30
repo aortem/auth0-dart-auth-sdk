@@ -1,4 +1,4 @@
-import 'aortem_auth0_enterprise_saml_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth0_enterprise_saml_exception.dart';
 
 /// Represents the parameters needed to start an enterprise SAML login flow.
 ///

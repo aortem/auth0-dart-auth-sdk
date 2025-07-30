@@ -1,4 +1,4 @@
-import 'aortem_auth0_enterprise_saml_exception.dart';
+import 'package:auth0_dart_auth_sdk/src/exceptions/aortem_auth0_enterprise_saml_exception.dart';
 
 /// Represents the result of the enterprise SAML login flow after Auth0 redirect.
 ///
@@ -8,7 +8,7 @@ import 'aortem_auth0_enterprise_saml_exception.dart';
 ///
 /// Example usage:
 /// ```dart
-/// // From a redirect URL like: 
+/// // From a redirect URL like:
 /// // https://app.com/callback#access_token=xyz&id_token=abc&state=123
 /// final response = AortemAuth0EnterpriseSamlResponse.fromHash(window.location.hash);
 /// print('Access Token: ${response.accessToken}');

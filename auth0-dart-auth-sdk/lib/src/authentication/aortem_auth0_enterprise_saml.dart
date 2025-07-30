@@ -1,4 +1,4 @@
-import 'aortem_auth0_enterprise_saml_request.dart';
+import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_enterprise_saml_request_model.dart';
 
 /// Main service class to handle Auth0 enterprise SAML authentication flows.
 ///
@@ -33,10 +33,7 @@ class AortemAuth0EnterpriseSaml {
   ///
   /// [domain]: Your Auth0 domain (e.g., 'your-tenant.auth0.com')
   /// [clientId]: The client ID of your Auth0 application
-  AortemAuth0EnterpriseSaml({
-    required this.domain,
-    required this.clientId,
-  });
+  AortemAuth0EnterpriseSaml({required this.domain, required this.clientId});
 
   /// Constructs the authorization URL for initiating SAML enterprise login
   ///
@@ -51,8 +48,6 @@ class AortemAuth0EnterpriseSaml {
   }
 
   /// Helper method to validate if the current configuration appears valid
-  bool get isConfigurationValid => 
-      domain.isNotEmpty && 
-      clientId.isNotEmpty && 
-      domain.endsWith('.auth0.com');
+  bool get isConfigurationValid =>
+      domain.isNotEmpty && clientId.isNotEmpty && domain.endsWith('.auth0.com');
 }

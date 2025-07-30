@@ -72,10 +72,7 @@ class _IdpSSOScreenState extends State<IdpSSOScreen> {
               ),
             ],
             if (error != null)
-              Text(
-                'Error: $error',
-                style: const TextStyle(color: Colors.red),
-              ),
+              Text('Error: $error', style: const TextStyle(color: Colors.red)),
           ],
         ),
       ),

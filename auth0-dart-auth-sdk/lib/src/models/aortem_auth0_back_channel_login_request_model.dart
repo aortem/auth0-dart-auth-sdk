@@ -44,10 +44,10 @@ class AortemAuth0BackChannelLoginRequest {
   /// Converts this request object into a JSON-compatible map
   /// to be used in HTTP requests.
   Map<String, dynamic> toJson() => {
-        'client_id': clientId,
-        'login_hint': loginHint,
-        if (scope != null) 'scope': scope,
-        if (acrValues != null) 'acr_values': acrValues,
-        if (bindingMessage != null) 'binding_message': bindingMessage,
-      };
+    'client_id': clientId,
+    'login_hint': loginHint,
+    if (scope != null) 'scope': scope,
+    if (acrValues != null) 'acr_values': acrValues,
+    if (bindingMessage != null) 'binding_message': bindingMessage,
+  };
 }

@@ -26,7 +26,8 @@ class AortemAuth0BackChannelLoginException implements Exception {
   });
 
   @override
-  String toString() => 'AortemAuth0BackChannelLoginException: $message'
+  String toString() =>
+      'AortemAuth0BackChannelLoginException: $message'
       '${statusCode != null ? ' (Status: $statusCode)' : ''}'
       '${errorDetails != null ? '\nDetails: $errorDetails' : ''}';
 }

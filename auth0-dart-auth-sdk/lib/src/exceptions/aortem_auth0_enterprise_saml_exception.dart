@@ -43,7 +43,8 @@ class AortemAuth0EnterpriseSamlException implements Exception {
   /// - Status code (if present)
   /// - Error details (if present)
   @override
-  String toString() => 'AortemAuth0EnterpriseSamlException: $message'
+  String toString() =>
+      'AortemAuth0EnterpriseSamlException: $message'
       '${statusCode != null ? ' (Status: $statusCode)' : ''}'
       '${errorDetails != null ? '\nDetails: $errorDetails' : ''}';
 }

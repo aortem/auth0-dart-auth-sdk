@@ -61,7 +61,7 @@ class AortemAuth0AddAuthenticatorRequest {
   ///   "authenticator_type": ""
   /// }
   Map<String, dynamic> toJson() => {
-        'mfa_token': mfaToken,
-        'authenticator_type': authenticatorType,
-      };
+    'mfa_token': mfaToken,
+    'authenticator_type': authenticatorType,
+  };
 }

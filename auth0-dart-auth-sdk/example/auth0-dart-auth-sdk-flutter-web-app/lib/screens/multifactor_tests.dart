@@ -92,7 +92,8 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
       );
       final response = await client.verify(request);
 
-      _result = '''
+      _result =
+          '''
             ✅ MFA Verified Successfully!
 
             🔐 Access Token: ${response.accessToken}
@@ -136,7 +137,8 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
 
       final response = await client.requestChallenge(request);
 
-      _challengeResult = '''
+      _challengeResult =
+          '''
           📨 New MFA Challenge Requested
 
           🆔 Challenge ID: ${response.challengeId}
@@ -184,7 +186,8 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
       final response = await otpService.verifyOTP(request);
 
       setState(() {
-        _result = '''
+        _result =
+            '''
         ✅ OTP Verified Successfully!
 
         🔐 Access Token: ${response.accessToken}
@@ -258,8 +261,9 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
                         ? Colors.green[50]
                         : Colors.red[50],
                     border: Border.all(
-                      color:
-                          _result!.startsWith('✅') ? Colors.green : Colors.red,
+                      color: _result!.startsWith('✅')
+                          ? Colors.green
+                          : Colors.red,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -302,20 +306,26 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
                   child: Text(_challengeResult!),
                 ),
               const SizedBox(height: 40),
-              const Text('Verify Passwordless OTP',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Verify Passwordless OTP',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               TextField(
-                  controller: _clientIdController,
-                  decoration: InputDecoration(labelText: 'Client ID')),
+                controller: _clientIdController,
+                decoration: InputDecoration(labelText: 'Client ID'),
+              ),
               TextField(
-                  controller: _otpCodeController,
-                  decoration: InputDecoration(labelText: 'OTP Code')),
+                controller: _otpCodeController,
+                decoration: InputDecoration(labelText: 'OTP Code'),
+              ),
               DropdownButtonFormField<String>(
                 value: _realmController.text,
                 decoration: InputDecoration(labelText: 'Realm'),
                 items: const ['email', 'sms']
-                    .map((type) =>
-                        DropdownMenuItem(value: type, child: Text(type)))
+                    .map(
+                      (type) =>
+                          DropdownMenuItem(value: type, child: Text(type)),
+                    )
                     .toList(),
                 onChanged: (val) {
                   _realmController.text = val!;
@@ -324,12 +334,14 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
               ),
               if (_realmController.text == 'email')
                 TextField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(labelText: 'Email')),
+                  controller: _usernameController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
               if (_realmController.text == 'sms')
                 TextField(
-                    controller: _phoneNumberController,
-                    decoration: InputDecoration(labelText: 'Phone Number')),
+                  controller: _phoneNumberController,
+                  decoration: InputDecoration(labelText: 'Phone Number'),
+                ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: _isLoading ? null : _verifyPasswordlessOTP,

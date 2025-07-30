@@ -26,7 +26,8 @@ class AortemAuth0DatabaseAdLdapPassiveResponse {
 
   /// Creates an instance from JSON
   factory AortemAuth0DatabaseAdLdapPassiveResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     if (json['access_token'] == null ||
         json['id_token'] == null ||
         json['token_type'] == null) {

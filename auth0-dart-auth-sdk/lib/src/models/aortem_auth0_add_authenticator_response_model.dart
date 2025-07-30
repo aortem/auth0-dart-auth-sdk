@@ -28,7 +28,8 @@ class AortemAuth0AddAuthenticatorResponse {
   /// Throws a [FormatException] if the required fields are not found or the
   /// response does not contain valid data.
   factory AortemAuth0AddAuthenticatorResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0AddAuthenticatorResponse(
       secret: json['secret'], // Extracts the 'secret' from the JSON response.
       qrCodeUrl:

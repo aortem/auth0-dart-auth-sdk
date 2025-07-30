@@ -31,18 +31,16 @@ class AuthorizeEndpointPage extends StatelessWidget {
         throw Exception('Could not launch $uri');
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: ${e.toString()}')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: ${e.toString()}')));
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Auth0 Authorize Endpoint'),
-      ),
+      appBar: AppBar(title: const Text('Auth0 Authorize Endpoint')),
       body: Center(
         child: ElevatedButton(
           onPressed: () => _startAuthorizationFlow(context),

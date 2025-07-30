@@ -69,7 +69,8 @@ class AortemAuth0GetUserInfoResponse {
       picture: json['picture'] as String?,
       additionalClaims: Map<String, dynamic>.from(json)
         ..removeWhere(
-            (key, _) => ['sub', 'name', 'email', 'picture'].contains(key)),
+          (key, _) => ['sub', 'name', 'email', 'picture'].contains(key),
+        ),
     );
   }
 }

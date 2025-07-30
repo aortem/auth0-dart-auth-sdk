@@ -21,13 +21,13 @@ class AortemAuth0DynamicApplicationClientRegistrationRequest {
   });
 
   Map<String, dynamic> toJson() => {
-        'client_name': clientName,
-        'redirect_uris': redirectUris,
-        if (appType != null) 'app_type': appType,
-        if (logoUri != null) 'logo_uri': logoUri,
-        if (clientUri != null) 'client_uri': clientUri,
-        if (grantTypes != null) 'grant_types': grantTypes,
-      };
+    'client_name': clientName,
+    'redirect_uris': redirectUris,
+    if (appType != null) 'app_type': appType,
+    if (logoUri != null) 'logo_uri': logoUri,
+    if (clientUri != null) 'client_uri': clientUri,
+    if (grantTypes != null) 'grant_types': grantTypes,
+  };
 }
 
 /// RESPONSE MODEL for Dynamic Application Client Registration
@@ -45,7 +45,8 @@ class AortemAuth0DynamicApplicationClientRegistrationResponse {
   });
 
   factory AortemAuth0DynamicApplicationClientRegistrationResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0DynamicApplicationClientRegistrationResponse(
       clientId: json['client_id'],
       clientSecret: json['client_secret'],
@@ -58,9 +59,9 @@ class AortemAuth0DynamicApplicationClientRegistrationResponse {
 /// API CLIENT method to register application
 extension DynamicClientRegistration on AortemAuth0MfaApiClient {
   Future<AortemAuth0DynamicApplicationClientRegistrationResponse>
-      aortemAuth0DynamicApplicationClientRegistration(
-          AortemAuth0DynamicApplicationClientRegistrationRequest
-              request) async {
+  aortemAuth0DynamicApplicationClientRegistration(
+    AortemAuth0DynamicApplicationClientRegistrationRequest request,
+  ) async {
     final url = Uri.parse('$auth0Domain/api/v2/clients');
 
     final response = await httpClient.post(
@@ -80,6 +81,7 @@ extension DynamicClientRegistration on AortemAuth0MfaApiClient {
 
     final json = jsonDecode(response.body) as Map<String, dynamic>;
     return AortemAuth0DynamicApplicationClientRegistrationResponse.fromJson(
-        json);
+      json,
+    );
   }
 }

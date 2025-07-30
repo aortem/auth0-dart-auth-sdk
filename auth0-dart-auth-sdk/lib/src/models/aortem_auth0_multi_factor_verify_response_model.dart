@@ -68,7 +68,8 @@ class AortemAuth0MultiFactorVerifyResponse {
   /// Throws:
   /// - [FormatException] if required fields are missing or invalid
   factory AortemAuth0MultiFactorVerifyResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0MultiFactorVerifyResponse(
       accessToken: json['access_token'],
       idToken: json['id_token'],

@@ -20,8 +20,6 @@ class AortemAuth0UserProfileRequest {
   /// This can be useful if making a POST request where the access token
   /// is expected in the request body.
   Map<String, dynamic> toJson() {
-    return {
-      'access_token': accessToken,
-    };
+    return {'access_token': accessToken};
   }
 }

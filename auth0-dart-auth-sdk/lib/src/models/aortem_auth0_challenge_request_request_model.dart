@@ -44,10 +44,7 @@ class AortemAuth0ChallengeRequest {
   ///
   /// Throws:
   /// - [ArgumentError] if mfaToken is empty
-  AortemAuth0ChallengeRequest({
-    required this.mfaToken,
-    this.challengeType,
-  }) {
+  AortemAuth0ChallengeRequest({required this.mfaToken, this.challengeType}) {
     if (mfaToken.isEmpty) {
       throw ArgumentError('mfaToken cannot be empty.');
     }
@@ -70,7 +67,7 @@ class AortemAuth0ChallengeRequest {
   /// }
   /// ```
   Map<String, dynamic> toJson() => {
-        'mfa_token': mfaToken,
-        if (challengeType != null) 'challenge_type': challengeType,
-      };
+    'mfa_token': mfaToken,
+    if (challengeType != null) 'challenge_type': challengeType,
+  };
 }

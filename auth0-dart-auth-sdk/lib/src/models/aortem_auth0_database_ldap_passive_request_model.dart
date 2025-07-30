@@ -124,11 +124,11 @@ class AortemAuth0DatabaseAdLdapPassiveRequest {
   /// }
   /// ```
   Map<String, dynamic> toJson() => {
-        'username': username,
-        'password': password,
-        'connection': connection,
-        if (clientId != null) 'client_id': clientId,
-        if (scope != null) 'scope': scope,
-        if (audience != null) 'audience': audience,
-      };
+    'username': username,
+    'password': password,
+    'connection': connection,
+    if (clientId != null) 'client_id': clientId,
+    if (scope != null) 'scope': scope,
+    if (audience != null) 'audience': audience,
+  };
 }

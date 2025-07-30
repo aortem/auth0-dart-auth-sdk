@@ -30,9 +30,7 @@ class AortemAuth0SamlLogoutRequest {
   /// The returned map contains the [client_id] parameter, and optionally, [returnTo] and
   /// [federated] if they are provided.
   Map<String, String> toQueryParams() {
-    final params = <String, String>{
-      'client_id': clientId,
-    };
+    final params = <String, String>{'client_id': clientId};
     if (returnTo != null && returnTo!.trim().isNotEmpty) {
       params['returnTo'] = returnTo!;
     }

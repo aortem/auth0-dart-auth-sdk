@@ -28,7 +28,8 @@ class AortemAuth0DatabaseAdLdapPassiveException implements Exception {
   });
 
   @override
-  String toString() => 'AortemAuth0DatabaseAdLdapPassiveException: $message'
+  String toString() =>
+      'AortemAuth0DatabaseAdLdapPassiveException: $message'
       '${statusCode != null ? ' (Status: $statusCode)' : ''}'
       '${errorDetails != null ? '\nDetails: $errorDetails' : ''}';
 }

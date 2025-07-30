@@ -63,9 +63,7 @@ class _AddAuthenticatorPageState extends State<AddAuthenticatorPage> {
           children: [
             TextField(
               controller: _mfaTokenController,
-              decoration: const InputDecoration(
-                labelText: 'MFA Token',
-              ),
+              decoration: const InputDecoration(labelText: 'MFA Token'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -82,11 +80,8 @@ class _AddAuthenticatorPageState extends State<AddAuthenticatorPage> {
             ],
             if (_error != null) ...[
               const SizedBox(height: 20),
-              Text(
-                _error!,
-                style: const TextStyle(color: Colors.red),
-              ),
-            ]
+              Text(_error!, style: const TextStyle(color: Colors.red)),
+            ],
           ],
         ),
       ),

@@ -30,7 +30,7 @@ class _DynamicClientRegistrationPageState
     'refresh_token',
     'implicit',
     'client_credentials',
-    'password'
+    'password',
   ];
   final _appTypeOptions = ['native', 'spa', 'regular_web', 'non_interactive'];
 
@@ -43,7 +43,8 @@ class _DynamicClientRegistrationPageState
     });
 
     final apiClient = AortemAuth0MfaApiClient(
-        auth0Domain: AUTH0_DOMAIN); // Replace with your domain
+      auth0Domain: AUTH0_DOMAIN,
+    ); // Replace with your domain
 
     try {
       final request = AortemAuth0DynamicApplicationClientRegistrationRequest(
@@ -69,8 +70,9 @@ class _DynamicClientRegistrationPageState
         _response = result;
       });
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     } finally {
       setState(() => _isLoading = false);
     }
@@ -124,18 +126,22 @@ class _DynamicClientRegistrationPageState
               const SizedBox(height: 10),
               TextFormField(
                 controller: _logoUriController,
-                decoration:
-                    const InputDecoration(labelText: 'Logo URI (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Logo URI (optional)',
+                ),
               ),
               const SizedBox(height: 10),
               TextFormField(
                 controller: _clientUriController,
-                decoration:
-                    const InputDecoration(labelText: 'Client URI (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Client URI (optional)',
+                ),
               ),
               const SizedBox(height: 16),
-              const Text('Grant Types (optional):',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Grant Types (optional):',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               Column(
                 children: _grantTypesOptions.map((type) {
                   return CheckboxListTile(
@@ -163,30 +169,34 @@ class _DynamicClientRegistrationPageState
               const SizedBox(height: 20),
               if (_response != null) ...[
                 const Divider(),
-                const Text('Client Registered Successfully:',
-                    style:
-                        TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                const Text(
+                  'Client Registered Successfully:',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 10),
                 SelectableText('Client ID: ${_response!.clientId}'),
                 SelectableText('Client Secret: ${_response!.clientSecret}'),
                 SelectableText('Client Name: ${_response!.clientName}'),
                 SelectableText(
-                    'Redirect URIs: ${_response!.redirectUris.join(", ")}'),
+                  'Redirect URIs: ${_response!.redirectUris.join(", ")}',
+                ),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    final authUrl =
-                        AortemAuth0AuthorizeApplicationBuilder.build(
+                    final authUrl = AortemAuth0AuthorizeApplicationBuilder.build(
                       auth0DomainUri: Uri.parse(
-                          'https://your-tenant.auth0.com'), // replace with your actual domain
+                        'https://your-tenant.auth0.com',
+                      ), // replace with your actual domain
                       request:
                           AortemAuth0AuthorizeApplicationClientRegisterRequest(
-                        clientId: _response!.clientId,
-                        redirectUri: Uri.parse(_response!.redirectUris.first),
-                        responseType: 'code',
-                        scope: 'openid profile email',
-                        state: '123abc',
-                      ),
+                            clientId: _response!.clientId,
+                            redirectUri: Uri.parse(
+                              _response!.redirectUris.first,
+                            ),
+                            responseType: 'code',
+                            scope: 'openid profile email',
+                            state: '123abc',
+                          ),
                     ).url;
 
                     showDialog(
@@ -205,7 +215,7 @@ class _DynamicClientRegistrationPageState
                   },
                   child: const Text('Generate Auth URL'),
                 ),
-              ]
+              ],
             ],
           ),
         ),

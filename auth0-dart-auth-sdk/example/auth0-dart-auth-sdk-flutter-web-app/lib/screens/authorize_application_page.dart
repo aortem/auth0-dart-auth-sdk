@@ -51,8 +51,9 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
       );
       setState(() => _authUrl = response.url);
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
@@ -103,28 +104,33 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _scopeController,
-                decoration:
-                    const InputDecoration(labelText: 'Scope (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Scope (optional)',
+                ),
               ),
               TextFormField(
                 controller: _stateController,
-                decoration:
-                    const InputDecoration(labelText: 'State (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'State (optional)',
+                ),
               ),
               TextFormField(
                 controller: _audienceController,
-                decoration:
-                    const InputDecoration(labelText: 'Audience (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Audience (optional)',
+                ),
               ),
               TextFormField(
                 controller: _connectionController,
-                decoration:
-                    const InputDecoration(labelText: 'Connection (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Connection (optional)',
+                ),
               ),
               TextFormField(
                 controller: _promptController,
-                decoration:
-                    const InputDecoration(labelText: 'Prompt (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Prompt (optional)',
+                ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -133,8 +139,10 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
               ),
               const SizedBox(height: 20),
               if (_authUrl != null) ...[
-                const Text('Authorization URL:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text(
+                  'Authorization URL:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 10),
                 SelectableText(_authUrl.toString()),
               ],

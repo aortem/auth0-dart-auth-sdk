@@ -10,10 +10,7 @@ class AortemAuth0SignupResponse {
   final String? userId;
 
   /// Constructs an [AortemAuth0SignupResponse] with the given fields.
-  AortemAuth0SignupResponse({
-    required this.email,
-    this.userId,
-  });
+  AortemAuth0SignupResponse({required this.email, this.userId});
 
   /// Creates an instance of [AortemAuth0SignupResponse] from a JSON map.
   ///

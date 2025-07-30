@@ -27,7 +27,8 @@ class AortemAuth0SocialLoginException implements Exception {
   });
 
   @override
-  String toString() => 'AortemAuth0SocialLoginException: $message'
+  String toString() =>
+      'AortemAuth0SocialLoginException: $message'
       '${statusCode != null ? ' (Status: $statusCode)' : ''}'
       '${errorDetails != null ? '\nDetails: $errorDetails' : ''}';
 }

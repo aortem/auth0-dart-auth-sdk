@@ -40,8 +40,5 @@ class AortemAuth0MultiFactorVerifyRequest {
   ///
   /// The resulting map will have keys 'mfa_token' and 'otp' with their
   /// corresponding values.
-  Map<String, dynamic> toJson() => {
-        'mfa_token': mfaToken,
-        'otp': otp,
-      };
+  Map<String, dynamic> toJson() => {'mfa_token': mfaToken, 'otp': otp};
 }

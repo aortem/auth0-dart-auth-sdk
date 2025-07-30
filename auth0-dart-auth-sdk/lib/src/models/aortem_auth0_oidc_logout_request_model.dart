@@ -26,9 +26,7 @@ class AortemAuth0OidcLogoutRequest {
 
   /// Converts this request into a map of query parameters.
   Map<String, String> toQueryParams() {
-    final params = <String, String>{
-      'client_id': clientId,
-    };
+    final params = <String, String>{'client_id': clientId};
     if (idTokenHint != null && idTokenHint!.trim().isNotEmpty) {
       params['id_token_hint'] = idTokenHint!;
     }

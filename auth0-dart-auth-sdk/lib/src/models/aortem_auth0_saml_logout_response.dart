@@ -8,17 +8,13 @@ class AortemAuth0SamlLogoutResponse {
   final String logoutUrl;
 
   /// Constructs an [AortemAuth0SamlLogoutResponse] with the [logoutUrl].
-  AortemAuth0SamlLogoutResponse({
-    required this.logoutUrl,
-  });
+  AortemAuth0SamlLogoutResponse({required this.logoutUrl});
 
   /// Converts this instance into a JSON map, typically used for serialization.
   ///
   /// The returned map contains the [logout_url] key with the corresponding URL value.
   Map<String, dynamic> toJson() {
-    return {
-      'logout_url': logoutUrl,
-    };
+    return {'logout_url': logoutUrl};
   }
 
   @override

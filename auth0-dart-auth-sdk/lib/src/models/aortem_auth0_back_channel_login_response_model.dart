@@ -31,7 +31,8 @@ class AortemAuth0BackChannelLoginResponse {
   ///
   /// Throws a [FormatException] if required fields are missing.
   factory AortemAuth0BackChannelLoginResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     if (json['auth_req_id'] == null || json['expires_in'] == null) {
       throw FormatException('Missing required fields in Auth0 response');
     }

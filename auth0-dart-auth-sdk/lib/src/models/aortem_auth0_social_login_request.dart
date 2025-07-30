@@ -25,16 +25,17 @@ class AortemAuth0SocialLoginRequest {
   }) {
     if (socialAccessToken.trim().isEmpty || connection.trim().isEmpty) {
       throw ArgumentError(
-          'Social access token and connection cannot be empty.');
+        'Social access token and connection cannot be empty.',
+      );
     }
   }
 
   /// Converts this request into a JSON map.
   Map<String, dynamic> toJson() => {
-        'access_token': socialAccessToken,
-        'connection': connection,
-        if (clientId != null) 'client_id': clientId,
-        if (scope != null) 'scope': scope,
-        if (audience != null) 'audience': audience,
-      };
+    'access_token': socialAccessToken,
+    'connection': connection,
+    if (clientId != null) 'client_id': clientId,
+    if (scope != null) 'scope': scope,
+    if (audience != null) 'audience': audience,
+  };
 }

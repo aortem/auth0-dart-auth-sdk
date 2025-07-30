@@ -79,8 +79,10 @@ class _AcceptRequestPageState extends State<AcceptRequestPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('✅ Login Successful',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        const Text(
+          '✅ Login Successful',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 10),
         Text('Access Token: ${response!.accessToken}'),
         const SizedBox(height: 8),

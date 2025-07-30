@@ -33,7 +33,8 @@ class _OobVerifyScreenState extends State<OobVerifyScreen> {
 
       final response = await client.verifyOOB(request);
       setState(() {
-        _result = '''
+        _result =
+            '''
 ✅ Verified Successfully!
 
 Access Token: ${response.accessToken}
@@ -63,14 +64,19 @@ Expires In: ${response.expiresIn ?? 'N/A'}
                 value: _realm,
                 onChanged: (value) => setState(() => _realm = value!),
                 items: ['email', 'sms']
-                    .map((r) => DropdownMenuItem(
-                        value: r, child: Text(r.toUpperCase())))
+                    .map(
+                      (r) => DropdownMenuItem(
+                        value: r,
+                        child: Text(r.toUpperCase()),
+                      ),
+                    )
                     .toList(),
               ),
               TextFormField(
                 controller: _identifierController,
                 decoration: InputDecoration(
-                    labelText: _realm == 'email' ? 'Email' : 'Phone Number'),
+                  labelText: _realm == 'email' ? 'Email' : 'Phone Number',
+                ),
               ),
               TextFormField(
                 controller: _codeController,

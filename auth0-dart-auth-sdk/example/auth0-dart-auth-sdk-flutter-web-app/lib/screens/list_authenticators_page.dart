@@ -48,8 +48,9 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
   }
 
   Future<void> _deleteAuthenticator(String authenticatorId) async {
-    final client =
-        AortemAuth0DeleteAuthenticatorClient(auth0Domain: AUTH0_DOMAIN);
+    final client = AortemAuth0DeleteAuthenticatorClient(
+      auth0Domain: AUTH0_DOMAIN,
+    );
 
     final request = AortemAuth0DeleteAuthenticatorRequest(
       accessToken: widget.accessToken,
@@ -59,9 +60,9 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
     try {
       final response = await client.deleteAuthenticator(request);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(response.message)),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(response.message)));
 
       // Refresh list after deletion
       _fetchAuthenticators();
@@ -79,32 +80,33 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : error != null
-              ? Center(child: Text('Error: $error'))
-              : authenticators.isEmpty
-                  ? const Center(child: Text('No authenticators found.'))
-                  : ListView.builder(
-                      itemCount: authenticators.length,
-                      itemBuilder: (context, index) {
-                        final auth = authenticators[index];
-                        return Card(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 6),
-                          child: ListTile(
-                            leading: const Icon(Icons.security),
-                            title: Text(auth.name ?? 'Unnamed Authenticator'),
-                            subtitle:
-                                Text('Type: ${auth.type}\nID: ${auth.id}'),
-                            isThreeLine: true,
-                            trailing: IconButton(
-                              icon: const Icon(Icons.delete, color: Colors.red),
-                              onPressed: () {
-                                _showDeleteConfirmation(auth.id);
-                              },
-                            ),
-                          ),
-                        );
+          ? Center(child: Text('Error: $error'))
+          : authenticators.isEmpty
+          ? const Center(child: Text('No authenticators found.'))
+          : ListView.builder(
+              itemCount: authenticators.length,
+              itemBuilder: (context, index) {
+                final auth = authenticators[index];
+                return Card(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 6,
+                  ),
+                  child: ListTile(
+                    leading: const Icon(Icons.security),
+                    title: Text(auth.name ?? 'Unnamed Authenticator'),
+                    subtitle: Text('Type: ${auth.type}\nID: ${auth.id}'),
+                    isThreeLine: true,
+                    trailing: IconButton(
+                      icon: const Icon(Icons.delete, color: Colors.red),
+                      onPressed: () {
+                        _showDeleteConfirmation(auth.id);
                       },
                     ),
+                  ),
+                );
+              },
+            ),
     );
   }
 
@@ -113,8 +115,9 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
       context: context,
       builder: (_) => AlertDialog(
         title: const Text('Confirm Delete'),
-        content:
-            const Text('Are you sure you want to delete this authenticator?'),
+        content: const Text(
+          'Are you sure you want to delete this authenticator?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),

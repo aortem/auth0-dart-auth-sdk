@@ -8,9 +8,7 @@ class AortemAuth0OidcLogoutResponse {
 
   /// Converts this instance into a JSON map.
   Map<String, dynamic> toJson() {
-    return {
-      'logout_url': logoutUrl,
-    };
+    return {'logout_url': logoutUrl};
   }
 
   @override

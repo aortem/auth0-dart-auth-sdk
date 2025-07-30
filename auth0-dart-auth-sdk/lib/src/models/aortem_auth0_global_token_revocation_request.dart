@@ -33,10 +33,7 @@ class AortemAuth0GlobalTokenRevocationRequest {
   ///
   /// Returns a Map containing the request parameters in the correct format
   Map<String, String> toFormEncoded() {
-    final data = {
-      'token': token,
-      'client_id': clientId,
-    };
+    final data = {'token': token, 'client_id': clientId};
     if (tokenTypeHint != null) {
       data['token_type_hint'] = tokenTypeHint!;
     }

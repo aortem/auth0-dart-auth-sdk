@@ -61,7 +61,8 @@ class AortemAuth0VerifyRecoveryCodeResponse {
   ///   "expires_in": 3600 // optional
   /// }
   factory AortemAuth0VerifyRecoveryCodeResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0VerifyRecoveryCodeResponse(
       // Extract required access token
       accessToken: json['access_token'],

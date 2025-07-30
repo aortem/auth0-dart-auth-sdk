@@ -33,7 +33,8 @@ class _GetTokenPageState extends State<GetTokenPage> {
       );
 
       setState(() {
-        _result = '''
+        _result =
+            '''
 Access Token: ${response.accessToken}
 ID Token: ${response.idToken}
 Refresh Token: ${response.refreshToken}
@@ -61,11 +62,7 @@ Expires In: ${response.expiresIn}
               child: const Text('Get Token'),
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Text(_result),
-              ),
-            ),
+            Expanded(child: SingleChildScrollView(child: Text(_result))),
           ],
         ),
       ),

@@ -26,7 +26,8 @@ class AortemAuth0AuthenticateUserResponse {
 
   /// Creates an instance from a JSON response.
   factory AortemAuth0AuthenticateUserResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     if (json['access_token'] == null ||
         json['id_token'] == null ||
         json['token_type'] == null) {

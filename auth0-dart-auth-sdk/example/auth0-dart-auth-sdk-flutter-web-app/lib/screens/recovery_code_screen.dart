@@ -35,7 +35,8 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
     try {
       final response = await apiClient.verifyRecoveryCode(request);
       setState(() {
-        _result = '''
+        _result =
+            '''
 ✅ Recovery Success
 Access Token: ${response.accessToken}
 ID Token: ${response.idToken}
@@ -59,12 +60,14 @@ ID Token: ${response.idToken}
         child: Column(
           children: [
             TextField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Email')),
+              controller: _emailController,
+              decoration: const InputDecoration(labelText: 'Email'),
+            ),
             const SizedBox(height: 12),
             TextField(
-                controller: _codeController,
-                decoration: const InputDecoration(labelText: 'Recovery Code')),
+              controller: _codeController,
+              decoration: const InputDecoration(labelText: 'Recovery Code'),
+            ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _loading ? null : _submit,

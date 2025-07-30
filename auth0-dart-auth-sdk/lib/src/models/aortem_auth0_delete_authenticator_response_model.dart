@@ -41,7 +41,8 @@ class AortemAuth0DeleteAuthenticatorResponse {
   /// - [FormatException] if required fields are missing or invalid types
   /// - [TypeError] if JSON values cannot be cast to expected types
   factory AortemAuth0DeleteAuthenticatorResponse.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AortemAuth0DeleteAuthenticatorResponse(
       message: json['message'] as String,
       success: json['success'] as bool,

@@ -190,8 +190,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute<void>(
                   builder: (BuildContext context) => GetMetadataPage(
                     accessToken: ACCESS_TOKEN, // Pass the access token here
-                    auth0DomainUri:
-                        Uri.parse('https://dev-ukd22ypmza3du5by.us.auth0.com'),
+                    auth0DomainUri: Uri.parse(
+                      'https://dev-ukd22ypmza3du5by.us.auth0.com',
+                    ),
                   ),
                 ),
               );

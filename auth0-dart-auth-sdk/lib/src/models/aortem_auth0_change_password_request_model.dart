@@ -31,10 +31,6 @@ class AortemAuth0ChangePasswordRequest {
   /// - 'email': The user's email
   /// - 'connection': The connection type
   Map<String, dynamic> toJson() {
-    return {
-      'client_id': clientId,
-      'email': email,
-      'connection': connection,
-    };
+    return {'client_id': clientId, 'email': email, 'connection': connection};
   }
 }

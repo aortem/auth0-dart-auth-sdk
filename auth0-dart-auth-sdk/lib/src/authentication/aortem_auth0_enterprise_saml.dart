@@ -1,115 +1,58 @@
-import 'dart:convert';
-import 'package:ds_standard_features/ds_standard_features.dart' as http;
+import 'aortem_auth0_enterprise_saml_request.dart';
 
-import '../exceptions/aortem_auth0_enterprise_saml_exception.dart';
-import '../models/aortem_auth0_enterprise_saml_request_model.dart';
-import '../models/aortem_auth0_enterprise_saml_response_model.dart';
-
-/// Handles enterprise SAML authentication with Auth0.
+/// Main service class to handle Auth0 enterprise SAML authentication flows.
 ///
-/// This class manages the process of authenticating a user using the SAML authentication
-/// flow for enterprise connections in Auth0. It sends a request to the Auth0 service,
-/// processes the response, and handles any errors that occur during the authentication process.
+/// This class provides the core functionality for building enterprise SAML
+/// authentication URLs while remaining platform-agnostic (no direct browser
+/// dependencies). It constructs the proper `/authorize` URL that callers
+/// can use to initiate the SAML login flow.
 ///
 /// Example usage:
 /// ```dart
-/// final authService = AortemAuth0EnterpriseSaml(
-///   domain: 'your-auth0-domain',
+/// final auth0 = AortemAuth0EnterpriseSaml(
+///   domain: 'your-domain.auth0.com',
+///   clientId: 'your_client_id',
 /// );
-/// try {
-///   final response = await authService.authenticate(
-///     connection: 'your-saml-connection',
-///     samlRequest: 'your-saml-request',
-///   );
-///   print(response);
-/// } catch (e) {
-///   print('Authentication failed: $e');
-/// }
+///
+/// final request = AortemAuth0EnterpriseSamlRequest(
+///   connection: 'saml-enterprise-connection',
+///   redirectUri: 'https://yourapp.com/callback',
+/// );
+///
+/// final authUrl = auth0.buildAuthorizeUrl(request);
+/// // Redirect user to authUrl
 /// ```
 class AortemAuth0EnterpriseSaml {
-  /// The Auth0 domain to be used for authentication (e.g., 'example.auth0.com').
+  /// The Auth0 domain (e.g., 'your-tenant.auth0.com')
   final String domain;
 
-  /// The HTTP client used to send requests. A new [http.Client] is used if not provided.
-  final http.Client httpClient;
+  /// The Auth0 application client ID
+  final String clientId;
 
-  /// The timeout duration for HTTP requests. Defaults to 10 seconds.
-  final Duration timeout;
-
-  /// Constructs an instance of [AortemAuth0EnterpriseSaml].
+  /// Creates an instance configured for your Auth0 application
   ///
-  /// [domain] is the Auth0 domain used for the SAML authentication request.
-  /// [httpClient] is an optional parameter. If not provided, a new [http.Client] instance is used.
-  /// [timeout] specifies the duration before a request times out. The default is 10 seconds.
+  /// [domain]: Your Auth0 domain (e.g., 'your-tenant.auth0.com')
+  /// [clientId]: The client ID of your Auth0 application
   AortemAuth0EnterpriseSaml({
     required this.domain,
-    http.Client? httpClient,
-    this.timeout = const Duration(seconds: 10),
-  }) : httpClient = httpClient ?? http.Client();
+    required this.clientId,
+  });
 
-  /// Initiates the SAML authentication flow.
+  /// Constructs the authorization URL for initiating SAML enterprise login
   ///
-  /// [connection] is the name of the connection (e.g., 'saml-connection').
-  /// [samlRequest] is the base64-encoded SAML authentication request.
-  /// [relayState] is an optional parameter used to pass state information to the redirect endpoint.
+  /// [request]: Configured request parameters including connection and redirect URI
+  /// Returns a fully-formed Uri that can be used to redirect users to Auth0
   ///
-  /// Returns an [AortemAuth0EnterpriseSamlResponse] on successful authentication.
-  ///
-  /// Throws [AortemAuth0EnterpriseSamlException] if the request fails or the response is invalid.
-  Future<AortemAuth0EnterpriseSamlResponse> authenticate({
-    required String connection,
-    required String samlRequest,
-    String? relayState,
-  }) async {
-    final request = AortemAuth0EnterpriseSamlRequest(
-      connection: connection,
-      samlRequest: samlRequest,
-      relayState: relayState,
-    );
-
-    try {
-      // Make the POST request to the Auth0 SAML authentication endpoint
-      final response = await httpClient
-          .post(
-            Uri.parse('https://$domain/samlp'),
-            headers: {'Content-Type': 'application/json'},
-            body: jsonEncode(request.toJson()),
-          )
-          .timeout(timeout);
-
-      // Handle successful response
-      if (response.statusCode == 200) {
-        return AortemAuth0EnterpriseSamlResponse.fromJson(
-          jsonDecode(response.body) as Map<String, dynamic>,
-        );
-      } else {
-        // Handle failed authentication
-        throw AortemAuth0EnterpriseSamlException(
-          message: 'SAML authentication failed',
-          statusCode: response.statusCode,
-          errorDetails: response.body,
-        );
-      }
-    } on FormatException catch (e) {
-      // Handle invalid response format from Auth0
-      throw AortemAuth0EnterpriseSamlException(
-        message: 'Invalid response format from Auth0',
-        errorDetails: e.toString(),
-      );
-    } catch (e) {
-      // Handle general errors such as network issues
-      throw AortemAuth0EnterpriseSamlException(
-        message: 'Failed to complete SAML authentication',
-        errorDetails: e.toString(),
-      );
-    }
+  /// The generated URL will look like:
+  /// `https://domain/authorize?response_type=token&client_id=...&redirect_uri=...`
+  Uri buildAuthorizeUrl(AortemAuth0EnterpriseSamlRequest request) {
+    final params = request.toQueryParams(clientId);
+    return Uri.https(domain, '/authorize', params);
   }
 
-  /// Closes the underlying HTTP client to free up resources.
-  ///
-  /// This method should be called when the [AortemAuth0EnterpriseSaml] instance
-  /// is no longer needed, such as when the application is being closed or when switching clients.
-  void close() {
-    httpClient.close();
-  }
+  /// Helper method to validate if the current configuration appears valid
+  bool get isConfigurationValid => 
+      domain.isNotEmpty && 
+      clientId.isNotEmpty && 
+      domain.endsWith('.auth0.com');
 }

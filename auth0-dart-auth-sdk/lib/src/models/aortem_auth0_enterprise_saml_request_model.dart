@@ -1,41 +1,65 @@
-/// Represents the request payload used for enterprise SAML authentication
-/// via Auth0.
+import 'aortem_auth0_enterprise_saml_exception.dart';
+
+/// Represents the parameters needed to start an enterprise SAML login flow.
 ///
-/// This request is typically used for initiating SAML-based authentication
-/// through an enterprise connection (e.g., Active Directory, LDAP).
+/// This class encapsulates all the necessary parameters required to initiate
+/// a SAML-based authentication flow with Auth0 for enterprise connections.
+/// It's primarily used to construct the `/authorize` URL for browser-based authentication.
 ///
-/// It includes the required `connection` (enterprise connection name) and
-/// `samlRequest` (base64-encoded SAML authentication request), along with
-/// an optional `relayState` to maintain state between the request and response.
+/// Example usage:
+/// ```dart
+/// final request = AortemAuth0EnterpriseSamlRequest(
+///   connection: 'saml-enterprise-connection',
+///   redirectUri: 'https://myapp.com/callback',
+///   state: 'some-state-value',
+/// );
+/// ```
 class AortemAuth0EnterpriseSamlRequest {
-  /// The name of the Auth0 enterprise connection (e.g., "saml-enterprise").
+  /// The Auth0 connection name for the SAML enterprise identity provider
   final String connection;
 
-  /// The base64-encoded SAML authentication request sent to the IdP.
-  final String samlRequest;
+  /// The URI to redirect to after authentication is complete
+  final String redirectUri;
 
-  /// Optional relay state to preserve the state between the request and response.
-  final String? relayState;
+  /// Optional state parameter for CSRF protection and state maintenance
+  final String? state;
 
-  /// Constructs an [AortemAuth0EnterpriseSamlRequest] with the given [connection],
-  /// [samlRequest], and optionally a [relayState].
+  /// The response type expected from the authentication flow (defaults to 'token')
+  final String responseType;
+
+  /// Creates a new request for enterprise SAML authentication
   ///
-  /// Throws an [ArgumentError] if `connection` or `samlRequest` are empty.
+  /// [connection]: The name of the SAML enterprise connection configured in Auth0
+  /// [redirectUri]: The callback URI where the user will be redirected after auth
+  /// [state]: Optional state value for security and session tracking
+  /// [responseType]: The OAuth 2.0 response type (defaults to 'token' for implicit flow)
+  ///
+  /// Throws [AortemAuth0EnterpriseSamlException] if connection or redirectUri are empty
   AortemAuth0EnterpriseSamlRequest({
     required this.connection,
-    required this.samlRequest,
-    this.relayState,
+    required this.redirectUri,
+    this.state,
+    this.responseType = 'token',
   }) {
-    if (connection.trim().isEmpty || samlRequest.trim().isEmpty) {
-      throw ArgumentError('Connection and SAML request cannot be empty');
+    if (connection.trim().isEmpty || redirectUri.trim().isEmpty) {
+      throw AortemAuth0EnterpriseSamlException(
+        message: 'Connection and redirectUri cannot be empty',
+      );
     }
   }
 
-  /// Converts this request object into a JSON-compatible map
-  /// to be used in HTTP requests.
-  Map<String, dynamic> toJson() => {
-        'connection': connection,
-        'saml_request': samlRequest,
-        if (relayState != null) 'relay_state': relayState,
-      };
+  /// Converts the request parameters to a map of query parameters
+  ///
+  /// [clientId]: The Auth0 application client ID
+  /// Returns a Map containing all parameters as URL query parameters
+  Map<String, String> toQueryParams(String clientId) {
+    final params = <String, String>{
+      'response_type': responseType,
+      'client_id': clientId,
+      'redirect_uri': redirectUri,
+      'connection': connection,
+    };
+    if (state != null) params['state'] = state!;
+    return params;
+  }
 }

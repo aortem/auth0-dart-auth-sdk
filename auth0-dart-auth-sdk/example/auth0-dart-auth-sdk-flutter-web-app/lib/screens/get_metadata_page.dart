@@ -1,6 +1,6 @@
 // lib/pages/get_metadata_page.dart
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/material.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class GetMetadataPage extends StatefulWidget {
   final String accessToken;
@@ -27,11 +27,9 @@ class _GetMetadataPageState extends State<GetMetadataPage> {
     });
 
     try {
-      final response = await aortemAuth0GetMetadata40(
+      final response = await auth0GetMetadata40(
         auth0DomainUri: widget.auth0DomainUri,
-        request: AortemAuth0GetMetadata40Request(
-          accessToken: widget.accessToken,
-        ),
+        request: Auth0GetMetadata40Request(accessToken: widget.accessToken),
       );
       setState(() {
         metadataJson = response.metadata.toString();

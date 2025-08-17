@@ -1,7 +1,7 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class AuthorizationTestScreen extends StatefulWidget {
   const AuthorizationTestScreen({super.key});
@@ -21,10 +21,10 @@ class _AuthorizationTestScreenState extends State<AuthorizationTestScreen> {
     setState(() {
       signupResponse = 'Loading...';
     });
-    final client = AortemAuth0Signup();
+    final client = Auth0Signup();
 
     // Construct the request with user credentials and connection info.
-    final request = AortemAuth0SignupRequest(
+    final request = Auth0SignupRequest(
       clientId: CLIENT_ID,
       email: 'user@example2.com',
       password: 'user_password47#',
@@ -35,7 +35,7 @@ class _AuthorizationTestScreenState extends State<AuthorizationTestScreen> {
     );
 
     try {
-      final response = await client.aortemAuth0Signup(request, AUTH0_DOMAIN);
+      final response = await client.auth0Signup(request, AUTH0_DOMAIN);
       if (kDebugMode) {
         print('User signed up successfully!');
         print('Email: ${response.email}');
@@ -64,10 +64,10 @@ class _AuthorizationTestScreenState extends State<AuthorizationTestScreen> {
     setState(() {
       getCodeOrLinkResponse = 'Loading...';
     });
-    final authService = AortemAuth0GetCodeOrLink(domain: AUTH0_DOMAIN);
+    final authService = Auth0GetCodeOrLink(domain: AUTH0_DOMAIN);
 
     // Construct the request for an email-based passwordless flow.
-    final request = AortemAuth0GetCodeOrLinkRequest(
+    final request = Auth0GetCodeOrLinkRequest(
       clientId: CLIENT_ID,
       connection: 'email',
       email: 'user@example.com',
@@ -97,10 +97,10 @@ class _AuthorizationTestScreenState extends State<AuthorizationTestScreen> {
     setState(() {
       authenticateUserResponse = 'Loading...';
     });
-    final authService = AortemAuth0AuthenticateUser(domain: AUTH0_DOMAIN);
+    final authService = Auth0AuthenticateUser(domain: AUTH0_DOMAIN);
 
     // Construct the request with user credentials and connection details.
-    final request = AortemAuth0AuthenticateUserRequest(
+    final request = Auth0AuthenticateUserRequest(
       username: 'user@example.com',
       password: 'user_password47#',
       connection: 'Username-Password-Authentication',
@@ -143,17 +143,17 @@ class _AuthorizationTestScreenState extends State<AuthorizationTestScreen> {
     setState(() {
       changePasswordResponse = 'Loading...';
     });
-    final authService = AortemAuth0ChangePassword();
+    final authService = Auth0ChangePassword();
 
     // Construct the change password request with required parameters.
-    final request = AortemAuth0ChangePasswordRequest(
+    final request = Auth0ChangePasswordRequest(
       clientId: CLIENT_ID,
       email: 'user@example.com',
       connection: 'Username-Password-Authentication',
     );
 
     try {
-      final response = await authService.aortemAuth0ChangePassword(
+      final response = await authService.auth0ChangePassword(
         request,
         AUTH0_DOMAIN,
       );

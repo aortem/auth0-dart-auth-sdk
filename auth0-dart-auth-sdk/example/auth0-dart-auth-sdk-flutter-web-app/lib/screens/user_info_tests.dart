@@ -1,7 +1,7 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class UserInfoTestScreen extends StatefulWidget {
   const UserInfoTestScreen({super.key});
@@ -20,16 +20,13 @@ class _UserInfoTestScreenState extends State<UserInfoTestScreen> {
     setState(() {
       userProfileResponse = 'Loading...';
     });
-    final client = AortemAuth0UserProfile();
+    final client = Auth0UserProfile();
 
     // Construct the request with user credentials and connection info.
-    final request = AortemAuth0UserProfileRequest(accessToken: ACCESS_TOKEN);
+    final request = Auth0UserProfileRequest(accessToken: ACCESS_TOKEN);
 
     try {
-      final profile = await client.aortemAuth0UserProfile(
-        request,
-        AUTH0_DOMAIN,
-      );
+      final profile = await client.auth0UserProfile(request, AUTH0_DOMAIN);
       if (kDebugMode) {
         print('User Profile Retrieved:');
         print('User ID: ${profile.sub}');

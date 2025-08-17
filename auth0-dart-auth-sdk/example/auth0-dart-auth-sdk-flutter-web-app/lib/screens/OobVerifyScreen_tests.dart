@@ -1,7 +1,7 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_oob_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/auth0_verify_oob_request_model.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class OobVerifyScreen extends StatefulWidget {
   const OobVerifyScreen({super.key});
@@ -20,10 +20,10 @@ class _OobVerifyScreenState extends State<OobVerifyScreen> {
 
   Future<void> _verifyOobCode() async {
     setState(() => _loading = true);
-    final client = AortemAuth0MfaVerifyOob(auth0Domain: AUTH0_DOMAIN);
+    final client = Auth0MfaVerifyOob(auth0Domain: AUTH0_DOMAIN);
 
     try {
-      final request = AortemAuth0VerifyOOBRequest(
+      final request = Auth0VerifyOOBRequest(
         clientId: AUTH0_DOMAIN,
         oobCode: _codeController.text.trim(),
         realm: _realm,

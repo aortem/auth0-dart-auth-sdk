@@ -20,10 +20,10 @@ class _DynamicClientRegistrationPageState
   final _clientUriController = TextEditingController();
 
   String? _appType = 'regular_web';
-  List<String> _selectedGrantTypes = [];
+  final List<String> _selectedGrantTypes = [];
 
   bool _isLoading = false;
-  AortemAuth0DynamicApplicationClientRegistrationResponse? _response;
+  Auth0DynamicApplicationClientRegistrationResponse? _response;
 
   final _grantTypesOptions = [
     'authorization_code',
@@ -42,12 +42,12 @@ class _DynamicClientRegistrationPageState
       _response = null;
     });
 
-    final apiClient = AortemAuth0MfaApiClient(
+    final apiClient = Auth0MfaApiClient(
       auth0Domain: AUTH0_DOMAIN,
     ); // Replace with your domain
 
     try {
-      final request = AortemAuth0DynamicApplicationClientRegistrationRequest(
+      final request = Auth0DynamicApplicationClientRegistrationRequest(
         clientName: _clientNameController.text.trim(),
         redirectUris: _redirectUrisController.text
             .split(',')
@@ -63,8 +63,9 @@ class _DynamicClientRegistrationPageState
         grantTypes: _selectedGrantTypes.isNotEmpty ? _selectedGrantTypes : null,
       );
 
-      final result = await apiClient
-          .aortemAuth0DynamicApplicationClientRegistration(request);
+      final result = await apiClient.Auth0DynamicApplicationClientRegistration(
+        request,
+      );
 
       setState(() {
         _response = result;
@@ -183,20 +184,17 @@ class _DynamicClientRegistrationPageState
                 const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
-                    final authUrl = AortemAuth0AuthorizeApplicationBuilder.build(
+                    final authUrl = Auth0AuthorizeApplicationBuilder.build(
                       auth0DomainUri: Uri.parse(
                         'https://your-tenant.auth0.com',
                       ), // replace with your actual domain
-                      request:
-                          AortemAuth0AuthorizeApplicationClientRegisterRequest(
-                            clientId: _response!.clientId,
-                            redirectUri: Uri.parse(
-                              _response!.redirectUris.first,
-                            ),
-                            responseType: 'code',
-                            scope: 'openid profile email',
-                            state: '123abc',
-                          ),
+                      request: Auth0AuthorizeApplicationClientRegisterRequest(
+                        clientId: _response!.clientId,
+                        redirectUri: Uri.parse(_response!.redirectUris.first),
+                        responseType: 'code',
+                        scope: 'openid profile email',
+                        state: '123abc',
+                      ),
                     ).url;
 
                     showDialog(

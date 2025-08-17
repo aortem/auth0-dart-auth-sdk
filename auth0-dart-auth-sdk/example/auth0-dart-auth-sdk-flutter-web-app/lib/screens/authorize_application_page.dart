@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class AuthorizeApplicationPage extends StatefulWidget {
   const AuthorizeApplicationPage({super.key});
@@ -26,7 +26,7 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
   void _generateAuthUrl() {
     if (!_formKey.currentState!.validate()) return;
 
-    final request = AortemAuth0AuthorizeApplicationRequest(
+    final request = Auth0AuthorizeApplicationRequest(
       clientId: _clientIdController.text.trim(),
       redirectUri: Uri.parse(_redirectUriController.text.trim()),
       responseType: _responseType,
@@ -44,7 +44,7 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
     );
 
     try {
-      final service = AortemAuth0AuthorizeApplicationService();
+      final service = Auth0AuthorizeApplicationService();
       final response = service.buildAuthorizationUrl(
         auth0DomainUri: Uri.parse('https://$AUTH0_DOMAIN'),
         request: request,

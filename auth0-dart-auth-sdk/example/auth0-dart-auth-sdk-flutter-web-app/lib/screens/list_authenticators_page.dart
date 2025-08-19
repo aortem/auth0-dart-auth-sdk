@@ -12,7 +12,7 @@ class ListAuthenticatorsPage extends StatefulWidget {
 }
 
 class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
-  List<AortemAuth0Authenticator> authenticators = [];
+  List<Auth0Authenticator> authenticators = [];
   bool isLoading = false;
   String? error;
 
@@ -29,8 +29,11 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
     });
 
     try {
-      final request = AortemAuth0ListAuthenticatorsRequest(widget.accessToken);
-      final service = AortemAuth0ListAuthenticators(widget.accessToken);
+      final request = Auth0ListAuthenticatorsRequest(widget.accessToken);
+      final service = Auth0ListAuthenticators(
+        auth0Domain: AUTH0_DOMAIN,
+        accessToken: widget.accessToken,
+      );
       final response = await service.fetchAuthenticators(request);
 
       setState(() {
@@ -48,11 +51,9 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
   }
 
   Future<void> _deleteAuthenticator(String authenticatorId) async {
-    final client = AortemAuth0DeleteAuthenticatorClient(
-      auth0Domain: AUTH0_DOMAIN,
-    );
+    final client = Auth0DeleteAuthenticatorClient(auth0Domain: AUTH0_DOMAIN);
 
-    final request = AortemAuth0DeleteAuthenticatorRequest(
+    final request = Auth0DeleteAuthenticatorRequest(
       accessToken: widget.accessToken,
       authenticatorId: authenticatorId,
     );
@@ -94,7 +95,7 @@ class _ListAuthenticatorsPageState extends State<ListAuthenticatorsPage> {
                   ),
                   child: ListTile(
                     leading: const Icon(Icons.security),
-                    title: Text(auth.name ?? 'Unnamed Authenticator'),
+                    title: Text(auth.name),
                     subtitle: Text('Type: ${auth.type}\nID: ${auth.id}'),
                     isThreeLine: true,
                     trailing: IconButton(

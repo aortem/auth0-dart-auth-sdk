@@ -1,7 +1,7 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class IdpSSOScreen extends StatefulWidget {
   const IdpSSOScreen({super.key});
@@ -16,14 +16,14 @@ class _IdpSSOScreenState extends State<IdpSSOScreen> {
 
   void _generateSSOUrl() {
     try {
-      final request = AortemAuth0IdpInitiatedSSOFlowRequest(
+      final request = Auth0IdpInitiatedSSOFlowRequest(
         clientId: CLIENT_ID,
         redirectUri: REDIRECT_URI,
         connection: 'Username-Password-Authentication',
         protocol: 'oidc',
       );
 
-      final response = aortemAuth0IdpInitiatedSSOFlow(
+      final response = Auth0IdpInitiatedSSOFlow(
         auth0DomainUri: Uri.parse('https://$AUTH0_DOMAIN'),
         request: request,
       );

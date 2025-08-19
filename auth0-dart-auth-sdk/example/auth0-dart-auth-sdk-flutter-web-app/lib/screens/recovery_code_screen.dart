@@ -1,8 +1,8 @@
 // lib/screens/recovery_code_screen.dart
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:auth0_dart_auth_sdk/src/models/auth0_verify_recovery_code_request_model.dart';
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_recovery_code_request_model.dart';
 
 class RecoveryCodeScreen extends StatefulWidget {
   const RecoveryCodeScreen({super.key});
@@ -24,13 +24,13 @@ class _RecoveryCodeScreenState extends State<RecoveryCodeScreen> {
       _result = null;
     });
 
-    final request = AortemAuth0VerifyRecoveryCodeRequest(
+    final request = Auth0VerifyRecoveryCodeRequest(
       clientId: CLIENT_ID,
       recoveryCode: _codeController.text.trim(),
       username: _emailController.text.trim(),
     );
 
-    final apiClient = AortemAuth0MfaApiClient(auth0Domain: AUTH0_DOMAIN);
+    final apiClient = Auth0MfaApiClient(auth0Domain: AUTH0_DOMAIN);
 
     try {
       final response = await apiClient.verifyRecoveryCode(request);

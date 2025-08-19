@@ -1,8 +1,8 @@
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
+import 'package:auth0_dart_auth_sdk/src/models/auth0_get_token_request.dart';
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_get_token_request.dart';
 
 class GetTokenPage extends StatefulWidget {
   const GetTokenPage({super.key});
@@ -16,7 +16,7 @@ class _GetTokenPageState extends State<GetTokenPage> {
 
   Future<void> _getToken() async {
     try {
-      final request = AortemAuth0GetTokenRequest(
+      final request = Auth0GetTokenRequest(
         grantType: 'authorization_code',
         clientId: CLIENT_ID,
         clientSecret: 'YOUR_CLIENT_SECRET', // Only if needed
@@ -26,7 +26,7 @@ class _GetTokenPageState extends State<GetTokenPage> {
         audience: 'https://yourapi.com',
       );
 
-      final response = await aortemAuth0GetToken(
+      final response = await auth0GetToken(
         domain: AUTH0_DOMAIN,
         request: request,
         client: http.Client(),

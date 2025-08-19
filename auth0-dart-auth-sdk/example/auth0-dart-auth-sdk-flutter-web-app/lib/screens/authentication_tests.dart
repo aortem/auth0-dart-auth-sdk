@@ -1,7 +1,7 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class AuthenticationTestScreen extends StatefulWidget {
   const AuthenticationTestScreen({super.key});
@@ -21,12 +21,12 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {
       loginResponse = 'Loading...';
     });
-    final client = AortemAuth0LoginService(auth0Domain: AUTH0_DOMAIN);
+    final client = Auth0LoginService(auth0Domain: AUTH0_DOMAIN);
 
     // Construct the request with user credentials and connection info.
-    final request = AortemAuth0LoginRequest(
-      username: 'user@example.com',
-      password: 'user_password47#',
+    final request = Auth0LoginRequest(
+      username: 'developer@aortem.io',
+      password: 'Hello@123',
       connection: 'Username-Password-Authentication',
       clientId: CLIENT_ID,
       //scope: 'openid profile email', // Optional
@@ -62,30 +62,10 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
   String socialLoginResponseError = '';
 
   void socialLoginTest() async {
-    // Alternative way to do the social login, ignoring the SDK and using a direct HTTP Request
-    /*final codeChallenge =
-        'dummy_code_challenge_that_can_be_replaced_with_a_secure_challenge';
-    final authUrl = Uri.https(AUTH0_DOMAIN, '/authorize', {
-      'response_type': 'code',
-      'client_id': CLIENT_ID,
-      'redirect_uri': REDIRECT_URI,
-      'scope': 'openid profile email',
-      'state': 'abc123',
-      'code_challenge': codeChallenge,
-      'code_challenge_method': 'plain',
-      'connection': 'google-oauth2', // Forces Google login
-    });
-
-    // Redirect browser to Auth0 login
-    // ignore: undefined_prefixed_name
-    js.context.callMethod('open', [authUrl.toString(), '_self']);*/
-
-    //this requires a access token obtained directly from the third party login site
-
     setState(() {
       socialLoginResponse = 'Loading...';
     });
-    final authService = AortemAuth0SocialLogin(
+    final authService = Auth0SocialLogin(
       domain: AUTH0_DOMAIN,
       clientId: CLIENT_ID,
     );
@@ -101,28 +81,6 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {});
   }
 
-  //Enterprise SAML Login Test Function
-
-  String enterpriseSAMLLoginResponse = '';
-  String enterpriseSAMLLoginResponseError = '';
-
-  void enterpriseSAMLLoginTest() async {
-    setState(() {
-      enterpriseSAMLLoginResponse = 'Loading...';
-    });
-    final authService = AortemAuth0EnterpriseSaml(domain: AUTH0_DOMAIN);
-    try {
-      final response = await authService.authenticate(
-        samlRequest: 'samlRequest',
-        connection: 'connection',
-      );
-      enterpriseSAMLLoginResponse = '$response';
-    } catch (e) {
-      enterpriseSAMLLoginResponseError = '$e';
-    }
-    setState(() {});
-  }
-
   //Backchannel Login Test Function
 
   String backChannelLoginResponse = '';
@@ -132,7 +90,7 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
     setState(() {
       backChannelLoginResponse = 'Loading...';
     });
-    final authService = AortemAuth0BackChannelLogin(domain: AUTH0_DOMAIN);
+    final authService = Auth0BackChannelLogin(domain: AUTH0_DOMAIN);
     try {
       final response = await authService.initiate(
         clientId: CLIENT_ID,
@@ -144,35 +102,6 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
       backChannelLoginResponse = '$response';
     } catch (e) {
       backChannelLoginResponseError = '$e';
-    }
-    setState(() {});
-  }
-
-  //adLdapPassive Login Test Function
-
-  String adLdapPassiveLoginResponse = '';
-  String adLdapPassiveLoginResponseError = '';
-
-  void adLdapPassiveLoginTest() async {
-    setState(() {
-      adLdapPassiveLoginResponse = 'Loading...';
-    });
-    final authService = AortemAuth0DatabaseAdLdapPassive(
-      domain: AUTH0_DOMAIN,
-      clientId: CLIENT_ID,
-    );
-    try {
-      final response = await authService.authenticate(
-        username: 'user@example.com',
-        password: 'user_password47#',
-        connection:
-            'Username-Password-Authentication', // or "active-directory", "ldap", etc.
-        scope: 'openid profile email', // Optional
-        audience: 'YOUR_API_IDENTIFIER', // Optional
-      );
-      adLdapPassiveLoginResponse = '$response';
-    } catch (e) {
-      adLdapPassiveLoginResponseError = '$e';
     }
     setState(() {});
   }
@@ -208,16 +137,6 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
               Text(socialLoginResponse),
               Text(socialLoginResponseError),
 
-              // enterprise login widgets
-              TextButton(
-                onPressed: () {
-                  enterpriseSAMLLoginTest();
-                },
-                child: const Text('Enterprise/SAML Login Request Test'),
-              ),
-              Text(enterpriseSAMLLoginResponse),
-              Text(enterpriseSAMLLoginResponseError),
-
               // backchannel login widgets
               TextButton(
                 onPressed: () {
@@ -227,16 +146,6 @@ class _AuthenticationTestScreenState extends State<AuthenticationTestScreen> {
               ),
               Text(backChannelLoginResponse),
               Text(backChannelLoginResponseError),
-
-              // adLdapPassive login widgets
-              TextButton(
-                onPressed: () {
-                  adLdapPassiveLoginTest();
-                },
-                child: const Text('AdLdapPassive Login Request Test'),
-              ),
-              Text(adLdapPassiveLoginResponse),
-              Text(adLdapPassiveLoginResponseError),
             ],
           ),
         ),

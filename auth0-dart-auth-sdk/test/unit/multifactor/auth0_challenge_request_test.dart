@@ -2,8 +2,6 @@ import 'dart:convert';
 import 'package:auth0_dart_auth_sdk/src/models/auth0_challenge_request_request_model.dart';
 import 'package:auth0_dart_auth_sdk/src/multifactor/auth0_challenge_request.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:http/testing.dart';
-
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 void main() {

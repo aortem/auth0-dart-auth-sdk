@@ -3,7 +3,6 @@ import 'package:auth0_dart_auth_sdk/src/models/auth0_verify_oob_request_model.da
 import 'package:auth0_dart_auth_sdk/src/multifactor/auth0_verify_oob.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:http/testing.dart';
 
 // Adjust import paths as needed
 

@@ -1,30 +1,35 @@
-## 0.0.1
+## 0.0.2
+
+### Breaking
+
+* **Rename:** all public file/module names changed from `aortem_auth0_*` → `auth0_*`.
+
+  * If you import subpaths, replace occurrences of `aortem_auth0_` with `auth0_`.
+  * Prefer importing the package entrypoint:
+
+    ```dart
+    import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+    ```
 
 ### Added
-- **`.gitattributes`**  
-  Enforce `text=auto` for consistent line endings across platforms.  
-- **`.gitignore`**  
-  Global repo rules to ignore:
-  - Environment files (`**/*.env`)  
-  - IDE settings (`**/.idea/`, `**/.vscode/`)  
-  - Dart build artifacts (`**/.dart_tool/`, `**/pubspec.lock`)  
-- **GitLab CI Stages**  
-  Introduced two new pipeline stages:
-  - `setup` – prepares environment variables and merge-request context  
-  - `validation` – runs branch/message validators and debug jobs  
-- **`debug_merge_request` Job**  
-  A lightweight validation task that echoes core CI variables for debugging merge-request pipelines.
+
+* **Example Flutter app** demonstrating:
+
+  * Email/password & social login
+  * Enterprise SAML
+  * MFA (OTP/OOB/Recovery), list/add/delete authenticators
+  * Token operations (get token, revoke)
+  * OIDC/SAML logout, user info/profile
+  * Dynamic application client registration
 
 ### Changed
-- **CI Pipeline Overhaul**  
-  - Replaced the old `unit_testing`, `analyze_sample_apps`, and `release` stages with our new `setup` and `validation` stages.  
-  - Consolidated testing and coverage steps under the `validation` stage to ensure full end-to-end CI validation.
 
-### Removed
-- **Obsolete CI Jobs**  
-  - Removed the deprecated `unit_testing`, `analyze_sample_apps`, and `release` jobs from the pipeline configuration.
-```
+* **Exports consolidated** under `auth0_*` namespace for consistency and clarity.
+  (No runtime behavior changes intended.)
 
+## 0.0.1
+
+- Bump To Version 3.8.0 
 
 ## 0.0.1-pre
 

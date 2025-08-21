@@ -38,7 +38,7 @@ Whether you’re building a Dart backend, a Flutter mobile app, or a Flutter web
 
 ### Prerequisites
 
-* Dart SDK ≥ 2.14.0 (null safety) or Flutter SDK ≥ 3.0  
+* Dart SDK ≥ 3.9.0 (null safety) 
 * An Auth0 tenant with an Application configured:  
   * **Regular Web App** for Flutter Web / server  
   * **Native App** for Flutter mobile  
@@ -70,7 +70,7 @@ Or add to your `pubspec.yaml` manually:
 
 ```yaml
 dependencies:
-  auth0_dart_auth_sdk: ^0.0.1
+  auth0_dart_auth_sdk: ^0.0.2
 ```
 
 Then fetch:

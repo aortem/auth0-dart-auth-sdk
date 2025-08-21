@@ -5,7 +5,7 @@ repository: https://github.com/aortem/auth0_dart_auth_sdk
 license: BSD-3
 
 environment:
-  sdk: ^3.8.1
+  sdk: ^3.9.0
 
 # Add regular dependencies here.
 
@@ -13,9 +13,9 @@ dependencies:
 #------------------ STANDARD FEATURES---------------------------------
 ## There are three standard libraries.  Each one can be used with a different xxx 
 
-  ds_standard_features: ^0.0.4 #Standard Dart Team Utilities For HTTP //Default
+  ds_standard_features: ^0.1.0 #Standard Dart Team Utilities For HTTP //Default
   build_web_compilers: ^4.0.11
-  jwt_generator: ^0.0.3
+  jwt_generator: ^0.0.5
   web: ^1.1.1
   js_interop: ^0.0.1
 
@@ -25,7 +25,6 @@ dependencies:
 dev_dependencies:
   ds_tools_testing: ^0.0.4 #Standard Dart Team Testing Tools
   git_hooks: any
-  http: ^1.4.0
 
 # Optional Local Hooks for development.
 git_hooks:

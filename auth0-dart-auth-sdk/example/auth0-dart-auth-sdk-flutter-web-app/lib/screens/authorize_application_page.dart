@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class AuthorizeApplicationPage extends StatefulWidget {
   const AuthorizeApplicationPage({super.key});
@@ -26,7 +26,7 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
   void _generateAuthUrl() {
     if (!_formKey.currentState!.validate()) return;
 
-    final request = AortemAuth0AuthorizeApplicationRequest(
+    final request = Auth0AuthorizeApplicationRequest(
       clientId: _clientIdController.text.trim(),
       redirectUri: Uri.parse(_redirectUriController.text.trim()),
       responseType: _responseType,
@@ -44,15 +44,16 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
     );
 
     try {
-      final service = AortemAuth0AuthorizeApplicationService();
+      final service = Auth0AuthorizeApplicationService();
       final response = service.buildAuthorizationUrl(
         auth0DomainUri: Uri.parse('https://$AUTH0_DOMAIN'),
         request: request,
       );
       setState(() => _authUrl = response.url);
     } catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text('Error: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Error: $e')));
     }
   }
 
@@ -103,28 +104,33 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
               const SizedBox(height: 10),
               TextFormField(
                 controller: _scopeController,
-                decoration:
-                    const InputDecoration(labelText: 'Scope (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Scope (optional)',
+                ),
               ),
               TextFormField(
                 controller: _stateController,
-                decoration:
-                    const InputDecoration(labelText: 'State (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'State (optional)',
+                ),
               ),
               TextFormField(
                 controller: _audienceController,
-                decoration:
-                    const InputDecoration(labelText: 'Audience (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Audience (optional)',
+                ),
               ),
               TextFormField(
                 controller: _connectionController,
-                decoration:
-                    const InputDecoration(labelText: 'Connection (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Connection (optional)',
+                ),
               ),
               TextFormField(
                 controller: _promptController,
-                decoration:
-                    const InputDecoration(labelText: 'Prompt (optional)'),
+                decoration: const InputDecoration(
+                  labelText: 'Prompt (optional)',
+                ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
@@ -133,8 +139,10 @@ class _AuthorizeApplicationPageState extends State<AuthorizeApplicationPage> {
               ),
               const SizedBox(height: 20),
               if (_authUrl != null) ...[
-                const Text('Authorization URL:',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
+                const Text(
+                  'Authorization URL:',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(height: 10),
                 SelectableText(_authUrl.toString()),
               ],

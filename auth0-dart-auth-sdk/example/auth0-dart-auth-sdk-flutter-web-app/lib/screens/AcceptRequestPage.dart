@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
-// auth0-dart-auth-sdk\lib\src\request_handling\aortem_auth0_accept_request.dart
-import 'package:auth0_dart_auth_sdk/src/request_handling/aortem_auth0_accept_request.dart';
+// auth0-dart-auth-sdk\lib\src\request_handling\auth0_accept_request.dart
+import 'package:auth0_dart_auth_sdk/src/request_handling/auth0_accept_request.dart';
 
 class AcceptRequestPage extends StatefulWidget {
   final String ticket;
@@ -22,7 +22,7 @@ class AcceptRequestPage extends StatefulWidget {
 class _AcceptRequestPageState extends State<AcceptRequestPage> {
   bool isLoading = false;
   String? error;
-  AortemAuth0AcceptRequestResponse? response;
+  Auth0AcceptRequestResponse? response;
 
   @override
   void initState() {
@@ -39,11 +39,9 @@ class _AcceptRequestPageState extends State<AcceptRequestPage> {
     try {
       // final ticket = Uri.base.queryParameters['ticket'];
 
-      final client = AortemAuth0AcceptRequestClient(
-        auth0Domain: widget.auth0Domain,
-      );
+      final client = Auth0AcceptRequestClient(auth0Domain: widget.auth0Domain);
 
-      final request = AortemAuth0AcceptRequestRequest(
+      final request = Auth0AcceptRequestRequest(
         clientId: widget.clientId,
         ticket: widget.ticket,
       );
@@ -79,8 +77,10 @@ class _AcceptRequestPageState extends State<AcceptRequestPage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text('✅ Login Successful',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        const Text(
+          '✅ Login Successful',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         const SizedBox(height: 10),
         Text('Access Token: ${response!.accessToken}'),
         const SizedBox(height: 8),

@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
@@ -26,18 +26,18 @@ class _AddAuthenticatorPageState extends State<AddAuthenticatorPage> {
       _error = null;
     });
 
-    final client = AortemAuth0MfaAddAuthenticator(
+    final client = Auth0MfaAddAuthenticator(
       auth0Domain: AUTH0_DOMAIN, // Replace with your tenant
       httpClient: http.Client(), // from ds_standard_features
     );
 
-    final request = AortemAuth0AddAuthenticatorRequest(
+    final request = Auth0AddAuthenticatorRequest(
       mfaToken: _mfaTokenController.text.trim(),
       authenticatorType: 'otp',
     );
 
     try {
-      final response = await client.aortemAuth0AddAuthenticator(request);
+      final response = await client.auth0AddAuthenticator(request);
       setState(() {
         _qrCodeUrl = response.qrCodeUrl;
         _secret = response.secret;
@@ -63,9 +63,7 @@ class _AddAuthenticatorPageState extends State<AddAuthenticatorPage> {
           children: [
             TextField(
               controller: _mfaTokenController,
-              decoration: const InputDecoration(
-                labelText: 'MFA Token',
-              ),
+              decoration: const InputDecoration(labelText: 'MFA Token'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
@@ -82,11 +80,8 @@ class _AddAuthenticatorPageState extends State<AddAuthenticatorPage> {
             ],
             if (_error != null) ...[
               const SizedBox(height: 20),
-              Text(
-                _error!,
-                style: const TextStyle(color: Colors.red),
-              ),
-            ]
+              Text(_error!, style: const TextStyle(color: Colors.red)),
+            ],
           ],
         ),
       ),

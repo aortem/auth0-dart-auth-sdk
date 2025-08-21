@@ -1,6 +1,6 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class CallbackPage extends StatefulWidget {
   const CallbackPage({super.key});
@@ -30,7 +30,7 @@ class _CallbackPageState extends State<CallbackPage> {
     setState(() {
       _message = 'Loading...';
     });
-    final authService = AortemAuth0SocialLogin(
+    final authService = Auth0SocialLogin(
       domain: AUTH0_DOMAIN,
       clientId: CLIENT_ID,
     );

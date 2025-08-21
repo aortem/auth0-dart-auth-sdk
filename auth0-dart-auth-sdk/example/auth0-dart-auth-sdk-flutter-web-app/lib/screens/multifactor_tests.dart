@@ -1,8 +1,8 @@
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
-import 'package:auth0_dart_auth_sdk/src/models/aortem_auth0_verify_otp_request_model.dart';
+import 'package:auth0_dart_auth_sdk/src/models/auth0_verify_otp_request_model.dart';
+import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 class MultifactorTestScreen extends StatefulWidget {
   const MultifactorTestScreen({super.key});
@@ -13,11 +13,11 @@ class MultifactorTestScreen extends StatefulWidget {
 
 class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
   // Multifacotr Verify Test Function
-  final _mfaTokenController = TextEditingController();
+  final _mfaTokenController = TextEditingController(text: MFA_TOKEN);
   final _otpController = TextEditingController();
   final _challengeMfaTokenController = TextEditingController();
 
-  final _clientIdController = TextEditingController();
+  final _clientIdController = TextEditingController(text: CLIENT_ID);
   final _otpCodeController = TextEditingController();
   final _realmController = TextEditingController(text: 'email');
   final _usernameController = TextEditingController();
@@ -36,12 +36,12 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
     setState(() {
       multifactorVerifyResponse = 'Loading...';
     });
-    final client = AortemAuth0MultiFactorService(
+    final client = Auth0MultiFactorService(
       auth0DomainUri: Uri.parse(AUTH0_DOMAIN),
     );
 
     // Construct the MFA verification request with the MFA token and the OTP provided by the user.
-    final request = AortemAuth0MultiFactorVerifyRequest(
+    final request = Auth0MultiFactorVerifyRequest(
       mfaToken: MFA_TOKEN,
       otp: '123456', // The one-time password entered by the user.
     );
@@ -78,7 +78,7 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
       _isLoading = true;
     });
 
-    final client = AortemAuth0MultiFactorService(
+    final client = Auth0MultiFactorService(
       auth0DomainUri: Uri.parse(AUTH0_DOMAIN),
     );
 
@@ -86,13 +86,14 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
     final otp = _otpController.text.trim();
 
     try {
-      final request = AortemAuth0MultiFactorVerifyRequest(
+      final request = Auth0MultiFactorVerifyRequest(
         mfaToken: mfaToken,
         otp: otp,
       );
       final response = await client.verify(request);
 
-      _result = '''
+      _result =
+          '''
             ✅ MFA Verified Successfully!
 
             🔐 Access Token: ${response.accessToken}
@@ -125,18 +126,17 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
       });
       return;
     }
-    final client = AortemAuthOMultifactorChallengeRequest(
-      auth0Domain: AUTH0_DOMAIN,
-    );
+    final client = AuthOMultifactorChallengeRequest(auth0Domain: AUTH0_DOMAIN);
     try {
-      final request = AortemAuth0ChallengeRequest(
+      final request = Auth0ChallengeRequest(
         mfaToken: mfaToken,
         challengeType: 'otp', // optional
       );
 
       final response = await client.requestChallenge(request);
 
-      _challengeResult = '''
+      _challengeResult =
+          '''
           📨 New MFA Challenge Requested
 
           🆔 Challenge ID: ${response.challengeId}
@@ -156,7 +156,7 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
     setState(() => _isLoading = true);
 
     try {
-      final otpService = AortemAuth0MfaVerifyOpt(auth0Domain: AUTH0_DOMAIN);
+      final otpService = Auth0MfaVerifyOpt(auth0Domain: AUTH0_DOMAIN);
       if (_clientIdController.text.trim().isEmpty ||
           _otpCodeController.text.trim().isEmpty ||
           (_realmController.text == 'email' &&
@@ -170,7 +170,7 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
         return;
       }
 
-      final request = AortemAuth0VerifyOTPRequest(
+      final request = Auth0VerifyOTPRequest(
         clientId: _clientIdController.text.trim(),
         otp: _otpCodeController.text.trim(),
         realm: _realmController.text.trim(),
@@ -184,7 +184,8 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
       final response = await otpService.verifyOTP(request);
 
       setState(() {
-        _result = '''
+        _result =
+            '''
         ✅ OTP Verified Successfully!
 
         🔐 Access Token: ${response.accessToken}
@@ -258,8 +259,9 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
                         ? Colors.green[50]
                         : Colors.red[50],
                     border: Border.all(
-                      color:
-                          _result!.startsWith('✅') ? Colors.green : Colors.red,
+                      color: _result!.startsWith('✅')
+                          ? Colors.green
+                          : Colors.red,
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -302,20 +304,26 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
                   child: Text(_challengeResult!),
                 ),
               const SizedBox(height: 40),
-              const Text('Verify Passwordless OTP',
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              const Text(
+                'Verify Passwordless OTP',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               TextField(
-                  controller: _clientIdController,
-                  decoration: InputDecoration(labelText: 'Client ID')),
+                controller: _clientIdController,
+                decoration: InputDecoration(labelText: 'Client ID'),
+              ),
               TextField(
-                  controller: _otpCodeController,
-                  decoration: InputDecoration(labelText: 'OTP Code')),
+                controller: _otpCodeController,
+                decoration: InputDecoration(labelText: 'OTP Code'),
+              ),
               DropdownButtonFormField<String>(
                 value: _realmController.text,
                 decoration: InputDecoration(labelText: 'Realm'),
                 items: const ['email', 'sms']
-                    .map((type) =>
-                        DropdownMenuItem(value: type, child: Text(type)))
+                    .map(
+                      (type) =>
+                          DropdownMenuItem(value: type, child: Text(type)),
+                    )
                     .toList(),
                 onChanged: (val) {
                   _realmController.text = val!;
@@ -324,12 +332,14 @@ class _MultifactorTestScreenState extends State<MultifactorTestScreen> {
               ),
               if (_realmController.text == 'email')
                 TextField(
-                    controller: _usernameController,
-                    decoration: InputDecoration(labelText: 'Email')),
+                  controller: _usernameController,
+                  decoration: InputDecoration(labelText: 'Email'),
+                ),
               if (_realmController.text == 'sms')
                 TextField(
-                    controller: _phoneNumberController,
-                    decoration: InputDecoration(labelText: 'Phone Number')),
+                  controller: _phoneNumberController,
+                  decoration: InputDecoration(labelText: 'Phone Number'),
+                ),
               const SizedBox(height: 12),
               ElevatedButton(
                 onPressed: _isLoading ? null : _verifyPasswordlessOTP,

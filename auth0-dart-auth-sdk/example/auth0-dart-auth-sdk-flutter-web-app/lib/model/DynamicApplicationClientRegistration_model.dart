@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
 
 /// REQUEST MODEL for Dynamic Application Client Registration
-class AortemAuth0DynamicApplicationClientRegistrationRequest {
+class Auth0DynamicApplicationClientRegistrationRequest {
   final String clientName;
   final List<String> redirectUris;
   final String? appType;
@@ -11,7 +11,7 @@ class AortemAuth0DynamicApplicationClientRegistrationRequest {
   final String? clientUri;
   final List<String>? grantTypes;
 
-  AortemAuth0DynamicApplicationClientRegistrationRequest({
+  Auth0DynamicApplicationClientRegistrationRequest({
     required this.clientName,
     required this.redirectUris,
     this.appType,
@@ -21,32 +21,33 @@ class AortemAuth0DynamicApplicationClientRegistrationRequest {
   });
 
   Map<String, dynamic> toJson() => {
-        'client_name': clientName,
-        'redirect_uris': redirectUris,
-        if (appType != null) 'app_type': appType,
-        if (logoUri != null) 'logo_uri': logoUri,
-        if (clientUri != null) 'client_uri': clientUri,
-        if (grantTypes != null) 'grant_types': grantTypes,
-      };
+    'client_name': clientName,
+    'redirect_uris': redirectUris,
+    if (appType != null) 'app_type': appType,
+    if (logoUri != null) 'logo_uri': logoUri,
+    if (clientUri != null) 'client_uri': clientUri,
+    if (grantTypes != null) 'grant_types': grantTypes,
+  };
 }
 
 /// RESPONSE MODEL for Dynamic Application Client Registration
-class AortemAuth0DynamicApplicationClientRegistrationResponse {
+class Auth0DynamicApplicationClientRegistrationResponse {
   final String clientId;
   final String clientSecret;
   final String clientName;
   final List<String> redirectUris;
 
-  AortemAuth0DynamicApplicationClientRegistrationResponse({
+  Auth0DynamicApplicationClientRegistrationResponse({
     required this.clientId,
     required this.clientSecret,
     required this.clientName,
     required this.redirectUris,
   });
 
-  factory AortemAuth0DynamicApplicationClientRegistrationResponse.fromJson(
-      Map<String, dynamic> json) {
-    return AortemAuth0DynamicApplicationClientRegistrationResponse(
+  factory Auth0DynamicApplicationClientRegistrationResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
+    return Auth0DynamicApplicationClientRegistrationResponse(
       clientId: json['client_id'],
       clientSecret: json['client_secret'],
       clientName: json['client_name'],
@@ -56,11 +57,11 @@ class AortemAuth0DynamicApplicationClientRegistrationResponse {
 }
 
 /// API CLIENT method to register application
-extension DynamicClientRegistration on AortemAuth0MfaApiClient {
-  Future<AortemAuth0DynamicApplicationClientRegistrationResponse>
-      aortemAuth0DynamicApplicationClientRegistration(
-          AortemAuth0DynamicApplicationClientRegistrationRequest
-              request) async {
+extension DynamicClientRegistration on Auth0MfaApiClient {
+  Future<Auth0DynamicApplicationClientRegistrationResponse>
+  Auth0DynamicApplicationClientRegistration(
+    Auth0DynamicApplicationClientRegistrationRequest request,
+  ) async {
     final url = Uri.parse('$auth0Domain/api/v2/clients');
 
     final response = await httpClient.post(
@@ -79,7 +80,6 @@ extension DynamicClientRegistration on AortemAuth0MfaApiClient {
     }
 
     final json = jsonDecode(response.body) as Map<String, dynamic>;
-    return AortemAuth0DynamicApplicationClientRegistrationResponse.fromJson(
-        json);
+    return Auth0DynamicApplicationClientRegistrationResponse.fromJson(json);
   }
 }

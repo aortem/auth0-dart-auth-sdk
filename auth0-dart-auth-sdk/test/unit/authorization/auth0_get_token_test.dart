@@ -4,7 +4,6 @@ import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_token_exception.dart';
 import 'package:auth0_dart_auth_sdk/src/models/auth0_get_token_request.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
-import 'package:http/testing.dart';
 
 void main() {
   group('Auth0GetToken', () {

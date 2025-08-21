@@ -3,6 +3,7 @@ import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:auth0_dart_auth_sdk/src/models/auth0_user_profile_response_model.dart';
 import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_user_profile_exception.dart';
+import 'package:http/testing.dart';
 
 void main() {
   group('Auth0UserProfile', () {

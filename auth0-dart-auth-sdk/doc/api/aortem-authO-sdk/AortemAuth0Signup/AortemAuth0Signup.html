@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the aortemAuth0Signup method from the AortemAuth0Signup class, for the Dart programming language.">
-  <title>aortemAuth0Signup method - AortemAuth0Signup class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the Auth0Signup method from the Auth0Signup class, for the Dart programming language.">
+  <title>Auth0Signup method - Auth0Signup class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0Signup-class.html">AortemAuth0Signup</a></li>
-    <li class="self-crumb">aortemAuth0Signup method</li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0Signup-class.html">Auth0Signup</a></li>
+    <li class="self-crumb">Auth0Signup method</li>
   </ol>
-  <div class="self-name">aortemAuth0Signup</div>
+  <div class="self-name">Auth0Signup</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,17 +49,17 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0Signup-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0Signup-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">aortemAuth0Signup</span> method 
+<h1><span class="kind-method">Auth0Signup</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">AortemAuth0SignupResponse</span>&gt;</span></span>
-<span class="name ">aortemAuth0Signup</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="aortemAuth0Signup-param-request"><span class="type-annotation">AortemAuth0SignupRequest</span> <span class="parameter-name">request</span>, </span></li>
-<li><span class="parameter" id="aortemAuth0Signup-param-auth0Domain"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">auth0Domain</span></span></li>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">Auth0SignupResponse</span>&gt;</span></span>
+<span class="name ">Auth0Signup</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="Auth0Signup-param-request"><span class="type-annotation">Auth0SignupRequest</span> <span class="parameter-name">request</span>, </span></li>
+<li><span class="parameter" id="Auth0Signup-param-auth0Domain"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">auth0Domain</span></span></li>
 </ol>)
 
       
@@ -71,8 +71,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;AortemAuth0SignupResponse&gt; aortemAuth0Signup(
-  AortemAuth0SignupRequest request,
+  <pre class="language-dart"><code class="language-dart">Future&lt;Auth0SignupResponse&gt; Auth0Signup(
+  Auth0SignupRequest request,
   String auth0Domain, &#47;&#47; The Auth0 domain, e.g., &#39;your-domain.auth0.com&#39;
 ) async {
   final url = Uri.https(auth0Domain, &#39;&#47;dbconnections&#47;signup&#39;);
@@ -88,14 +88,14 @@
     &#47;&#47; Successfully signed up, parse the response
     try {
       final responseBody = json.decode(response.body);
-      return AortemAuth0SignupResponse.fromJson(responseBody);
+      return Auth0SignupResponse.fromJson(responseBody);
     } catch (e) {
-      throw AortemAuth0SignupException(&#39;Error parsing response: $e&#39;);
+      throw Auth0SignupException(&#39;Error parsing response: $e&#39;);
     }
   } else {
     &#47;&#47; Handle error responses
     final errorMessage = _getErrorMessage(response);
-    throw AortemAuth0SignupException(errorMessage);
+    throw Auth0SignupException(errorMessage);
   }
 }</code></pre>
 </section>
@@ -111,12 +111,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0Signup-class.html">AortemAuth0Signup</a></li>
-    <li class="self-crumb">aortemAuth0Signup method</li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0Signup-class.html">Auth0Signup</a></li>
+    <li class="self-crumb">Auth0Signup method</li>
 </ol>
 
-    <h5>AortemAuth0Signup class</h5>
+    <h5>Auth0Signup class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the aortemAuth0UserProfile method from the AortemAuth0UserProfile class, for the Dart programming language.">
-  <title>aortemAuth0UserProfile method - AortemAuth0UserProfile class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the Auth0UserProfile method from the Auth0UserProfile class, for the Dart programming language.">
+  <title>Auth0UserProfile method - Auth0UserProfile class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,11 +25,11 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0UserProfile-class.html">AortemAuth0UserProfile</a></li>
-    <li class="self-crumb">aortemAuth0UserProfile method</li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0UserProfile-class.html">Auth0UserProfile</a></li>
+    <li class="self-crumb">Auth0UserProfile method</li>
   </ol>
-  <div class="self-name">aortemAuth0UserProfile</div>
+  <div class="self-name">Auth0UserProfile</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -49,17 +49,17 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0UserProfile-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0UserProfile-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-method">aortemAuth0UserProfile</span> method 
+<h1><span class="kind-method">Auth0UserProfile</span> method 
 </h1></div>
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">AortemAuth0UserProfileResponse</span>&gt;</span></span>
-<span class="name ">aortemAuth0UserProfile</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="aortemAuth0UserProfile-param-request"><span class="type-annotation">AortemAuth0UserProfileRequest</span> <span class="parameter-name">request</span>, </span></li>
-<li><span class="parameter" id="aortemAuth0UserProfile-param-auth0Domain"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">auth0Domain</span></span></li>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">Auth0UserProfileResponse</span>&gt;</span></span>
+<span class="name ">Auth0UserProfile</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="Auth0UserProfile-param-request"><span class="type-annotation">Auth0UserProfileRequest</span> <span class="parameter-name">request</span>, </span></li>
+<li><span class="parameter" id="Auth0UserProfile-param-auth0Domain"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">auth0Domain</span></span></li>
 </ol>)
 
       
@@ -71,8 +71,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;AortemAuth0UserProfileResponse&gt; aortemAuth0UserProfile(
-  AortemAuth0UserProfileRequest request,
+  <pre class="language-dart"><code class="language-dart">Future&lt;Auth0UserProfileResponse&gt; Auth0UserProfile(
+  Auth0UserProfileRequest request,
   String auth0Domain, &#47;&#47; The Auth0 domain (e.g., &#39;your-domain.auth0.com&#39;)
 ) async {
   final url = Uri.https(auth0Domain, &#39;&#47;userinfo&#39;);
@@ -95,14 +95,14 @@
     &#47;&#47; Successfully retrieved user profile, parse the response
     try {
       final responseBody = json.decode(response.body);
-      return AortemAuth0UserProfileResponse.fromJson(responseBody);
+      return Auth0UserProfileResponse.fromJson(responseBody);
     } catch (e) {
-      throw AortemAuth0UserProfileException(&#39;Error parsing response: $e&#39;);
+      throw Auth0UserProfileException(&#39;Error parsing response: $e&#39;);
     }
   } else {
     &#47;&#47; Handle error responses
     final errorMessage = _getErrorMessage(response);
-    throw AortemAuth0UserProfileException(errorMessage);
+    throw Auth0UserProfileException(errorMessage);
   }
 }</code></pre>
 </section>
@@ -118,12 +118,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0UserProfile-class.html">AortemAuth0UserProfile</a></li>
-    <li class="self-crumb">aortemAuth0UserProfile method</li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0UserProfile-class.html">Auth0UserProfile</a></li>
+    <li class="self-crumb">Auth0UserProfile method</li>
 </ol>
 
-    <h5>AortemAuth0UserProfile class</h5>
+    <h5>Auth0UserProfile class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the generateLogoutUrl method from the AortemAuth0OidcLogout class, for the Dart programming language.">
-  <title>generateLogoutUrl method - AortemAuth0OidcLogout class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the generateLogoutUrl method from the Auth0OidcLogout class, for the Dart programming language.">
+  <title>generateLogoutUrl method - Auth0OidcLogout class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0OidcLogout-class.html">AortemAuth0OidcLogout</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0OidcLogout-class.html">Auth0OidcLogout</a></li>
     <li class="self-crumb">generateLogoutUrl method</li>
   </ol>
   <div class="self-name">generateLogoutUrl</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0OidcLogout-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0OidcLogout-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">generateLogoutUrl</span> method 
@@ -57,8 +57,8 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype">AortemAuth0OidcLogoutResponse</span>
-<span class="name ">generateLogoutUrl</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateLogoutUrl-param-request"><span class="type-annotation">AortemAuth0OidcLogoutRequest</span> <span class="parameter-name">request</span></span></li>
+<span class="returntype">Auth0OidcLogoutResponse</span>
+<span class="name ">generateLogoutUrl</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="generateLogoutUrl-param-request"><span class="type-annotation">Auth0OidcLogoutRequest</span> <span class="parameter-name">request</span></span></li>
 </ol>)
 
       
@@ -70,8 +70,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">AortemAuth0OidcLogoutResponse generateLogoutUrl(
-    AortemAuth0OidcLogoutRequest request) {
+  <pre class="language-dart"><code class="language-dart">Auth0OidcLogoutResponse generateLogoutUrl(
+    Auth0OidcLogoutRequest request) {
   final queryParams = &lt;String, String&gt;{
     &#39;client_id&#39;: request.clientId,
   };
@@ -92,7 +92,7 @@
   final queryString = Uri(queryParameters: queryParams).query;
   final logoutUrl = &#39;https:&#47;&#47;$auth0Domain&#47;v2&#47;logout?$queryString&#39;;
 
-  return AortemAuth0OidcLogoutResponse(logoutUrl: logoutUrl);
+  return Auth0OidcLogoutResponse(logoutUrl: logoutUrl);
 }</code></pre>
 </section>
 
@@ -107,12 +107,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0OidcLogout-class.html">AortemAuth0OidcLogout</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0OidcLogout-class.html">Auth0OidcLogout</a></li>
     <li class="self-crumb">generateLogoutUrl method</li>
 </ol>
 
-    <h5>AortemAuth0OidcLogout class</h5>
+    <h5>Auth0OidcLogout class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the revokeToken method from the AortemAuth0GlobalTokenRevocation class, for the Dart programming language.">
-  <title>revokeToken method - AortemAuth0GlobalTokenRevocation class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the revokeToken method from the Auth0GlobalTokenRevocation class, for the Dart programming language.">
+  <title>revokeToken method - Auth0GlobalTokenRevocation class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0GlobalTokenRevocation-class.html">AortemAuth0GlobalTokenRevocation</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0GlobalTokenRevocation-class.html">Auth0GlobalTokenRevocation</a></li>
     <li class="self-crumb">revokeToken method</li>
   </ol>
   <div class="self-name">revokeToken</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0GlobalTokenRevocation-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0GlobalTokenRevocation-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">revokeToken</span> method 
@@ -57,8 +57,8 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">AortemAuth0GlobalTokenRevocationResponse</span>&gt;</span></span>
-<span class="name ">revokeToken</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="revokeToken-param-request"><span>required</span> <span class="type-annotation">AortemAuth0GlobalTokenRevocationRequest</span> <span class="parameter-name">request</span>, </span></li>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">Auth0GlobalTokenRevocationResponse</span>&gt;</span></span>
+<span class="name ">revokeToken</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="revokeToken-param-request"><span>required</span> <span class="type-annotation">Auth0GlobalTokenRevocationRequest</span> <span class="parameter-name">request</span>, </span></li>
 </ol>})
 
       
@@ -70,8 +70,8 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;AortemAuth0GlobalTokenRevocationResponse&gt; revokeToken({
-  required AortemAuth0GlobalTokenRevocationRequest request,
+  <pre class="language-dart"><code class="language-dart">Future&lt;Auth0GlobalTokenRevocationResponse&gt; revokeToken({
+  required Auth0GlobalTokenRevocationRequest request,
 }) async {
   final uri = Uri.https(domain, &#39;&#47;oauth&#47;revoke&#39;);
 
@@ -84,7 +84,7 @@
   final response = await http.post(uri, headers: headers, body: body);
 
   if (response.statusCode == 200) {
-    return AortemAuth0GlobalTokenRevocationResponse(success: true);
+    return Auth0GlobalTokenRevocationResponse(success: true);
   } else {
     final errorBody =
         response.body.isNotEmpty ? response.body : &#39;No response body&#39;;
@@ -106,12 +106,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0GlobalTokenRevocation-class.html">AortemAuth0GlobalTokenRevocation</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0GlobalTokenRevocation-class.html">Auth0GlobalTokenRevocation</a></li>
     <li class="self-crumb">revokeToken method</li>
 </ol>
 
-    <h5>AortemAuth0GlobalTokenRevocation class</h5>
+    <h5>Auth0GlobalTokenRevocation class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

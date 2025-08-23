@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the authenticate method from the AortemAuth0SocialLogin class, for the Dart programming language.">
-  <title>authenticate method - AortemAuth0SocialLogin class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the authenticate method from the Auth0SocialLogin class, for the Dart programming language.">
+  <title>authenticate method - Auth0SocialLogin class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0SocialLogin-class.html">AortemAuth0SocialLogin</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0SocialLogin-class.html">Auth0SocialLogin</a></li>
     <li class="self-crumb">authenticate method</li>
   </ol>
   <div class="self-name">authenticate</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0SocialLogin-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0SocialLogin-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">authenticate</span> method 
@@ -57,7 +57,7 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">AortemAuth0SocialLoginResponse</span>&gt;</span></span>
+<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter">Auth0SocialLoginResponse</span>&gt;</span></span>
 <span class="name ">authenticate</span>(<wbr>{<ol class="parameter-list"> <li><span class="parameter" id="authenticate-param-socialAccessToken"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">socialAccessToken</span>, </span></li>
 <li><span class="parameter" id="authenticate-param-connection"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">connection</span>, </span></li>
 <li><span class="parameter" id="authenticate-param-scope"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a>?</span> <span class="parameter-name">scope</span>, </span></li>
@@ -76,13 +76,13 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">Future&lt;AortemAuth0SocialLoginResponse&gt; authenticate({
+  <pre class="language-dart"><code class="language-dart">Future&lt;Auth0SocialLoginResponse&gt; authenticate({
   required String socialAccessToken,
   required String connection,
   String? scope,
   String? audience,
 }) async {
-  final request = AortemAuth0SocialLoginRequest(
+  final request = Auth0SocialLoginRequest(
     socialAccessToken: socialAccessToken,
     connection: connection,
     clientId: clientId,
@@ -100,22 +100,22 @@
         .timeout(timeout);
 
     if (response.statusCode == 200) {
-      return AortemAuth0SocialLoginResponse.fromJson(
+      return Auth0SocialLoginResponse.fromJson(
           jsonDecode(response.body) as Map&lt;String, dynamic&gt;);
     } else {
-      throw AortemAuth0SocialLoginException(
+      throw Auth0SocialLoginException(
         message: &#39;Social login failed&#39;,
         statusCode: response.statusCode,
         errorDetails: response.body,
       );
     }
   } on FormatException catch (e) {
-    throw AortemAuth0SocialLoginException(
+    throw Auth0SocialLoginException(
       message: &#39;Invalid response format from Auth0&#39;,
       errorDetails: e.toString(),
     );
   } catch (e) {
-    throw AortemAuth0SocialLoginException(
+    throw Auth0SocialLoginException(
       message: &#39;Failed to complete social login&#39;,
       errorDetails: e.toString(),
     );
@@ -134,12 +134,12 @@
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0SocialLogin-class.html">AortemAuth0SocialLogin</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0SocialLogin-class.html">Auth0SocialLogin</a></li>
     <li class="self-crumb">authenticate method</li>
 </ol>
 
-    <h5>AortemAuth0SocialLogin class</h5>
+    <h5>Auth0SocialLogin class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

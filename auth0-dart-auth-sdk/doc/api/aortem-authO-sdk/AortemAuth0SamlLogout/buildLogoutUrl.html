@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the buildLogoutUrl method from the AortemAuth0SamlLogout class, for the Dart programming language.">
-  <title>buildLogoutUrl method - AortemAuth0SamlLogout class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the buildLogoutUrl method from the Auth0SamlLogout class, for the Dart programming language.">
+  <title>buildLogoutUrl method - Auth0SamlLogout class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,8 +25,8 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0SamlLogout-class.html">AortemAuth0SamlLogout</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk.dart</a></li>
+    <li><a href="../../auth0-sdk/Auth0SamlLogout-class.html">Auth0SamlLogout</a></li>
     <li class="self-crumb">buildLogoutUrl method</li>
   </ol>
   <div class="self-name">buildLogoutUrl</div>
@@ -49,7 +49,7 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;AortemAuth0SamlLogout-class-sidebar.html"
+    data-above-sidebar="auth0-sdk&#47;Auth0SamlLogout-class-sidebar.html"
     data-below-sidebar="">
     <div>
 <h1><span class="kind-method">buildLogoutUrl</span> method 
@@ -57,8 +57,8 @@
 
     <section class="multi-line-signature">
       
-<span class="returntype">AortemAuth0SamlLogoutResponse</span>
-<span class="name ">buildLogoutUrl</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildLogoutUrl-param-request"><span class="type-annotation">AortemAuth0SamlLogoutRequest</span> <span class="parameter-name">request</span></span></li>
+<span class="returntype">Auth0SamlLogoutResponse</span>
+<span class="name ">buildLogoutUrl</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="buildLogoutUrl-param-request"><span class="type-annotation">Auth0SamlLogoutRequest</span> <span class="parameter-name">request</span></span></li>
 </ol>)
 
       
@@ -67,7 +67,7 @@
     
 <section class="desc markdown">
   <p>Builds a SAML logout URL using the provided request parameters</p>
-<p>Takes an <code>AortemAuth0SamlLogoutRequest</code> and returns an <code>AortemAuth0SamlLogoutResponse</code>
+<p>Takes an <code>Auth0SamlLogoutRequest</code> and returns an <code>Auth0SamlLogoutResponse</code>
 containing the generated logout URL</p>
 </section>
 
@@ -75,10 +75,10 @@ containing the generated logout URL</p>
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">AortemAuth0SamlLogoutResponse buildLogoutUrl(
-    AortemAuth0SamlLogoutRequest request) {
+  <pre class="language-dart"><code class="language-dart">Auth0SamlLogoutResponse buildLogoutUrl(
+    Auth0SamlLogoutRequest request) {
   final uri = Uri.https(domain, &#39;&#47;samlp&#47;logout&#39;, request.toQueryParams());
-  return AortemAuth0SamlLogoutResponse(logoutUrl: uri.toString());
+  return Auth0SamlLogoutResponse(logoutUrl: uri.toString());
 }</code></pre>
 </section>
 
@@ -93,12 +93,12 @@ containing the generated logout URL</p>
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li><a href="../../aortem-authO-sdk/AortemAuth0SamlLogout-class.html">AortemAuth0SamlLogout</a></li>
+    <li><a href="../../auth0-sdk">auth0-sdk</a></li>
+    <li><a href="../../auth0-sdk/Auth0SamlLogout-class.html">Auth0SamlLogout</a></li>
     <li class="self-crumb">buildLogoutUrl method</li>
 </ol>
 
-    <h5>AortemAuth0SamlLogout class</h5>
+    <h5>Auth0SamlLogout class</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div><!--/.sidebar-offcanvas-->
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the AortemAuth0SamlLogout class from the aortem-authO-sdk library, for the Dart programming language.">
-  <title>AortemAuth0SamlLogout class - aortem-authO-sdk library - Dart API</title>
+  <meta name="description" content="API docs for the Auth0SamlLogout class from the auth0-sdk library, for the Dart programming language.">
+  <title>Auth0SamlLogout class - auth0-sdk library - Dart API</title>
 
 
   
@@ -25,10 +25,10 @@
   <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../aortem-authO-sdk">aortem-authO-sdk.dart</a></li>
-    <li class="self-crumb">AortemAuth0SamlLogout class</li>
+    <li><a href="../auth0-sdk">auth0-sdk.dart</a></li>
+    <li class="self-crumb">Auth0SamlLogout class</li>
   </ol>
-  <div class="self-name">AortemAuth0SamlLogout</div>
+  <div class="self-name">Auth0SamlLogout</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -48,10 +48,10 @@
 <div
     id="dartdoc-main-content"
     class="main-content"
-    data-above-sidebar="aortem-authO-sdk&#47;aortem-authO-sdk-library-sidebar.html"
-    data-below-sidebar="aortem-authO-sdk&#47;AortemAuth0SamlLogout-class-sidebar.html">
+    data-above-sidebar="auth0-sdk&#47;auth0-sdk-library-sidebar.html"
+    data-below-sidebar="auth0-sdk&#47;Auth0SamlLogout-class-sidebar.html">
     <div>
-<h1><span class="kind-class">AortemAuth0SamlLogout</span> class 
+<h1><span class="kind-class">Auth0SamlLogout</span> class 
  
 </h1></div>
 
@@ -61,8 +61,8 @@
 <p>This class provides methods to generate SAML logout URLs using Auth0's SAML protocol.
 It requires an Auth0 domain to be initialized and validates that the domain is not empty.</p>
 <p>Example usage:</p>
-<pre class="language-dart"><code class="language-dart">final logout = AortemAuth0SamlLogout(domain: 'your-tenant.auth0.com');
-final request = AortemAuth0SamlLogoutRequest(
+<pre class="language-dart"><code class="language-dart">final logout = Auth0SamlLogout(domain: 'your-tenant.auth0.com');
+final request = Auth0SamlLogoutRequest(
   clientId: 'your-client-id',
   returnTo: 'https://your-app.com',
   federated: true
@@ -78,8 +78,8 @@ final response = logout.buildLogoutUrl(request);
   <section class="summary offset-anchor" id="constructors">
     <h2>Constructors</h2>
     <dl class="constructor-summary-list">
-        <dt id="AortemAuth0SamlLogout" class="callable">
-          <span class="name"><a href="../aortem-authO-sdk/AortemAuth0SamlLogout/AortemAuth0SamlLogout.html">AortemAuth0SamlLogout</a></span><span class="signature">({<span class="parameter" id="-param-domain"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">domain</span></span>})</span>
+        <dt id="Auth0SamlLogout" class="callable">
+          <span class="name"><a href="../auth0-sdk/Auth0SamlLogout/Auth0SamlLogout.html">Auth0SamlLogout</a></span><span class="signature">({<span class="parameter" id="-param-domain"><span>required</span> <span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span> <span class="parameter-name">domain</span></span>})</span>
         </dt>
         <dd>
           Constructor that initializes the SAML logout service with an Auth0 domain
@@ -93,7 +93,7 @@ final response = logout.buildLogoutUrl(request);
     <h2>Properties</h2>
     <dl class="properties">
         <dt id="domain" class="property">
-  <span class="name"><a href="../aortem-authO-sdk/AortemAuth0SamlLogout/domain.html">domain</a></span>
+  <span class="name"><a href="../auth0-sdk/Auth0SamlLogout/domain.html">domain</a></span>
   <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
   
 
@@ -138,8 +138,8 @@ final response = logout.buildLogoutUrl(request);
     <h2>Methods</h2>
     <dl class="callables">
         <dt id="buildLogoutUrl" class="callable">
-  <span class="name"><a href="../aortem-authO-sdk/AortemAuth0SamlLogout/buildLogoutUrl.html">buildLogoutUrl</a></span><span class="signature">(<wbr><span class="parameter" id="buildLogoutUrl-param-request"><span class="type-annotation">AortemAuth0SamlLogoutRequest</span> <span class="parameter-name">request</span></span>)
-    <span class="returntype parameter">&#8594; AortemAuth0SamlLogoutResponse</span>
+  <span class="name"><a href="../auth0-sdk/Auth0SamlLogout/buildLogoutUrl.html">buildLogoutUrl</a></span><span class="signature">(<wbr><span class="parameter" id="buildLogoutUrl-param-request"><span class="type-annotation">Auth0SamlLogoutRequest</span> <span class="parameter-name">request</span></span>)
+    <span class="returntype parameter">&#8594; Auth0SamlLogoutResponse</span>
   </span>
   
 
@@ -213,11 +213,11 @@ final response = logout.buildLogoutUrl(request);
 </header>
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
     <li><a href="../index.html">auth0_dart_auth_sdk</a></li>
-    <li><a href="../aortem-authO-sdk">aortem-authO-sdk</a></li>
-    <li class="self-crumb">AortemAuth0SamlLogout class</li>
+    <li><a href="../auth0-sdk">auth0-sdk</a></li>
+    <li class="self-crumb">Auth0SamlLogout class</li>
 </ol>
 
-    <h5>aortem-authO-sdk library</h5>
+    <h5>auth0-sdk library</h5>
     <div id="dartdoc-sidebar-left-content"></div>
   </div>
   <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">

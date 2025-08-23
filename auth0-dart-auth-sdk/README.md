@@ -70,7 +70,7 @@ Or add to your `pubspec.yaml` manually:
 
 ```yaml
 dependencies:
-  auth0_dart_auth_sdk: ^0.0.2
+  auth0_dart_auth_sdk: ^0.0.3
 ```
 
 Then fetch:

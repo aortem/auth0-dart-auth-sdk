@@ -1,3 +1,10 @@
+## 0.0.3
+
+### Changed
+
+- Updated GitHub URL
+- Normalized Dart Docs API naming convention
+
 ## 0.0.2
 
 ### Breaking

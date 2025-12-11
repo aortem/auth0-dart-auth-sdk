@@ -1,3 +1,28 @@
+# 0.0.4
+
+### Added
+
+* Example **Authorization Code + PKCE** quickstart (Flutter & server-side) to reduce setup friction.
+* Built-in **request timeouts** and **retry/backoff** for token/network calls (configurable).
+* Additional inline docs and DartDoc for common flows (login, refresh, logout, user info).
+
+### Changed
+
+* Improved error surfaces with typed exceptions (e.g., `Auth0AuthException`, `Auth0NetworkException`) and clearer messages.
+* Normalized parameter handling for `scope`, `audience`, and `redirectUri` across methods.
+* Updated README with **OnePub/private registry** guidance and troubleshooting steps.
+
+### Fixed
+
+* `revokeToken()` now treats **HTTP 204** as success (no-content) instead of throwing.
+* Fixed `logout()` occasional false negatives on slow networks.
+* Safer JSON parsing for user profile fields with missing/extra properties.
+
+### Notes
+
+* **No breaking changes.**
+* Recommended: run `dart pub upgrade` to pick up the improved networking defaults.
+
 ## 0.0.3
 
 ### Changed

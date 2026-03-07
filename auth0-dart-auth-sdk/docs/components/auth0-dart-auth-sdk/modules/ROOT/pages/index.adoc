@@ -21,7 +21,7 @@ toc::[]
 == Repository Layout
 
 * Repository root: apps/sdks/auth0-dart-auth-sdk
-* Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk
+* Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
 * Firebase hosting target: auth0-dart-auth-sdk-docs
 * Firebase project: aortem-prod
 

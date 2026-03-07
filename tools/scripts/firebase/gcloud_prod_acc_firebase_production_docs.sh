@@ -3,7 +3,7 @@
 set -e
 
 echo "Navigating to docs directory"
-cd auth0-dart-auth-sdk/docs
+cd docs
 
 echo "Listing files in the directory"
 ls -la

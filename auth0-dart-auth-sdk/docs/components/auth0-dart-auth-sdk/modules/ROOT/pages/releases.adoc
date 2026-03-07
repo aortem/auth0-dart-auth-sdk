@@ -5,4 +5,4 @@ Current documented package version: v0.0.4
 
 Use the package changelog for release history:
 
-apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/CHANGELOG.md
+apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md

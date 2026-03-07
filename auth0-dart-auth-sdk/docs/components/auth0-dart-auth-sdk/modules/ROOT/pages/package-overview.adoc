@@ -5,7 +5,7 @@ Auth0 Dart Auth SDK is published as auth0_dart_auth_sdk and is currently documen
 
 == Package Root
 
-apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk
+apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
 
 == Source of Truth
 

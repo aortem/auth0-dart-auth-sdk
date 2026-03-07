@@ -1,11 +1,25 @@
-= Examples
+﻿= Examples
 :page-layout: default
 
-Check the package example/ folder and README for the current runnable examples and integration samples.
-
-== Common Locations
+Examples and sample apps for Auth0 Dart Auth SDK live under:
 
 * apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example
 * apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/README.md
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/README.md
 
-If an SDK ships multiple sample apps, document them here as they are finalized.
+== Current Example Directories
+
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-auth-sdk-flutter-web-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-dart-web-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-desktop-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-games-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-mobile-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-web-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-react-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-svelte-app
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-vue-app
+
+== Notes
+
+* Use the current example directory names as the source of truth for available sample apps.
+* Expand this page with narrative walkthroughs as examples are finalized.

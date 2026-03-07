@@ -1,17 +1,25 @@
-= Package Overview
+﻿= Package Overview
 :page-layout: default
 
-Auth0 Dart Auth SDK is published as auth0_dart_auth_sdk and is currently documented at version v0.0.4.
-
-== Package Root
-
-apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
+Auth0 Dart Auth SDK is published as auth0_dart_auth_sdk at version v0.0.4.
 
 == Source of Truth
 
-Use the package README, pubspec.yaml, examples, and test suite in the package root as the implementation source of truth.
+* Pubspec: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/pubspec.yaml
+* README: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/README.md
+* Changelog: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md
 
-== Notes
+== Directory Layout
 
-* This Antora site gives each SDK the same documentation structure used across DartApps.
-* Product-specific narrative content can be expanded here over time without changing the standard hosting setup.
+* Repository root: apps/sdks/auth0-dart-auth-sdk
+* Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
+* Documentation: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/docs
+* Library sources: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/lib
+* Examples: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example
+* Tests: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/test
+* Local dev tools: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/local_dev_tools
+
+== Primary Source Areas
+
+* Public entrypoint: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/lib/auth0_dart_auth_sdk.dart
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/lib/src

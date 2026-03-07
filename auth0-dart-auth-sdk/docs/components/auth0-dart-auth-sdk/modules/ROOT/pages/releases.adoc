@@ -1,8 +1,21 @@
-= Releases
-:page-layout: default
+﻿= Releases
+:navtitle: Releases
+:description: Release tracking for Auth0 Dart Auth SDK.
+:sectnums:
 
-Current documented package version: v0.0.4
+This page tracks the current public package version documented for Auth0 Dart Auth SDK.
+'''
 
-Use the package changelog for release history:
+== v0.0.4
 
-apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md
+=== Overview
+The current public package version for auth0_dart_auth_sdk is v0.0.4.
+
+=== Release Sources
+
+* Pubspec: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/pubspec.yaml
+* Changelog: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md
+
+=== Notes
+* Keep this page aligned with the version declared in pubspec.yaml.
+* Detailed release history and change notes remain in CHANGELOG.md until fuller curated release notes are added here.

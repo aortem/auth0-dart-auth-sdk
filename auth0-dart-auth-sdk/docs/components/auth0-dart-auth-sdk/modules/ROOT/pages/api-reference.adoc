@@ -1,19 +1,22 @@
-= API Reference
+﻿= API Reference
 :page-layout: default
 
-This page is the Antora placeholder for the SDK API surface.
+This page maps the public package entrypoint to the current source tree.
 
-== Primary Library
+== Package API
 
 * Package: auth0_dart_auth_sdk
+* Version: v0.0.4
 * Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
+* Import path: package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart
+* Entrypoint file: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/lib/auth0_dart_auth_sdk.dart
 
-== Recommended Expansion
+== Source Areas
 
-As the SDK docs mature, add:
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/lib/src
 
-* top-level exports
-* key authentication flows
-* configuration objects
-* error handling guidance
-* platform-specific notes
+== Supporting Sources
+
+* Tests: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/test
+* README: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/README.md
+* Changelog: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md

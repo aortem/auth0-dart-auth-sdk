@@ -1,30 +1,35 @@
-= Auth0 Dart Auth SDK Documentation
+﻿= Auth0 Dart Auth SDK Documentation
 :page-layout: default
 :sectanchors:
 :toc: macro
 :toc-title: On This Page
 
-Auth0 integration for Dart and Flutter applications.
+A Dart SDK for auth0 Authentication, enabling secure server-side authentication and user management for Dart-based backend applications.
 
-This Antora site is the standard documentation shell for the auth0_dart_auth_sdk SDK.
+This documentation set is the standard public reference for auth0_dart_auth_sdk and is kept aligned with the package version declared in pubspec.yaml.
 
 toc::[]
 
-== What You Will Find Here
+== What This Site Covers
 
-* xref:getting-started.adoc[Getting Started] for installation and first-use setup
-* xref:package-overview.adoc[Package Overview] for package structure and supported workflows
-* xref:examples.adoc[Examples] for app and sample references in the repository
-* xref:api-reference.adoc[API Reference] for the main exported library and source locations
-* xref:releases.adoc[Releases] for version tracking and rollout notes
+* xref:getting-started.adoc[Getting Started] for installation, imports, and local docs builds
+* xref:package-overview.adoc[Package Overview] for package structure and source-of-truth paths
+* xref:examples.adoc[Examples] for sample app locations in the repository
+* xref:api-reference.adoc[API Reference] for exported library entrypoints and source areas
+* xref:releases.adoc[Releases] for the current public version and changelog path
 
-== Repository Layout
+== Current Public Package
 
+* Package: auth0_dart_auth_sdk
+* Version: v0.0.4
 * Repository root: apps/sdks/auth0-dart-auth-sdk
 * Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend
-* Firebase hosting target: auth0-dart-auth-sdk-docs
-* Firebase project: aortem-prod
+* Docs root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/docs
 
-== Next Step
+== Suggested Reading Order
 
-Start with xref:getting-started.adoc[Getting Started].
+. xref:getting-started.adoc[Getting Started]
+. xref:package-overview.adoc[Package Overview]
+. xref:examples.adoc[Examples]
+. xref:api-reference.adoc[API Reference]
+. xref:releases.adoc[Releases]

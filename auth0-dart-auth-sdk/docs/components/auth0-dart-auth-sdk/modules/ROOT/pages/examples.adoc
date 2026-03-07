@@ -1,0 +1,11 @@
+= Examples
+:page-layout: default
+
+Check the package example/ folder and README for the current runnable examples and integration samples.
+
+== Common Locations
+
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/example
+* apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/README.md
+
+If an SDK ships multiple sample apps, document them here as they are finalized.

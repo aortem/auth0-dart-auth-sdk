@@ -1,0 +1,15 @@
+site:
+  title: Auth0 Dart Auth SDK Docs
+  start_page: auth0-dart-auth-sdk::index.adoc
+  url: https://auth0-dart-auth-sdk-docs.web.app/
+
+content:
+  sources:
+    - url: ..
+      branches: HEAD
+      start_path: docs/components/auth0-dart-auth-sdk
+
+ui:
+  bundle:
+    url: ./ui/antora-ui-custom/ui-bundle
+    snapshot: true

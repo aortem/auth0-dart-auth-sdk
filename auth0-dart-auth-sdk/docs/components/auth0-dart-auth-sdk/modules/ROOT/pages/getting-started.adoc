@@ -1,0 +1,39 @@
+= Getting Started
+:page-layout: default
+
+This SDK uses the standard DartApps documentation and hosting layout.
+
+== Install the Package
+
+Add the package to your pubspec.yaml:
+
+[source,yaml]
+----
+dependencies:
+  auth0_dart_auth_sdk: ^0.0.4
+----
+
+Then run:
+
+[source,bash]
+----
+dart pub get
+----
+
+== Start from the Repository README
+
+The repository README remains the quickest source for package-specific setup and examples:
+
+apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/README.md
+
+== Documentation Build
+
+From the docs/ directory:
+
+[source,bash]
+----
+npm install
+npx antora antora-playbook.yml
+----
+
+The generated site is written to build/site and deployed through Firebase Hosting target auth0-dart-auth-sdk-docs in project aortem-prod.

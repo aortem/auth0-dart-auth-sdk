@@ -5,9 +5,9 @@ site:
 
 content:
   sources:
-    - url: ..
+    - url: ../..
       branches: HEAD
-      start_path: docs/components/auth0-dart-auth-sdk
+      start_path: auth0-dart-auth-sdk/docs/components/auth0-dart-auth-sdk
 
 ui:
   bundle:

@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_authorize_application_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/authorization/auth0_authorize_application.dart';
+import '../../../lib/src/models/auth0_authorize_application_request_model.dart';
+import '../../../lib/src/authorization/auth0_authorize_application.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {

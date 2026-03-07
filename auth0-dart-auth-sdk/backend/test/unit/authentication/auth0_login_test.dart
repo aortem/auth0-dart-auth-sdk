@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/authentication/auth0_login.dart';
+import '../../../lib/src/authentication/auth0_login.dart';
 
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 

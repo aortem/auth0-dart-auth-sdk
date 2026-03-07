@@ -6,7 +6,7 @@ analyze_flutter_web:
   image: ghcr.io/cirruslabs/flutter:stable
   script:
     - echo "Analyzing example project..."
-    - cd example/auth0-dart-auth-sdk-dart-web-app
+    - cd auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-dart-web-app
     - flutter pub get || { echo "Failed to install dependencies. Exiting..."; exit 1; }
     - dart analyze > analysis_report.txt 2> error_log.txt || true
 
@@ -46,7 +46,7 @@ analyze_flutter_web:
 
   artifacts:
     paths:
-      - example/auth0-dart-auth-sdk-dart-web-app/info_issues.txt
-      - example/auth0-dart-auth-sdk-dart-web-app/warning_issues.txt
-      - example/auth0-dart-auth-sdk-dart-web-app/error_issues.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-dart-web-app/info_issues.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-dart-web-app/warning_issues.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-dart-web-app/error_issues.txt
     expire_in: 1h

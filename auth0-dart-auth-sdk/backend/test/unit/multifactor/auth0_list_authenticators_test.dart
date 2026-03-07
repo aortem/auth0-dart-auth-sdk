@@ -1,9 +1,9 @@
-import 'package:auth0_dart_auth_sdk/src/multifactor/auth0_list_authenticators.dart';
+import '../../../lib/src/multifactor/auth0_list_authenticators.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
-import 'package:auth0_dart_auth_sdk/src/models/auth0_list_authenticators_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_list_authenticators_response_model.dart';
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_list_authenticators_exception.dart';
+import '../../../lib/src/models/auth0_list_authenticators_request_model.dart';
+import '../../../lib/src/models/auth0_list_authenticators_response_model.dart';
+import '../../../lib/src/exceptions/auth0_list_authenticators_exception.dart';
 
 void main() {
   group('Auth0ListAuthenticators', () {

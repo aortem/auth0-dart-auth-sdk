@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_verify_oob_request_model.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/src/models/auth0_verify_oob_request_model.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 
 class OobVerifyScreen extends StatefulWidget {
   const OobVerifyScreen({super.key});

@@ -1,8 +1,8 @@
-import 'package:auth0_dart_auth_sdk/src/user_info/auth0_user_profile.dart';
+import '../../../lib/src/user_info/auth0_user_profile.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
-import 'package:auth0_dart_auth_sdk/src/models/auth0_user_profile_response_model.dart';
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_user_profile_exception.dart';
+import '../../../lib/src/models/auth0_user_profile_response_model.dart';
+import '../../../lib/src/exceptions/auth0_user_profile_exception.dart';
 
 void main() {
   group('Auth0UserProfile', () {

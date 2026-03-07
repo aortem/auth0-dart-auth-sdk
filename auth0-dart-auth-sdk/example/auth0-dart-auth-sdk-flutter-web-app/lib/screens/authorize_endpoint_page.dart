@@ -1,7 +1,7 @@
 import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 
 class AuthorizeEndpointPage extends StatelessWidget {
   const AuthorizeEndpointPage({super.key});

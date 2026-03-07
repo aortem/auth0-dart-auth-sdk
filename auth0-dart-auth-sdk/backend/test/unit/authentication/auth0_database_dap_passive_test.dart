@@ -1,6 +1,6 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_database_ldap_passive_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_database_ldap_passive_response_model.dart';
-import 'package:auth0_dart_auth_sdk/src/authentication/auth0_database_ldap_passive.dart';
+import '../../../lib/src/models/auth0_database_ldap_passive_request_model.dart';
+import '../../../lib/src/models/auth0_database_ldap_passive_response_model.dart';
+import '../../../lib/src/authentication/auth0_database_ldap_passive.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';

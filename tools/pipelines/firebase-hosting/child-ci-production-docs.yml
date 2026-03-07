@@ -96,7 +96,7 @@ firebase:preview_docs:
     - export GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_CLOUD_CREDENTIALS_PROD"
   script:
     - ls -la
-    - cd docs
+    - cd auth0-dart-auth-sdk/docs
     - firebase hosting:channel:deploy $CI_COMMIT_REF_NAME --debug
   rules:
     # Condition 1: Branch is not main, qa, or development
@@ -112,7 +112,7 @@ firebase:deploy_docs:
     - export GOOGLE_APPLICATION_CREDENTIALS="$GOOGLE_CLOUD_CREDENTIALS_PROD"
   script:
     - ls -la
-    - cd docs
+    - cd auth0-dart-auth-sdk/docs
     - firebase deploy --project aortem-prod
   rules:
     # Condition 1: Branch is not main, qa, or development

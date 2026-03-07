@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 
 /// REQUEST MODEL for Dynamic Application Client Registration
 class Auth0DynamicApplicationClientRegistrationRequest {

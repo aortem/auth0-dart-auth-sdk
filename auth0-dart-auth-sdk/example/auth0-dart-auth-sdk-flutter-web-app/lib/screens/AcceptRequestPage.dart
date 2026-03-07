@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 // auth0-dart-auth-sdk\lib\src\request_handling\auth0_accept_request.dart
-import 'package:auth0_dart_auth_sdk/src/request_handling/auth0_accept_request.dart';
+import '../../../../backend/lib/src/request_handling/auth0_accept_request.dart';
 
 class AcceptRequestPage extends StatefulWidget {
   final String ticket;

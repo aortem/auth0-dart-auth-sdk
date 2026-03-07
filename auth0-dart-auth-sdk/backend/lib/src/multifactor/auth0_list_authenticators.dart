@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_list_authenticators_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_list_authenticators_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_list_authenticators_response_model.dart';
+import '../exceptions/auth0_list_authenticators_exception.dart';
+import '../models/auth0_list_authenticators_request_model.dart';
+import '../models/auth0_list_authenticators_response_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// A client for listing multi-factor authentication (MFA) authenticators from Auth0.

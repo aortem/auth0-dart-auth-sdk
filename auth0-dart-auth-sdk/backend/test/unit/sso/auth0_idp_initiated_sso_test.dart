@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/sso_federation/auth0_idp_initiated_sso.dart';
+import '../../../lib/src/sso_federation/auth0_idp_initiated_sso.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {

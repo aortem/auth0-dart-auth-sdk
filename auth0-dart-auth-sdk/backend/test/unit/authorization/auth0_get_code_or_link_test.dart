@@ -1,5 +1,5 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_get_code_or_link_request.dart';
-import 'package:auth0_dart_auth_sdk/src/authorization/auth0_get_code_or_link.dart';
+import '../../../lib/src/models/auth0_get_code_or_link_request.dart';
+import '../../../lib/src/authorization/auth0_get_code_or_link.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 

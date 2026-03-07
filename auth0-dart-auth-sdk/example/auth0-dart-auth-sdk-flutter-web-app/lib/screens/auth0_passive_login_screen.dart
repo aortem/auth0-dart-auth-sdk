@@ -2,7 +2,7 @@ import 'package:auth0_dart_auth_sdk_flutter_test_app/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'dart:html' as html;
 import 'package:uuid/uuid.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 
 class Auth0PassiveLoginScreen extends StatefulWidget {
   const Auth0PassiveLoginScreen({super.key});

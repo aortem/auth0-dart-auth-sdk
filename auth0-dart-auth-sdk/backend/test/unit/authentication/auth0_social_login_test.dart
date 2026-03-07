@@ -1,6 +1,6 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_social_login_request.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_social_login_response.dart';
-import 'package:auth0_dart_auth_sdk/src/authentication/auth0_social_login.dart';
+import '../../../lib/src/models/auth0_social_login_request.dart';
+import '../../../lib/src/models/auth0_social_login_response.dart';
+import '../../../lib/src/authentication/auth0_social_login.dart';
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;

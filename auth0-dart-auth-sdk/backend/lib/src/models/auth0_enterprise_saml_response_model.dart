@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_enterprise_saml_exception.dart';
+import '../exceptions/auth0_enterprise_saml_exception.dart';
 
 /// Represents the result of the enterprise SAML login flow after Auth0 redirect.
 ///

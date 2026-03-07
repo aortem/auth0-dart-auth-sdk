@@ -1,6 +1,6 @@
 // lib/pages/get_metadata_page.dart
 import 'package:flutter/material.dart';
-import 'package:auth0_dart_auth_sdk/auth0_dart_auth_sdk.dart';
+import '../../../../backend/lib/auth0_dart_auth_sdk.dart';
 
 class GetMetadataPage extends StatefulWidget {
   final String accessToken;

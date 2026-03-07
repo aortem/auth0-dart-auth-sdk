@@ -1,4 +1,4 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_enterprise_saml_request_model.dart';
+import '../models/auth0_enterprise_saml_request_model.dart';
 
 /// Main service class to handle Auth0 enterprise SAML authentication flows.
 ///

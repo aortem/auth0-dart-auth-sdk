@@ -1,6 +1,6 @@
-import 'package:auth0_dart_auth_sdk/src/models/auth0_back_channel_login_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_back_channel_login_response_model.dart';
-import 'package:auth0_dart_auth_sdk/src/authentication/auth0_backchannel_login.dart';
+import '../../../lib/src/models/auth0_back_channel_login_request_model.dart';
+import '../../../lib/src/models/auth0_back_channel_login_response_model.dart';
+import '../../../lib/src/authentication/auth0_backchannel_login.dart';
 
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';

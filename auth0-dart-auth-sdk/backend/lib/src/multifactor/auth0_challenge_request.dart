@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_challenge_request_request_model.dart';
+import '../models/auth0_challenge_request_request_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import '../models/auth0_challenge_request_response_model.dart';
 

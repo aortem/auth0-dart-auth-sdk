@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_accept_request_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_accept_request_request_model.dart';
-import 'package:auth0_dart_auth_sdk/src/request_handling/auth0_accept_request.dart';
+import '../../../lib/src/exceptions/auth0_accept_request_exception.dart';
+import '../../../lib/src/models/auth0_accept_request_request_model.dart';
+import '../../../lib/src/request_handling/auth0_accept_request.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 

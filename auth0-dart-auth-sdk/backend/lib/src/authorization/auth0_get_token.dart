@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:auth0_dart_auth_sdk/src/exceptions/auth0_token_exception.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_get_token_request.dart';
-import 'package:auth0_dart_auth_sdk/src/models/auth0_get_token_response.dart';
+import '../exceptions/auth0_token_exception.dart';
+import '../models/auth0_get_token_request.dart';
+import '../models/auth0_get_token_response.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
 
 /// Requests an authentication token from Auth0's OAuth 2.0 token endpoint.

@@ -15,7 +15,7 @@ setup:
     - if: $CI_COMMIT_REF_NAME == "development" && $GITLAB_USER_LOGIN == "alphabetacreatives"
   script:
     - echo "Setting up environment..."
-    - cd auth0_dart_auth_sdk
+    - cd auth0-dart-auth-sdk/backend
     - dart pub get
   artifacts:
     paths:
@@ -34,7 +34,7 @@ unit_tests:
     - if: $CI_COMMIT_REF_NAME == "development" && $GITLAB_USER_LOGIN == "alphabetacreatives"
   script:
     - echo "Running Unit Tests..."
-    - cd auth0_dart_auth_sdk/auth0_dart_auth_sdk/test/test/unit # Navigate to the directory with pubspec.yaml
+    - cd auth0-dart-auth-sdk/backend # Navigate to the directory with pubspec.yaml
     - dart pub get
     - dart test test/unit/ --reporter expanded
   artifacts:
@@ -54,6 +54,7 @@ integration_tests:
     - if: $CI_COMMIT_REF_NAME == "development" && $GITLAB_USER_LOGIN == "alphabetacreatives"
   script:
     - echo "Running Integration Tests..."
+    - cd auth0-dart-auth-sdk/backend
     - dart test test/integration/ --reporter expanded
   artifacts:
     paths:
@@ -72,7 +73,13 @@ e2e_tests:
     - if: $CI_COMMIT_REF_NAME == "development" && $GITLAB_USER_LOGIN == "alphabetacreatives"
   script:
     - echo "Running E2E Tests..."
-    - dart test test/e2e/ --reporter expanded
+    - cd auth0-dart-auth-sdk/backend
+    - |
+      if [ -d test/e2e ]; then
+        dart test test/e2e/ --reporter expanded
+      else
+        echo "No test/e2e directory present. Skipping E2E tests."
+      fi
   artifacts:
     paths:
       - test-reports/e2e/

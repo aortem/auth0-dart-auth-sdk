@@ -9,7 +9,7 @@ analyze_main:
     - when: always
   script:
     - echo "Starting analysis for the main project..."
-    - cd auth0_dart_auth_sdk
+    - cd auth0-dart-auth-sdk/backend
     - pwd
     - echo "Listing contents of the current directory..."
     - ls -la
@@ -56,9 +56,9 @@ analyze_main:
     - echo "Main project analysis complete. Check filtered_report.txt for details."
   artifacts:
     paths:
-      - auth0_dart_auth_sdk/analysis_report.txt
-      - auth0_dart_auth_sdk/error_log.txt
-      - auth0_dart_auth_sdk/filtered_report.txt
+      - auth0-dart-auth-sdk/backend/analysis_report.txt
+      - auth0-dart-auth-sdk/backend/error_log.txt
+      - auth0-dart-auth-sdk/backend/filtered_report.txt
     expire_in: 1h
 
 # Analyze Example Project
@@ -69,7 +69,7 @@ analyze_example:
     - when: always
   script:
     - echo "Starting analysis for the example project..."
-    - cd auth0_dart_auth_sdk/example/auth0_dart_auth_sdk-sample-app
+    - cd auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-mobile-app
     - pwd
     - echo "Listing contents of the current directory..."
     - ls -la
@@ -118,7 +118,7 @@ analyze_example:
     - analyze_main
   artifacts:
     paths:
-      - auth0_dart_auth_sdk/example/auth0_dart_auth_sdk-sample-app/analysis_report.txt
-      - auth0_dart_auth_sdk/example/auth0_dart_auth_sdk-sample-app/error_log.txt
-      - auth0_dart_auth_sdk/example/auth0_dart_auth_sdk-sample-app/filtered_report.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-mobile-app/analysis_report.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-mobile-app/error_log.txt
+      - auth0-dart-auth-sdk/example/auth0-dart-auth-sdk-flutter-mobile-app/filtered_report.txt
     expire_in: 1h

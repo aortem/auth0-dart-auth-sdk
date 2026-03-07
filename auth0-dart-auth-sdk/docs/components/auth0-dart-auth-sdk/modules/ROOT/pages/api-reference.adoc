@@ -1,0 +1,19 @@
+= API Reference
+:page-layout: default
+
+This page is the Antora placeholder for the SDK API surface.
+
+== Primary Library
+
+* Package: auth0_dart_auth_sdk
+* Package root: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk
+
+== Recommended Expansion
+
+As the SDK docs mature, add:
+
+* top-level exports
+* key authentication flows
+* configuration objects
+* error handling guidance
+* platform-specific notes

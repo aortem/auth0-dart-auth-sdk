@@ -1,0 +1,5 @@
+name: auth0-dart-auth-sdk
+title: Auth0 Dart Auth SDK
+version: v0.0.4
+nav:
+- modules/ROOT/nav.adoc

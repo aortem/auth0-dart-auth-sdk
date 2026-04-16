@@ -11,6 +11,11 @@ import '../models/auth0_change_password_response_model.dart';
 /// by sending a request to Auth0's password change endpoint, which typically
 /// triggers a password reset email to the user.
 class Auth0ChangePassword {
+  final http.Client _client;
+
+  Auth0ChangePassword({http.Client? client})
+    : _client = client ?? http.Client();
+
   /// Initiates a password change request with Auth0.
   ///
   /// This method sends a request to Auth0's password change endpoint
@@ -28,10 +33,10 @@ class Auth0ChangePassword {
     Auth0ChangePasswordRequest request,
     String auth0Domain,
   ) async {
-    final url = Uri.https(auth0Domain, '/dbconnections/change_password');
+    final url = _buildUri(auth0Domain, '/dbconnections/change_password');
 
     // Send POST request to Auth0
-    final response = await http.post(
+    final response = await _client.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode(request.toJson()),
@@ -71,5 +76,16 @@ class Auth0ChangePassword {
     } catch (e) {
       return 'Error with status code: ${response.statusCode}';
     }
+  }
+
+  Uri _buildUri(String auth0Domain, String path) {
+    if (auth0Domain.trim().isEmpty) {
+      throw ArgumentError('Auth0 domain must not be empty.');
+    }
+
+    final baseUri = Uri.parse(
+      auth0Domain.contains('://') ? auth0Domain : 'https://$auth0Domain',
+    );
+    return baseUri.resolve(path);
   }
 }

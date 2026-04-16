@@ -23,7 +23,11 @@ class Auth0Logout {
   /// Creates a new instance of [Auth0Logout].
   ///
   /// Throws an [ArgumentError] if the provided domain is empty or only whitespace.
-  Auth0Logout({required this.auth0Domain});
+  Auth0Logout({required this.auth0Domain}) {
+    if (auth0Domain.trim().isEmpty) {
+      throw ArgumentError('Auth0 domain must not be empty.');
+    }
+  }
 
   /// Generates a logout URL for Auth0.
   ///

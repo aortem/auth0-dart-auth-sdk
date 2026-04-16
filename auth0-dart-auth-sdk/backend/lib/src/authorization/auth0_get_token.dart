@@ -67,12 +67,14 @@ Future<Auth0GetTokenResponse> auth0GetToken({
     }
   } else {
     try {
-      final jsonError = jsonDecode(response.body);
+      final jsonError = jsonDecode(response.body) as Map<String, dynamic>;
       throw Auth0TokenException(
-        jsonError['error_description'] ?? jsonError['error'] ?? 'Unknown error',
+        jsonError['error_description']?.toString() ??
+            jsonError['error']?.toString() ??
+            'Unknown error',
         response.statusCode,
       );
-    } catch (_) {
+    } on FormatException {
       throw Auth0TokenException(
         'Token request failed with status ${response.statusCode}',
       );

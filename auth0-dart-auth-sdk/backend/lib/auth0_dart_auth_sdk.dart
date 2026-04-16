@@ -27,6 +27,9 @@ export 'src/logout/auth0_oidc_logout.dart';
 export 'src/logout/auth0_saml_logout.dart';
 export 'src/logout/auth0_global_token_revoke.dart';
 
+// ===================== REQUEST HANDLING =====================
+export 'src/request_handling/auth0_accept_request.dart';
+
 // ===================== METADATA FEDERATION =====================
 export 'src/metadata_federation/auth0_get_metadata.dart';
 

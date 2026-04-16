@@ -1,9 +1,9 @@
-import '../../../lib/src/multifactor/auth0_list_authenticators.dart';
-import 'package:ds_tools_testing/ds_tools_testing.dart';
-
+import '../../../lib/src/exceptions/auth0_list_authenticators_exception.dart';
 import '../../../lib/src/models/auth0_list_authenticators_request_model.dart';
 import '../../../lib/src/models/auth0_list_authenticators_response_model.dart';
-import '../../../lib/src/exceptions/auth0_list_authenticators_exception.dart';
+import '../../../lib/src/multifactor/auth0_list_authenticators.dart';
+import 'package:ds_standard_features/ds_standard_features.dart' as http;
+import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {
   group('Auth0ListAuthenticators', () {
@@ -15,7 +15,25 @@ void main() {
       final service = Auth0ListAuthenticators(
         auth0Domain: testDomain,
         accessToken: validAccessToken,
+        httpClient: MockClient((request) async {
+          expect(
+            request.url.toString(),
+            equals('https://example.auth0.com/mfa/authenticators'),
+          );
+
+          return http.Response(
+            '''
+            [
+              {"id":"auth_1","type":"totp","name":"Authenticator app"},
+              {"id":"auth_2","type":"sms","name":"SMS"}
+            ]
+            ''',
+            200,
+            headers: {'content-type': 'application/json'},
+          );
+        }),
       );
+
       final result = await service.fetchAuthenticators(
         Auth0ListAuthenticatorsRequest(validAccessToken),
       );
@@ -40,9 +58,13 @@ void main() {
       final service = Auth0ListAuthenticators(
         auth0Domain: testDomain,
         accessToken: validAccessToken,
+        httpClient: MockClient((request) async {
+          return http.Response('Unauthorized', 401);
+        }),
       );
-      expect(
-        () => service.fetchAuthenticators(
+
+      await expectLater(
+        service.fetchAuthenticators(
           Auth0ListAuthenticatorsRequest(validAccessToken),
         ),
         throwsA(isA<Auth0ListAuthenticatorsException>()),
@@ -55,9 +77,13 @@ void main() {
         final service = Auth0ListAuthenticators(
           auth0Domain: testDomain,
           accessToken: validAccessToken,
+          httpClient: MockClient((request) async {
+            return http.Response('not-json', 200);
+          }),
         );
-        expect(
-          () => service.fetchAuthenticators(
+
+        await expectLater(
+          service.fetchAuthenticators(
             Auth0ListAuthenticatorsRequest(validAccessToken),
           ),
           throwsA(isA<Auth0ListAuthenticatorsException>()),
@@ -69,9 +95,13 @@ void main() {
       final service = Auth0ListAuthenticators(
         auth0Domain: testDomain,
         accessToken: validAccessToken,
+        httpClient: MockClient((request) async {
+          throw http.ClientException('network failure');
+        }),
       );
-      expect(
-        () => service.fetchAuthenticators(
+
+      await expectLater(
+        service.fetchAuthenticators(
           Auth0ListAuthenticatorsRequest(validAccessToken),
         ),
         throwsA(isA<Auth0ListAuthenticatorsException>()),

@@ -25,11 +25,12 @@ void main() {
       test('generates basic logout URL with clientId', () {
         final request = Auth0LogoutRequest(clientId: testClientId);
         final response = logoutService.generateLogoutUrl(request);
+        final uri = Uri.parse(response.logoutUrl);
 
-        expect(response.logoutUrl, contains('https://$testDomain/v2/logout'));
-        expect(response.logoutUrl, contains('client_id=$testClientId'));
-        expect(response.logoutUrl, isNot(contains('returnTo')));
-        expect(response.logoutUrl, isNot(contains('federated')));
+        expect(uri.toString(), contains('https://$testDomain/v2/logout'));
+        expect(uri.queryParameters['client_id'], equals(testClientId));
+        expect(uri.queryParameters.containsKey('returnTo'), isFalse);
+        expect(uri.query, isNot(contains('federated')));
       });
 
       test('includes returnTo when provided', () {
@@ -38,8 +39,9 @@ void main() {
           returnTo: testReturnTo,
         );
         final response = logoutService.generateLogoutUrl(request);
+        final uri = Uri.parse(response.logoutUrl);
 
-        expect(response.logoutUrl, contains('returnTo=$testReturnTo'));
+        expect(uri.queryParameters['returnTo'], equals(testReturnTo));
       });
 
       test('includes federated param when true', () {
@@ -48,14 +50,14 @@ void main() {
           federated: true,
         );
         final response = logoutService.generateLogoutUrl(request);
+        final uri = Uri.parse(response.logoutUrl);
 
-        expect(response.logoutUrl, contains('federated='));
+        expect(uri.query, contains('federated'));
       });
 
       test('throws when clientId is empty', () {
-        final request = Auth0LogoutRequest(clientId: '');
         expect(
-          () => logoutService.generateLogoutUrl(request),
+          () => Auth0LogoutRequest(clientId: ''),
           throwsA(isA<ArgumentError>()),
         );
       });

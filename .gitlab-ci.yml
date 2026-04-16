@@ -43,17 +43,6 @@ debug_merge_request:
       when: always
     - when: never
 
-# Validate Conditional Triggers
-validation_trigger:
-  stage: validation
-  trigger:
-    include: tools/pipelines/backend/child-ci-setup-validation.yml
-  rules:
-    - changes:
-        - auth0-dart-auth-sdk/backend/**/*
-      when: always
-    - when: never
-
 # Validation Conditional Triggers for Docs
 validation_trigger_docs:
   stage: validation

@@ -1,21 +1,89 @@
-﻿= Releases
+= Releases
 :navtitle: Releases
-:description: Release tracking for Auth0 Dart Auth SDK.
+:description: Release highlights and package history for Auth0 Dart Auth SDK.
 :sectnums:
 
-This page tracks the current public package version documented for Auth0 Dart Auth SDK.
+This page summarizes the stable package release history for Auth0 Dart Auth SDK and keeps the public docs aligned with the published SDK versions.
 '''
-
-== v0.0.4
-
-=== Overview
-The current public package version for auth0_dart_auth_sdk is v0.0.4.
 
 === Release Sources
 
 * Pubspec: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/pubspec.yaml
 * Changelog: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md
 
+== v0.0.4
+
+=== Overview
+This release improves Auth0 setup and runtime resilience with PKCE examples, better retries, and clearer exception handling.
+
+=== Highlights
+* Added Authorization Code plus PKCE quickstarts
+* Added configurable timeout and retry support
+* Improved typed exceptions and troubleshooting guidance
+
+=== Improvements
+* Added example Authorization Code plus PKCE quickstarts for Flutter and server-side usage.
+* Added configurable request timeouts and retry and backoff behavior for token and network calls.
+* Normalized handling for `scope`, `audience`, and `redirectUri` across common flows.
+* Expanded README guidance for OnePub and private registry usage.
+
+=== Fixes
+* `revokeToken()` now correctly treats HTTP `204` as success.
+* Improved `logout()` reliability on slower networks.
+* Hardened JSON parsing for user profile fields with missing or extra properties.
+
+== v0.0.3
+
+=== Overview
+This release focuses on repository and API documentation consistency.
+
+=== Highlights
+* Updated GitHub URL
+* Normalized DartDoc API naming conventions
+
+=== Improvements
+* Updated repository references to the correct GitHub URL.
+* Normalized DartDoc naming across the API surface for better consistency.
+
+== v0.0.2
+
+=== Overview
+This release delivers the first broader public Auth0 SDK shape with renamed modules, consolidated exports, and a more complete example application.
+
+=== Highlights
+* Public namespace renamed from `aortem_auth0_*` to `auth0_*`
+* Added a larger example Flutter application
+* Consolidated exports under the `auth0_*` namespace
+
+=== Improvements
+* Renamed public files and modules from `aortem_auth0_*` to `auth0_*`.
+* Added an example app covering email and password login, social login, enterprise SAML, MFA, token operations, logout, user info, and dynamic client registration.
+* Consolidated exports under a single `auth0_*` namespace for clearer usage.
+
 === Notes
-* Keep this page aligned with the version declared in pubspec.yaml.
-* Detailed release history and change notes remain in CHANGELOG.md until fuller curated release notes are added here.
+* This release includes breaking import-path changes for consumers using subpath imports.
+
+== v0.0.1
+
+=== Overview
+This release establishes the first stable package version for Auth0 Dart Auth SDK.
+
+=== Highlights
+* First stable package release
+* Dart SDK baseline updated
+
+=== Improvements
+* Bumped the package to version `0.0.1`.
+* Updated the Dart baseline to `3.8.0`.
+
+== Pre-release History
+
+=== Overview
+Earlier pre-stable package builds remain part of the SDK history and are preserved in the changelog.
+
+=== Included Pre-release Tags
+* `0.0.1-pre`
+
+=== Notes
+* Keep this page aligned with the version declared in `pubspec.yaml`.
+* Use `CHANGELOG.md` as the source of truth for exhaustive historical change notes.

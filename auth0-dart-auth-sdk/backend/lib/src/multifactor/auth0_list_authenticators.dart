@@ -1,5 +1,6 @@
 import 'dart:convert';
 import '../exceptions/auth0_list_authenticators_exception.dart';
+import '../models/auth0_list_authenticators_model.dart';
 import '../models/auth0_list_authenticators_request_model.dart';
 import '../models/auth0_list_authenticators_response_model.dart';
 import 'package:ds_standard_features/ds_standard_features.dart' as http;
@@ -17,6 +18,7 @@ class Auth0ListAuthenticators {
 
   /// The base URL of your Auth0 tenant (e.g., `https://my-tenant.auth0.com`).
   final String auth0Domain;
+  final http.Client httpClient;
 
   /// Creates a new [Auth0ListAuthenticators] instance.
   ///
@@ -24,7 +26,15 @@ class Auth0ListAuthenticators {
   Auth0ListAuthenticators({
     required this.auth0Domain,
     required this.accessToken,
-  });
+    http.Client? httpClient,
+  }) : httpClient = httpClient ?? http.Client() {
+    if (auth0Domain.trim().isEmpty) {
+      throw ArgumentError('Auth0 domain must not be empty.');
+    }
+    if (accessToken.trim().isEmpty) {
+      throw ArgumentError('Access token is required.');
+    }
+  }
 
   /// Retrieves a list of registered MFA authenticators from Auth0.
   ///
@@ -50,11 +60,11 @@ class Auth0ListAuthenticators {
     }
 
     // Build full URL dynamically from provided domain
-    final url = Uri.parse('$auth0Domain/mfa/authenticators');
+    final url = _buildUri('/mfa/authenticators');
 
     try {
       // Send HTTP GET request to Auth0 endpoint with Authorization header
-      final response = await http.get(
+      final response = await httpClient.get(
         url,
         headers: {'Authorization': 'Bearer $accessToken'},
       );
@@ -62,17 +72,37 @@ class Auth0ListAuthenticators {
       // Check if the response status code is 200 (OK)
       if (response.statusCode == 200) {
         // Parse the JSON response
-        final Map<String, dynamic> responseJson = json.decode(response.body);
-        return Auth0ListAuthenticatorsResponse.fromJson(responseJson);
+        final responseJson = json.decode(response.body);
+        if (responseJson is List) {
+          return Auth0ListAuthenticatorsResponse(
+            authenticators: responseJson
+                .cast<Map<String, dynamic>>()
+                .map(Auth0Authenticator.fromJson)
+                .toList(),
+          );
+        }
+        if (responseJson is Map<String, dynamic>) {
+          return Auth0ListAuthenticatorsResponse.fromJson(responseJson);
+        }
+        throw const FormatException('Unexpected response format');
       } else {
         // Handle error responses
         throw Auth0ListAuthenticatorsException(
           'Failed to retrieve authenticators: ${response.body}',
         );
       }
+    } on Auth0ListAuthenticatorsException {
+      rethrow;
     } catch (e) {
       // Handle unexpected errors, such as network issues or JSON parsing errors
       throw Auth0ListAuthenticatorsException('Error: ${e.toString()}');
     }
+  }
+
+  Uri _buildUri(String path) {
+    final baseUri = Uri.parse(
+      auth0Domain.contains('://') ? auth0Domain : 'https://$auth0Domain',
+    );
+    return baseUri.resolve(path);
   }
 }

@@ -22,20 +22,23 @@ void main() {
         request: request,
       );
 
-      expect(response.url.toString(), contains('client_id=abc123'));
+      expect(response.url.queryParameters['client_id'], equals('abc123'));
       expect(
-        response.url.toString(),
-        contains('redirect_uri=https%3A%2F%2Fapp.example.com%2Fcallback'),
+        response.url.queryParameters['redirect_uri'],
+        equals('https://app.example.com/callback'),
       );
-      expect(response.url.toString(), contains('response_type=code'));
-      expect(response.url.toString(), contains('scope=openid%20profile'));
-      expect(response.url.toString(), contains('state=xyz'));
+      expect(response.url.queryParameters['response_type'], equals('code'));
+      expect(response.url.queryParameters['scope'], equals('openid profile'));
+      expect(response.url.queryParameters['state'], equals('xyz'));
       expect(
-        response.url.toString(),
-        contains('audience=https%3A%2F%2Fapi.example.com'),
+        response.url.queryParameters['audience'],
+        equals('https://api.example.com'),
       );
-      expect(response.url.toString(), contains('connection=google-oauth2'));
-      expect(response.url.toString(), contains('prompt=login'));
+      expect(
+        response.url.queryParameters['connection'],
+        equals('google-oauth2'),
+      );
+      expect(response.url.queryParameters['prompt'], equals('login'));
     });
 
     test('throws ArgumentError when clientId is empty', () {

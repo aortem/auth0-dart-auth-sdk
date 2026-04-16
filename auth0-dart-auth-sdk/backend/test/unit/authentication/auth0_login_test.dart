@@ -1,5 +1,6 @@
 import '../../../lib/src/authentication/auth0_login.dart';
 
+import 'package:ds_standard_features/ds_standard_features.dart' as http;
 import 'package:ds_tools_testing/ds_tools_testing.dart';
 
 void main() {
@@ -43,9 +44,10 @@ void main() {
       expect(
         json,
         equals({
+          'grant_type': 'http://auth0.com/oauth/grant-type/password-realm',
           'username': 'user@test.com',
           'password': 'pass123',
-          'connection': 'test-connection',
+          'realm': 'test-connection',
           'client_id': 'test-client',
           'scope': 'openid',
           'audience': 'test-audience',
@@ -55,10 +57,22 @@ void main() {
     });
 
     test('throws timeout exception when request takes too long', () async {
-      // This test assumes the real service will timeout as expected
-      // In a real test, you'd want to mock the HTTP client
+      final delayedClient = MockClient((request) async {
+        await Future<void>.delayed(const Duration(seconds: 2));
+        return http.Response(
+          '{"access_token":"token","token_type":"Bearer"}',
+          200,
+        );
+      });
+
+      final timeoutService = Auth0LoginService(
+        auth0Domain: testDomain,
+        client: delayedClient,
+        requestTimeout: const Duration(milliseconds: 100),
+      );
+
       expect(
-        () => authService.login(validRequest),
+        () => timeoutService.login(validRequest),
         throwsA(
           isA<Auth0LoginException>().having(
             (e) => e.message,

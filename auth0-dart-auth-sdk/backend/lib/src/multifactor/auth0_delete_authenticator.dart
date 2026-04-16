@@ -20,12 +20,20 @@ class Auth0DeleteAuthenticatorClient {
   ///
   /// This should match the domain configured in your Auth0 tenant settings.
   final String auth0Domain;
+  final http.Client httpClient;
 
   /// Creates a new instance of [Auth0DeleteAuthenticatorClient].
   ///
   /// [auth0Domain] must be a valid Auth0 domain string in the format
   /// 'your-tenant.auth0.com'. This will be used to construct API endpoints.
-  Auth0DeleteAuthenticatorClient({required this.auth0Domain});
+  Auth0DeleteAuthenticatorClient({
+    required this.auth0Domain,
+    http.Client? httpClient,
+  }) : httpClient = httpClient ?? http.Client() {
+    if (auth0Domain.trim().isEmpty) {
+      throw ArgumentError('Auth0 domain must not be empty.');
+    }
+  }
 
   /// Deletes a specific authenticator from the user's MFA configuration.
   ///
@@ -57,13 +65,11 @@ class Auth0DeleteAuthenticatorClient {
     }
 
     // Construct the API endpoint URL
-    final url = Uri.parse(
-      'https://$auth0Domain/mfa/authenticators/${request.authenticatorId}',
-    );
+    final url = _buildUri('/mfa/authenticators/${request.authenticatorId}');
 
     try {
       // Make authenticated DELETE request to Auth0 API
-      final response = await http.delete(
+      final response = await httpClient.delete(
         url,
         headers: {'Authorization': 'Bearer ${request.accessToken}'},
       );
@@ -87,9 +93,18 @@ class Auth0DeleteAuthenticatorClient {
           'Failed to delete authenticator: ${response.statusCode} ${response.body}',
         );
       }
+    } on Auth0DeleteAuthenticatorException {
+      rethrow;
     } catch (e) {
       // Handle unexpected errors
       throw Auth0DeleteAuthenticatorException('Error: ${e.toString()}');
     }
+  }
+
+  Uri _buildUri(String path) {
+    final baseUri = Uri.parse(
+      auth0Domain.contains('://') ? auth0Domain : 'https://$auth0Domain',
+    );
+    return baseUri.resolve(path);
   }
 }

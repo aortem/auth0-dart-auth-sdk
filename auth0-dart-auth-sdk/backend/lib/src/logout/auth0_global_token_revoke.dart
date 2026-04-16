@@ -24,11 +24,13 @@ class Auth0GlobalTokenRevocation {
   ///
   /// This is the domain for your Auth0 tenant, such as 'your-domain.auth0.com'.
   final String domain;
+  final http.Client _client;
 
   /// Creates a new instance of [Auth0GlobalTokenRevocation].
   ///
   /// Throws an [ArgumentError] if the provided domain is empty or only whitespace.
-  Auth0GlobalTokenRevocation({required this.domain}) {
+  Auth0GlobalTokenRevocation({required this.domain, http.Client? client})
+    : _client = client ?? http.Client() {
     if (domain.trim().isEmpty) {
       throw ArgumentError('Auth0 domain must not be empty.');
     }
@@ -51,7 +53,7 @@ class Auth0GlobalTokenRevocation {
     final body = request.toFormEncoded();
 
     // Send the token revocation request
-    final response = await http.post(uri, headers: headers, body: body);
+    final response = await _client.post(uri, headers: headers, body: body);
 
     if (response.statusCode == 200) {
       // Success: return the revocation response

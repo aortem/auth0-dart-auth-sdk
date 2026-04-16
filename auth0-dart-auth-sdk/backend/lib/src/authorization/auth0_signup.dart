@@ -29,6 +29,10 @@ import '../models/auth0_signup_response_model.dart';
 /// }
 /// ```
 class Auth0Signup {
+  final http.Client _client;
+
+  Auth0Signup({http.Client? client}) : _client = client ?? http.Client();
+
   /// Signs up a new user via Auth0's database connection signup API.
   ///
   /// [request] contains the user's signup information, such as email, password, and connection.
@@ -42,10 +46,10 @@ class Auth0Signup {
     Auth0SignupRequest request,
     String auth0Domain, // The Auth0 domain, e.g., 'your-domain.auth0.com'
   ) async {
-    final url = Uri.https(auth0Domain, '/dbconnections/signup');
+    final url = _buildUri(auth0Domain, '/dbconnections/signup');
 
     // Send POST request to Auth0
-    final response = await http.post(
+    final response = await _client.post(
       url,
       headers: {'Content-Type': 'application/json'},
       body: json.encode(request.toJson()),
@@ -83,5 +87,16 @@ class Auth0Signup {
     } catch (e) {
       return 'Error with status code: ${response.statusCode}';
     }
+  }
+
+  Uri _buildUri(String auth0Domain, String path) {
+    if (auth0Domain.trim().isEmpty) {
+      throw ArgumentError('Auth0 domain must not be empty.');
+    }
+
+    final baseUri = Uri.parse(
+      auth0Domain.contains('://') ? auth0Domain : 'https://$auth0Domain',
+    );
+    return baseUri.resolve(path);
   }
 }

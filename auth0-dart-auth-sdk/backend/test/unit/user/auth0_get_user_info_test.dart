@@ -19,7 +19,7 @@ void main() {
     });
 
     test('returns valid user info response when API returns 200', () async {
-      MockClient((request) async {
+      final mockClient = MockClient((request) async {
         expect(request.headers['Authorization'], 'Bearer $testAccessToken');
         expect(request.url.toString(), 'https://$testDomain/userinfo');
 
@@ -40,6 +40,7 @@ void main() {
       final result = await auth0GetUserInfo(
         domain: testDomain,
         request: request,
+        client: mockClient,
       );
 
       expect(result.sub, equals("auth0|123456"));
@@ -50,7 +51,7 @@ void main() {
     });
 
     test('throws exception on non-200 response', () async {
-      MockClient((request) async {
+      final mockClient = MockClient((request) async {
         return http.Response(
           jsonEncode({
             "error": "invalid_token",
@@ -63,7 +64,11 @@ void main() {
       final request = Auth0GetUserInfoRequest(accessToken: testAccessToken);
 
       try {
-        await auth0GetUserInfo(domain: testDomain, request: request);
+        await auth0GetUserInfo(
+          domain: testDomain,
+          request: request,
+          client: mockClient,
+        );
         fail('Should have thrown Auth0UserInfoException');
       } catch (e) {
         expect(e, isA<Auth0UserInfoException>());
@@ -79,14 +84,18 @@ void main() {
     });
 
     test('throws parsing error on malformed JSON', () async {
-      MockClient((request) async {
+      final mockClient = MockClient((request) async {
         return http.Response('Not a JSON', 200);
       });
 
       final request = Auth0GetUserInfoRequest(accessToken: testAccessToken);
 
       try {
-        await auth0GetUserInfo(domain: testDomain, request: request);
+        await auth0GetUserInfo(
+          domain: testDomain,
+          request: request,
+          client: mockClient,
+        );
         fail('Should have thrown Auth0UserInfoException');
       } catch (e) {
         expect(e, isA<Auth0UserInfoException>());

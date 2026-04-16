@@ -9,10 +9,12 @@ Future<Auth0GetUserInfoResponse> auth0GetUserInfo({
   required String domain,
   required Auth0GetUserInfoRequest request,
   Duration timeout = const Duration(seconds: 10),
+  http.Client? client,
 }) async {
   final uri = Uri.https(domain, '/userinfo');
+  final httpClient = client ?? http.Client();
 
-  final response = await http
+  final response = await httpClient
       .get(
         uri,
         headers: {

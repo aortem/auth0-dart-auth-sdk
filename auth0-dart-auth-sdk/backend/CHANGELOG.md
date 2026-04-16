@@ -1,5 +1,30 @@
-# 0.0.4
+# Changelog
 
+## [0.0.5]
+### Added
+
+* Public package export for `Auth0AcceptRequestClient` via the main SDK entrypoint.
+* Explicit backend test coverage for change-password, signup, MFA verify, logout helpers, request handling, and user-info flows.
+* Skipped placeholder integration test stubs so the backend suite reports intentional gaps instead of hard load failures.
+
+### Changed
+
+* Added injectable HTTP clients and consistent bare-domain handling in several backend services to support deterministic testing and cleaner Auth0 tenant configuration.
+* Tightened `Auth0IdpInitiatedSSOFlow` validation so non-absolute Auth0 URIs fail fast.
+* Updated stale unit tests to match the implemented Auth0 request and URL semantics.
+
+### Fixed
+
+* `auth0GetToken()` now preserves Auth0 error descriptions instead of collapsing JSON error responses into a generic status failure.
+* `Auth0Logout` now enforces non-empty Auth0 domains as documented.
+* `auth0GetUserInfo()` now supports injected HTTP clients for verified non-network unit coverage.
+
+### Notes
+
+* **No breaking changes.**
+* Verified on April 16, 2026 with `dart test` and `dart analyze lib test`.
+
+## [0.0.4]
 ### Added
 
 * Example **Authorization Code + PKCE** quickstart (Flutter & server-side) to reduce setup friction.
@@ -23,15 +48,13 @@
 * **No breaking changes.**
 * Recommended: run `dart pub upgrade` to pick up the improved networking defaults.
 
-## 0.0.3
-
+## [0.0.3]
 ### Changed
 
 - Updated GitHub URL
 - Normalized Dart Docs API naming convention
 
-## 0.0.2
-
+## [0.0.2]
 ### Breaking
 
 * **Rename:** all public file/module names changed from `aortem_auth0_*` → `auth0_*`.
@@ -59,10 +82,9 @@
 * **Exports consolidated** under `auth0_*` namespace for consistency and clarity.
   (No runtime behavior changes intended.)
 
-## 0.0.1
-
+## [0.0.1]
 - Bump To Version 3.8.0 
 
-## 0.0.1-pre
-
+## [0.0.1-pre]
 - Initial pre-release version of the Auth0 Dart Auth SDK.
+

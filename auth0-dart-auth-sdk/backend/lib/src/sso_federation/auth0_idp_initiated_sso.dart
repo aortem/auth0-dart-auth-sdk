@@ -80,6 +80,12 @@ Auth0IdpInitiatedSSOFlowResponse Auth0IdpInitiatedSSOFlow({
   required Uri auth0DomainUri,
   required Auth0IdpInitiatedSSOFlowRequest request,
 }) {
+  if (!auth0DomainUri.hasScheme || auth0DomainUri.host.isEmpty) {
+    throw ArgumentError(
+      'auth0DomainUri must be an absolute URI with scheme and host.',
+    );
+  }
+
   try {
     final queryParameters = {
       'client': request.clientId,
@@ -91,6 +97,7 @@ Auth0IdpInitiatedSSOFlowResponse Auth0IdpInitiatedSSOFlow({
     final uri = Uri(
       scheme: auth0DomainUri.scheme,
       host: auth0DomainUri.host,
+      port: auth0DomainUri.hasPort ? auth0DomainUri.port : 0,
       path: '/login',
       queryParameters: queryParameters,
     );

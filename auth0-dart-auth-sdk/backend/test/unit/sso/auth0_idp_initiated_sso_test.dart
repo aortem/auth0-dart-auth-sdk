@@ -58,7 +58,7 @@ void main() {
       expect(response.ssoUrl.queryParameters['protocol'], 'oidc');
     });
 
-    test('should throw Exception if URL construction fails', () {
+    test('should throw ArgumentError for a non-absolute Auth0 URI', () {
       // Simulating URL construction failure by providing an invalid URI
       final request = Auth0IdpInitiatedSSOFlowRequest(clientId: 'abc123');
 
@@ -67,7 +67,7 @@ void main() {
           auth0DomainUri: Uri.parse('invalid-url'),
           request: request,
         ),
-        throwsA(isA<Exception>()),
+        throwsA(isA<ArgumentError>()),
       );
     });
   });

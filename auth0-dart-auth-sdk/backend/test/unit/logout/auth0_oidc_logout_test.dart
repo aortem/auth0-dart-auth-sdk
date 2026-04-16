@@ -36,10 +36,8 @@ void main() {
     });
 
     test('throws ArgumentError if clientId is missing', () {
-      final request = Auth0OidcLogoutRequest(clientId: '');
-
       expect(
-        () => oidcLogoutService.generateLogoutUrl(request),
+        () => Auth0OidcLogoutRequest(clientId: ''),
         throwsA(
           isA<ArgumentError>().having(
             (e) => e.message,

@@ -27,6 +27,7 @@ import 'package:ds_standard_features/ds_standard_features.dart' as http;
 class Auth0MultiFactorService {
   /// The base URI of the Auth0 domain (e.g., 'https://your-domain.auth0.com').
   final Uri auth0DomainUri;
+  final http.Client _client;
 
   /// The maximum duration to wait for the MFA verification request to complete.
   /// Defaults to 10 seconds.
@@ -40,7 +41,8 @@ class Auth0MultiFactorService {
   Auth0MultiFactorService({
     required this.auth0DomainUri,
     this.timeout = const Duration(seconds: 10),
-  });
+    http.Client? client,
+  }) : _client = client ?? http.Client();
 
   /// Verifies a multi-factor authentication challenge.
   ///
@@ -70,7 +72,7 @@ class Auth0MultiFactorService {
 
     final body = jsonEncode(request.toJson());
 
-    final response = await http
+    final response = await _client
         .post(url, headers: headers, body: body)
         .timeout(timeout);
 

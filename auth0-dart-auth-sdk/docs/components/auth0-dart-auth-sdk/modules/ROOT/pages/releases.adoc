@@ -11,6 +11,30 @@ This page summarizes the stable package release history for Auth0 Dart Auth SDK 
 * Pubspec: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/pubspec.yaml
 * Changelog: apps/sdks/auth0-dart-auth-sdk/auth0-dart-auth-sdk/backend/CHANGELOG.md
 
+== v0.0.5
+
+=== Overview
+This release hardens the Auth0 backend package for publication with cleaner public exports, better testability, and verified fixes across token, logout, MFA, and user-info flows.
+
+=== Highlights
+* Exported `Auth0AcceptRequestClient` from the package entrypoint
+* Expanded backend verification coverage across Auth0 flows
+* Fixed Auth0 error propagation and stricter URI and domain validation
+
+=== Improvements
+* Exported `Auth0AcceptRequestClient` from `auth0_dart_auth_sdk.dart` so request-handling APIs are reachable from the main package entrypoint.
+* Added injectable HTTP clients and consistent bare-domain handling in multiple backend services to make unit verification deterministic and easier to configure.
+* Added focused backend coverage for signup, change password, MFA verify, logout helpers, request handling, and user-info flows.
+* Converted placeholder integration files into explicit skipped tests so the suite reflects known gaps without failing package verification.
+
+=== Fixes
+* `auth0GetToken()` now preserves Auth0 JSON error descriptions instead of falling back to a generic status failure.
+* `Auth0Logout` now rejects empty Auth0 domains as documented.
+* `Auth0IdpInitiatedSSOFlow` now fails fast for non-absolute Auth0 URIs.
+
+=== Notes
+* Verified on April 16, 2026 with `dart test` and `dart analyze lib test`.
+
 == v0.0.4
 
 === Overview

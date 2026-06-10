@@ -30,7 +30,7 @@ Or in `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  auth0_dart_auth_sdk: ^0.0.5
+  auth0_dart_auth_sdk: ^0.0.6
 ```
 
 ## Quick Start

@@ -1,11 +1,11 @@
 name: auth0_dart_auth_sdk
 description: A Dart SDK for auth0 Authentication, enabling secure server-side authentication and user management for Dart-based backend applications.
-version: 0.0.5
+version: 0.0.6
 repository: https://github.com/aortem/auth0-dart-auth-sdk
 license: BSD-3
 
 environment:
-  sdk: ^3.11.4
+  sdk: ^3.12.1
 
 dependencies:
 
@@ -13,11 +13,11 @@ dependencies:
 
 ## There are three standard libraries provided by the Dart Team. 
 
-  ds_standard_features: ^0.1.6
+  ds_standard_features: ^0.1.7
 
 #------------------ ADDITIONAL FEATURES---------------------------------
   build_web_compilers: ^4.4.5
-  jwt_generator: ^0.0.8
+  jwt_generator: ^0.0.9
   web: ^1.1.1
   js_interop: ^0.0.1
 

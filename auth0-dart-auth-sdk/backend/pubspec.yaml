@@ -16,7 +16,7 @@ dependencies:
   ds_standard_features: ^0.1.7
 
 #------------------ ADDITIONAL FEATURES---------------------------------
-  build_web_compilers: ^4.4.5
+  build_web_compilers: ^4.8.0
   jwt_generator: ^0.0.9
   web: ^1.1.1
   js_interop: ^0.0.1

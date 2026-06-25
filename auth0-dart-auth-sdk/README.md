@@ -38,7 +38,7 @@ Whether you’re building a Dart backend, a Flutter mobile app, or a Flutter web
 
 ### Prerequisites
 
-* Dart SDK >= 3.12.1 (Flutter 3.44.1 compatible; standalone Dart 3.12.2 recommended)
+* Dart SDK >= 3.12.1 (Flutter 3.44.3 compatible; standalone Dart 3.12.2 recommended)
 * An Auth0 tenant with an Application configured:  
   * **Regular Web App** for Flutter Web / server  
   * **Native App** for Flutter mobile  
